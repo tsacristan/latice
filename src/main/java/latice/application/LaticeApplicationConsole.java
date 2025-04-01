@@ -10,6 +10,8 @@ public class LaticeApplicationConsole {
 		System.out.println("-----------------------------------------------");
 		System.out.println("Développé par Alexandre");
 		System.out.println("-----------------------------------------------");
+		System.out.println("Développé par Rémi");
+		System.out.println("-----------------------------------------------");
 	}
 
 }
