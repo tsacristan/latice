@@ -1,6 +1,6 @@
 package latice.application;
 
-public class LaticeApplicationConsole {
+public class LaticeConsoleApplication {
 
 	public static void main(String[] args) {
 		System.out.println("-----------------------------------------------");
