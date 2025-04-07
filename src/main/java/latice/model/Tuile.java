@@ -17,6 +17,12 @@ public class Tuile {
 		return forme;
 	}
 
+	@Override
+	public String toString() {
+		return "Tuile [couleur=" + couleur + ", forme=" + forme + "]";
+	}
+	
+	
 
 }
 

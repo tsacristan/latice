@@ -1,10 +1,14 @@
 package latice.application;
 
+import latice.model.LaticePile;
+
 public class LaticeJeuxEssais {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		
+		LaticePile pile = new LaticePile();
+		pile.remplirPile();
+		System.out.println(pile);
 	}
 
 }
