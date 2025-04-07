@@ -9,11 +9,11 @@ public class Tuile {
 		this.forme = forme;
 	}
 
-	public Couleur Couleur() {
+	public Couleur couleur() {
 		return couleur;
 	}
 
-	public Forme getForme() {
+	public Forme forme() {
 		return forme;
 	}
 
