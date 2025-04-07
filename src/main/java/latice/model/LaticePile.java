@@ -1,5 +1,6 @@
 package latice.model;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class LaticePile {
 	private ArrayList<Tuile> pile;
@@ -14,6 +15,11 @@ public class LaticePile {
 			}
 		return pile;
 	}
+	
+	public void melangerPile(){
+		 Collections.shuffle(pile);
+		 }
+		
 	@Override
 	public String toString() {
 		return pile.toString();

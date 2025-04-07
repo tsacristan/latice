@@ -8,6 +8,7 @@ public class LaticeJeuxEssais {
 		
 		LaticePile pile = new LaticePile();
 		pile.remplirPile();
+		pile.melangerPile();
 		System.out.println(pile);
 	}
 
