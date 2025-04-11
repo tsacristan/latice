@@ -1,4 +1,4 @@
-package latice.view;
+package latice.ihm;
 
 import latice.model.Plateau;
 

@@ -9,6 +9,10 @@ public class Tuile {
 		this.forme = forme;
 	}
 
+	public Tuile() {
+		this(null, null);
+	}
+
 	public Couleur couleur() {
 		return couleur;
 	}
@@ -21,11 +25,4 @@ public class Tuile {
 	public String toString() {
 		return "Tuile [couleur=" + couleur + ", forme=" + forme + "]";
 	}
-	
-	
-
 }
-
-
-
-

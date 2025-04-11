@@ -5,7 +5,7 @@ import latice.model.PileDebut;
 import latice.model.PileJoueur;
 import latice.model.Plateau;
 import latice.model.RackJoueur;
-import latice.view.AfficherPlateauConsole;
+import latice.ihm.AfficherPlateauConsole;
 
 public class LaticeJeuxEssais {
 
@@ -50,10 +50,9 @@ public class LaticeJeuxEssais {
 		System.out.println("Nouveau rack du joueur 2");
 		rackJoueur1.piocher(pile2);
 		System.out.println(rackJoueur2);
-		
+
+		Plateau plateau = new Plateau();
+		AfficherPlateauConsole affichagePlateau = new AfficherPlateauConsole();
+		affichagePlateau.afficher(plateau);
 	}
-	
-	Plateau plateau = new Plateau();
-    AfficherPlateauConsole afficher = new AfficherPlateauConsole();
-    afficher.afficher(plateau);
 }
