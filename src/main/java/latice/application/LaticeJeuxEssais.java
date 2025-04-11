@@ -2,7 +2,9 @@ package latice.application;
 
 import latice.model.PileDebut;
 import latice.model.PileJoueur;
+import latice.model.Plateau;
 import latice.model.RackJoueur;
+import latice.view.AfficherPlateauConsole;
 
 public class LaticeJeuxEssais {
 
@@ -23,4 +25,8 @@ public class LaticeJeuxEssais {
 		rackJoueur.remplir(pile1);
 		System.out.println(rackJoueur);
 	}
+	
+	Plateau plateau = new Plateau();
+    AfficherPlateauConsole afficher = new AfficherPlateauConsole();
+    afficher.afficher(plateau);
 }
