@@ -18,6 +18,13 @@ public class RackJoueur {
             rack[i] = pile.retirerTuile();
         }
     }
+    
+    public void piocher(PileJoueur pile) {
+    	for (int i = 0; i < 5; i++) {
+    		pile.ajouterTuile(rack[i]);
+    		rack[i] = pile.retirerTuile();
+    	}
+    }
 
     @Override
     public String toString() {
