@@ -8,7 +8,7 @@ public enum EmojiForme {
 	GECKO("\uD83E\uDD8E"),
 	DAUPHIN("\uD83D\uDC2C");
 	
-	private final String emoji;
+	private String emoji;
 
 	EmojiForme(String emoji) {
     	this.emoji = emoji;
