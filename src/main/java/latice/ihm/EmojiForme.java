@@ -1,4 +1,4 @@
-package latice.model;
+package latice.ihm;
 
 public enum EmojiForme {
 	PLUME("\uD83E\uDEB6"),
@@ -6,7 +6,10 @@ public enum EmojiForme {
 	TORTUE("\uD83D\uDC22"),
 	FLEUR("\uD83C\uDF3C"),
 	GECKO("\uD83E\uDD8E"),
-	DAUPHIN("\uD83D\uDC2C");
+	DAUPHIN("\uD83D\uDC2C"),
+	CASE_LUNE("\uD83C\uDF19"),
+	CASE_SOLEIL("\u2600\uFE0F"),
+	CASE_VIDE(" ");
 	
 	private String emoji;
 
@@ -14,7 +17,7 @@ public enum EmojiForme {
     	this.emoji = emoji;
 	}
 
-	public String Emoji() {
+	public String emoji() {
 		return emoji;
 	}
 

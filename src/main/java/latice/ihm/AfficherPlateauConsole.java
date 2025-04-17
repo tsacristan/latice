@@ -16,8 +16,7 @@ public class AfficherPlateauConsole implements AfficherPlateau {
             }
             Console.message();
         }
-        Console.message("--------------------------------------\n");
-        Console.message("L = case lune | S = case soleil | . = case vide");
+        Console.message(Console.LIGNE_HORIZONTALE);
     }
 
 }
