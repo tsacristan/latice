@@ -4,8 +4,8 @@ import latice.ihm.CouleurConsole;
 import latice.ihm.EmojiForme;
 
 public class Case {
-    private final Tuile tuile;
-    private final TypeCase typeCase;
+    private Tuile tuile;
+    private TypeCase typeCase;
 
     public Case(Tuile tuile, TypeCase typeCase) {
         this.tuile = tuile;
@@ -27,9 +27,17 @@ public class Case {
     public Tuile tuile() {
         return tuile;
     }
+    
+    public void changerTuile(Tuile tuile) {
+    	this.tuile = tuile;
+    }
 
     public TypeCase typeCase() {
         return typeCase;
+    }
+    
+    public void changerTypeCase(TypeCase typeCase) {
+    	this.typeCase = typeCase;
     }
 
     @Override

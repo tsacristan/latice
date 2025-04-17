@@ -7,18 +7,18 @@ import latice.model.RackJoueur;
 
 public class LaticeConsoleApplication {
 
-	public static void main(String[] args) {
-		PileDebut pile = new PileDebut();
-		pile.remplir();
-		pile.melanger();
+    public static void main(String[] args) {
+        PileDebut pile = new PileDebut();
+        pile.remplir();
+        pile.melanger();
 
-		PileJoueur pile1 = new PileJoueur();
-		PileJoueur pile2 = new PileJoueur();
-		pile.distribuer(new PileJoueur[]{pile1, pile2});
-		
-		RackJoueur rackJoueur = new RackJoueur();
-		rackJoueur.remplir(pile1);
-		Console.message(rackJoueur.toString());
-	}
-	
+        PileJoueur pile1 = new PileJoueur();
+        PileJoueur pile2 = new PileJoueur();
+        pile.distribuer(new PileJoueur[]{pile1, pile2});
+        
+        RackJoueur rackJoueur = new RackJoueur(pile1);
+        rackJoueur.remplir();
+        Console.message(rackJoueur.toString());
+    }
+    
 }

@@ -49,4 +49,17 @@ public class Plateau {
     public int tailleDuTableau() {
         return lignes * colonnes;
     }
+    
+    
+    // Récuperer le rack, puis la case puis retirer la tuile du joueur du rack
+    // puis la poser sur le plateau
+    // puis repioche
+    public void placerLaTuileSurLePlateau(int indexRack,int ligne,int colonne, RackJoueur rack) {
+    	Tuile tuile = rack.retirer(indexRack);
+    	grille[ligne][colonne].changerTuile(tuile);
+    	grille[ligne][colonne].changerTypeCase(null);
+    	
+    }
+    
+    
 }
