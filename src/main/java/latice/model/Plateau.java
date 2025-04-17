@@ -5,11 +5,11 @@ public class Plateau {
     private final int taille = 9;
 
     public Plateau() {
-        grille = new Case[taille][taille];
+        grille = new Case[10][8];
 
 
-        for (int i = 0; i < taille; i++) {
-            for (int j = 0; j < taille; j++) {
+        for (int i = 0; i < 10; i++) {
+            for (int j = 0; j < 8; j++) {
                 grille[i][j] = new Case();
             }
         }
