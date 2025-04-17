@@ -12,17 +12,11 @@ public class Case {
         this.typeCase = typeCase;
     }
 
-    public Case(Tuile tuile) {
-        this(tuile, null);
-    }
 
     public Case(TypeCase typeCase) {
         this(null, typeCase);
     }
 
-    public Case() {
-        this(null, null);
-    }
 
     public Tuile tuile() {
         return tuile;
