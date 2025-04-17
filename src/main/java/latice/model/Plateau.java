@@ -2,18 +2,17 @@ package latice.model;
 
 public class Plateau {
     private final Case[][] grille;
-    private final int taille = 9;
+    private final int taille = 10;
 
     public Plateau() {
-        grille = new Case[10][8];
+        grille = new Case[taille][taille];
 
 
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 8; j++) {
-                grille[i][j] = new Case();
+        for (int i = 0; i < taille; i++) {
+            for (int j = 0; j < taille; j++) {
+                grille[i][j] = new Case(TypeCase.CASE_VIDE);
             }
         }
-
 
         grille[4][4] = new Case(TypeCase.CASE_LUNE);
         grille[2][2] = new Case(TypeCase.CASE_SOLEIL);
