@@ -26,7 +26,6 @@ class TestLatice {
 		pile2.melanger();
 		
 		assertNotEquals(pile,pile2);
-		
 	}
 	
 	@Test
@@ -40,8 +39,6 @@ class TestLatice {
 		pile.distribuer(new PileJoueur[]{pile1, pile2});
 		
 		assertEquals(pile1.size(),pile2.size());
-		
-		
 	}
 
 }

@@ -1,5 +1,6 @@
 package latice.application;
 
+import latice.ihm.Console;
 import latice.model.PileDebut;
 import latice.model.PileJoueur;
 import latice.model.RackJoueur;
@@ -17,7 +18,7 @@ public class LaticeConsoleApplication {
 		
 		RackJoueur rackJoueur = new RackJoueur();
 		rackJoueur.remplir(pile1);
-		System.out.println(rackJoueur);
+		Console.message(rackJoueur.toString());
 	}
 	
 }
