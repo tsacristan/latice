@@ -2,6 +2,8 @@ package latice.model;
 
 import java.util.Arrays;
 
+import laticeutil.RackInvalideException;
+
 public class RackJoueur {
     private final Tuile[] rack;
     private final PileJoueur pileJoueur;
@@ -25,7 +27,10 @@ public class RackJoueur {
         }
     }
     
-    public void piocher() {
+    public void piocher() throws RackInvalideException {
+    	if (rack.length == 0) {
+            throw new RackInvalideException("Erreur : le rack doit contenir exactement 5 tuiles.");
+        }
         for (int i = 0; i < 5; i++) {
             pileJoueur.ajouterTuile(rack[i]);
             rack[i] = pileJoueur.retirerTuile();
