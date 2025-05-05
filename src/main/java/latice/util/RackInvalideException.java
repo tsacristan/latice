@@ -1,4 +1,4 @@
-package laticeutil;
+package latice.util;
 
 @SuppressWarnings("serial")
 public class RackInvalideException extends Exception {

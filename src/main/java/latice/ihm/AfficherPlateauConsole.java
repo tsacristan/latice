@@ -1,4 +1,4 @@
-package latice.ihm;
+	package latice.ihm;
 
 import latice.model.Case;
 import latice.model.Plateau;

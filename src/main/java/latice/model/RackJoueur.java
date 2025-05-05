@@ -2,7 +2,8 @@ package latice.model;
 
 import java.util.Arrays;
 
-import laticeutil.RackInvalideException;
+import latice.util.PiocheInvalideException;
+import latice.util.RackInvalideException;
 
 public class RackJoueur {
     private final Tuile[] rack;
@@ -27,17 +28,20 @@ public class RackJoueur {
         }
     }
     
-    public void piocher() throws RackInvalideException {
-    	if (rack.length == 0) {
-            throw new RackInvalideException("Erreur : le rack doit contenir exactement 5 tuiles.");
-        }
+    public void piocher() throws PiocheInvalideException {
+       	if (pileJoueur.isEmpty()) {
+    		throw new PiocheInvalideException("Erreur : la pioche est vide.");
+    	}
         for (int i = 0; i < 5; i++) {
             pileJoueur.ajouterTuile(rack[i]);
             rack[i] = pileJoueur.retirerTuile();
         }
     }
     
-    public Tuile retirer(int index) {
+    public Tuile retirer(int index) throws RackInvalideException {
+    	if (rack.length == 0) {
+            throw new RackInvalideException("Erreur : le rack doit contenir au moins 1 tuile.");
+        }
         Tuile aJouer = rack[index];
         rack[index] = pileJoueur.retirerTuile();
         
@@ -48,4 +52,8 @@ public class RackJoueur {
     public String toString() {
         return Arrays.toString(rack);
     }
+
+	public Tuile[] getRack() {
+		return rack;
+	}
 }

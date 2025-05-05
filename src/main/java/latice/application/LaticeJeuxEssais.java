@@ -2,11 +2,16 @@ package latice.application;
 
 import latice.ihm.Console;
 import latice.model.*;
+import latice.util.PiocheInvalideException;
+import latice.util.PlacementDejaExistantInvalide;
+import latice.util.PlateauIndexInvalideException;
+import latice.util.RackIndexInvalideException;
+import latice.util.RackInvalideException;
 import latice.ihm.AfficherPlateauConsole;
 
 public class LaticeJeuxEssais {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PiocheInvalideException,RackInvalideException,PlateauIndexInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
         
         //Creation d'une pile principale, la remplire et la mélanger
         PileDebut pile = new PileDebut();
@@ -51,11 +56,9 @@ public class LaticeJeuxEssais {
         Plateau plateau = new Plateau();
         AfficherPlateauConsole affichagePlateau = new AfficherPlateauConsole();
         affichagePlateau.afficher(plateau);
-        
-        
-        System.out.println(rackJoueur2.toString());
+            
         plateau.placerLaTuileSurLePlateau(2, 4, 3, rackJoueur2);
-        System.out.println(plateau.grille()[4][3]);
         affichagePlateau.afficher(plateau);
+        
     }
 }

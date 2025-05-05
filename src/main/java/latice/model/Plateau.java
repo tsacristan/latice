@@ -1,5 +1,10 @@
 package latice.model;
 
+import latice.util.PlacementDejaExistantInvalide;
+import latice.util.PlateauIndexInvalideException;
+import latice.util.RackIndexInvalideException;
+import latice.util.RackInvalideException;
+
 public class Plateau {
     private final Case[][] grille;
     private final int colonnes = 9;
@@ -51,14 +56,19 @@ public class Plateau {
     }
     
     
-    // Récuperer le rack, puis la case puis retirer la tuile du joueur du rack
-    // puis la poser sur le plateau
-    // puis repioche
-    public void placerLaTuileSurLePlateau(int indexRack,int ligne,int colonne, RackJoueur rack) {
-    	Tuile tuile = rack.retirer(indexRack);
-    	grille[ligne][colonne].changerTuile(tuile);
-    	grille[ligne][colonne].changerTypeCase(null);
-    	
+    public void placerLaTuileSurLePlateau(int indexRack,int ligne,int colonne, RackJoueur rack) throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
+        if (ligne < 0 || ligne >= lignes || colonne < 0 || colonne >= colonnes) {
+            throw new PlateauIndexInvalideException("Coordonnées en dehors du plateau : ligne=" + ligne + ", colonne=" + colonne);
+        }
+        if (indexRack < 0 || indexRack >= rack.getRack().length) {
+            throw new RackIndexInvalideException("Coordonnées en dehors du rack : indexRack=" + indexRack);
+        }
+        if (grille[ligne][colonne].tuile() != null) throw new PlacementDejaExistantInvalide("Il existe déjà une tuile sur cette case");
+
+        Tuile tuile = rack.retirer(indexRack);
+        grille[ligne][colonne].changerTuile(tuile);
+        grille[ligne][colonne].changerTypeCase(null);
+        
     }
     
     
