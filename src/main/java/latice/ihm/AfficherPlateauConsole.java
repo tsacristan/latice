@@ -12,7 +12,7 @@ public class AfficherPlateauConsole implements AfficherPlateau {
         Console.titre("Plateau de jeu");
         for (Case[] line: grille) {
             for (Case tuile: line) {
-                Console.messageAligne(" " + tuile + " ");
+                Console.messageAligne("  " + tuile + "  ");
             }
             Console.message();
         }
