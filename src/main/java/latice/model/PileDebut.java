@@ -3,7 +3,7 @@ package latice.model;
 import java.util.Collections;
 
 public class PileDebut extends LaticePile {
-	private final int nombreTuilesTotal = 72;
+	public final static int NOMBRE_TUILE_TOTAL = 72;
 	
     public void remplir() {
         for (Couleur couleur : Couleur.values()) {
@@ -20,7 +20,7 @@ public class PileDebut extends LaticePile {
 
     public void distribuer(PileJoueur[] pilesJoueur) {
         for (LaticePile pileJoueur : pilesJoueur) {
-            for (int i = 0; i < nombreTuilesTotal / pilesJoueur.length; i++) {
+            for (int i = 0; i < NOMBRE_TUILE_TOTAL / pilesJoueur.length; i++) {
                 pileJoueur.ajouterTuile(retirerTuile());
             }
         }
