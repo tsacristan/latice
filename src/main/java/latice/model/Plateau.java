@@ -7,15 +7,15 @@ import latice.util.RackInvalideException;
 
 public class Plateau {
     private final Case[][] grille;
-    private final int colonnes = 9;
-    private final int lignes = 9;
+    public static final int COLONNES = 9;
+    public static final int LIGNES = 9;
 
     public Plateau() {
-        grille = new Case[lignes][colonnes];
+        grille = new Case[LIGNES][COLONNES];
 
 
-        for (int i = 0; i < lignes; i++) {
-            for (int j = 0; j < colonnes; j++) {
+        for (int i = 0; i < LIGNES; i++) {
+            for (int j = 0; j < COLONNES; j++) {
                 grille[i][j] = new Case(TypeCase.CASE_VIDE);
             }
         }
@@ -52,11 +52,11 @@ public class Plateau {
     }
 
     public int tailleDuTableau() {
-        return lignes * colonnes;
+        return LIGNES * COLONNES;
     }
 
     public void placerLaTuileSurLePlateau(int indexRack,int ligne,int colonne, RackJoueur rack) throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
-        if (ligne < 0 || ligne >= lignes || colonne < 0 || colonne >= colonnes) {
+        if (ligne < 0 || ligne >= LIGNES || colonne < 0 || colonne >= COLONNES) {
             throw new PlateauIndexInvalideException("Coordonnées en dehors du plateau : ligne=" + ligne + ", colonne=" + colonne);
         }
         if (indexRack < 0 || indexRack >= rack.getRack().length) {
