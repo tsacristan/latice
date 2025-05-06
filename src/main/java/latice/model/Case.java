@@ -55,7 +55,7 @@ public class Case {
     }
 
     private CouleurConsole getAnsiColor() throws CouleurInvalideException {
-        CouleurConsole couleurANSI = CouleurConsole.ANSI_JAUNE;
+    	CouleurConsole couleurANSI;
         switch (tuile.couleur()) {
             case BLEU_MARINE:
                 couleurANSI = CouleurConsole.ANSI_BLEU_MARINE;
@@ -72,6 +72,9 @@ public class Case {
             case BLEU_SARCELLE:
                 couleurANSI = CouleurConsole.ANSI_BLEU_SARCELLE;
                 break;
+            case JAUNE:
+            	couleurANSI = CouleurConsole.ANSI_JAUNE;
+            	break;
             default:
             	throw new CouleurInvalideException("Erreur ! Couleur " + tuile.couleur() + " non reconnue !");
         }
@@ -79,7 +82,7 @@ public class Case {
     }
 
     private EmojiForme getEmojiForme() throws FormeInvalideException {
-        EmojiForme emojiForme = EmojiForme.PLUME;
+        EmojiForme emojiForme;
         switch (tuile.forme()) {
             case OISEAU:
                 emojiForme = EmojiForme.OISEAU;
@@ -96,6 +99,9 @@ public class Case {
             case DAUPHIN:
                 emojiForme = EmojiForme.DAUPHIN;
                 break;
+            case PLUME:
+            	emojiForme = EmojiForme.PLUME;
+            	break;
             default:
             	throw new FormeInvalideException("Erreur ! Forme " + tuile.forme() + " non reconnue !");
         }
