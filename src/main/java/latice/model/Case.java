@@ -2,6 +2,8 @@ package latice.model;
 
 import latice.ihm.CouleurConsole;
 import latice.ihm.EmojiForme;
+import latice.util.CouleurInvalideException;
+import latice.util.FormeInvalideException;
 
 public class Case {
     private Tuile tuile;
@@ -12,11 +14,9 @@ public class Case {
         this.typeCase = typeCase;
     }
 
-
     public Case(TypeCase typeCase) {
         this(null, typeCase);
     }
-
 
     public Tuile tuile() {
         return tuile;
@@ -36,8 +36,13 @@ public class Case {
 
     @Override
     public String toString() {
-    	if (typeCase == null) return getAnsiColor().codeANSI() + getEmojiForme().emoji() + CouleurConsole.ANSI_RESET.codeANSI();
     	switch (typeCase) {
+    		case CASE_OCCUPEE:
+    			try {
+    				return getAnsiColor().codeANSI() + getEmojiForme().emoji() + CouleurConsole.ANSI_RESET.codeANSI();
+    			} catch (CouleurInvalideException | FormeInvalideException e) {
+    				return "?";
+    			}
 	    	case CASE_VIDE:
 	    		return EmojiForme.CASE_VIDE.emoji();
 	    	case CASE_SOLEIL:
@@ -45,11 +50,11 @@ public class Case {
 	    	case CASE_LUNE:
 	    		return EmojiForme.CASE_LUNE.emoji();
 	    	default:
-	    		return "";
-    	}        
+	    		return "?";
+    	}
     }
 
-    private CouleurConsole getAnsiColor() {
+    private CouleurConsole getAnsiColor() throws CouleurInvalideException {
         CouleurConsole couleurANSI = CouleurConsole.ANSI_JAUNE;
         switch (tuile.couleur()) {
             case BLEU_MARINE:
@@ -67,11 +72,13 @@ public class Case {
             case BLEU_SARCELLE:
                 couleurANSI = CouleurConsole.ANSI_BLEU_SARCELLE;
                 break;
+            default:
+            	throw new CouleurInvalideException("Erreur ! Couleur " + tuile.couleur() + " non reconnue !");
         }
         return couleurANSI;
     }
 
-    private EmojiForme getEmojiForme() {
+    private EmojiForme getEmojiForme() throws FormeInvalideException {
         EmojiForme emojiForme = EmojiForme.PLUME;
         switch (tuile.forme()) {
             case OISEAU:
@@ -89,6 +96,8 @@ public class Case {
             case DAUPHIN:
                 emojiForme = EmojiForme.DAUPHIN;
                 break;
+            default:
+            	throw new FormeInvalideException("Erreur ! Forme " + tuile.forme() + " non reconnue !");
         }
         return emojiForme;
     }

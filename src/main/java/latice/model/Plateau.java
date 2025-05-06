@@ -54,8 +54,7 @@ public class Plateau {
     public int tailleDuTableau() {
         return lignes * colonnes;
     }
-    
-    
+
     public void placerLaTuileSurLePlateau(int indexRack,int ligne,int colonne, RackJoueur rack) throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
         if (ligne < 0 || ligne >= lignes || colonne < 0 || colonne >= colonnes) {
             throw new PlateauIndexInvalideException("Coordonnées en dehors du plateau : ligne=" + ligne + ", colonne=" + colonne);
@@ -67,9 +66,6 @@ public class Plateau {
 
         Tuile tuile = rack.retirer(indexRack);
         grille[ligne][colonne].changerTuile(tuile);
-        grille[ligne][colonne].changerTypeCase(null);
-        
+        grille[ligne][colonne].changerTypeCase(TypeCase.CASE_OCCUPEE);
     }
-    
-    
 }
