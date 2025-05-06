@@ -41,7 +41,7 @@ public class Case {
     			try {
     				return getAnsiColor().codeANSI() + getEmojiForme().emoji() + CouleurConsole.ANSI_RESET.codeANSI();
     			} catch (CouleurInvalideException | FormeInvalideException e) {
-    				return "?";
+    				return EmojiForme.CARACTERE_DEFAULT.emoji();
     			}
 	    	case CASE_VIDE:
 	    		return EmojiForme.CASE_VIDE.emoji();
@@ -50,7 +50,7 @@ public class Case {
 	    	case CASE_LUNE:
 	    		return EmojiForme.CASE_LUNE.emoji();
 	    	default:
-	    		return "?";
+	    		return EmojiForme.CARACTERE_DEFAULT.emoji();
     	}
     }
 

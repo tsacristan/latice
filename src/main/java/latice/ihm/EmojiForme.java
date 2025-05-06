@@ -9,7 +9,8 @@ public enum EmojiForme {
 	DAUPHIN("Ɔ"),
 	CASE_LUNE("◐"),
 	CASE_SOLEIL("✺"),
-	CASE_VIDE("□");
+	CASE_VIDE("□"),
+	CARACTERE_DEFAULT("?");
 	
 	private String emoji;
 
