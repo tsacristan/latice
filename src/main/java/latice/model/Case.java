@@ -39,7 +39,8 @@ public class Case {
     	switch (typeCase) {
     		case CASE_OCCUPEE:
     			try {
-    				String styleANSI = getAnsiColor().codeANSI() + CouleurConsole.ANSI_COULEUR_TEXTE;
+    				CouleurConsole couleurTexteDefaut = CouleurConsole.ANSI_TEXTE_NOIR;
+    				String styleANSI = getAnsiBackgroundColor().codeANSI() + couleurTexteDefaut;
     				return styleANSI + getEmojiForme().emoji() + CouleurConsole.ANSI_RESET;
     			} catch (CouleurInvalideException | FormeInvalideException e) {
     				return EmojiForme.CARACTERE_DEFAULT.emoji();
@@ -47,7 +48,7 @@ public class Case {
 	    	case CASE_VIDE:
 	    		return EmojiForme.CASE_VIDE.emoji();
 	    	case CASE_SOLEIL:
-	    		return EmojiForme.CASE_SOLEIL.emoji();
+	    		return CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET;
 	    	case CASE_LUNE:
 	    		return EmojiForme.CASE_LUNE.emoji();
 	    	default:
@@ -55,26 +56,26 @@ public class Case {
     	}
     }
 
-    private CouleurConsole getAnsiColor() throws CouleurInvalideException {
+    private CouleurConsole getAnsiBackgroundColor() throws CouleurInvalideException {
     	CouleurConsole couleurANSI;
         switch (tuile.couleur()) {
             case BLEU_MARINE:
-                couleurANSI = CouleurConsole.ANSI_BLEU_MARINE;
+                couleurANSI = CouleurConsole.ANSI_FOND_BLEU_MARINE;
                 break;
             case MAGENTA:
-                couleurANSI = CouleurConsole.ANSI_MAGENTA;
+                couleurANSI = CouleurConsole.ANSI_FOND_MAGENTA;
                 break;
             case ROUGE:
-                couleurANSI = CouleurConsole.ANSI_ROUGE;
+                couleurANSI = CouleurConsole.ANSI_FOND_ROUGE;
                 break;
             case VERT:
-                couleurANSI = CouleurConsole.ANSI_VERT;
+                couleurANSI = CouleurConsole.ANSI_FOND_VERT;
                 break;
             case BLEU_SARCELLE:
-                couleurANSI = CouleurConsole.ANSI_BLEU_SARCELLE;
+                couleurANSI = CouleurConsole.ANSI_FOND_BLEU_SARCELLE;
                 break;
             case JAUNE:
-            	couleurANSI = CouleurConsole.ANSI_JAUNE;
+            	couleurANSI = CouleurConsole.ANSI_FOND_JAUNE;
             	break;
             default:
             	throw new CouleurInvalideException("Erreur ! Couleur " + tuile.couleur() + " non reconnue !");
