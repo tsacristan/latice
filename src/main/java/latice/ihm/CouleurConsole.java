@@ -7,7 +7,8 @@ public enum CouleurConsole {
     ANSI_MAGENTA("\u001B[45m"),
     ANSI_ROUGE("\u001B[41m"),
     ANSI_VERT("\u001B[42m"),
-    ANSI_BLEU_SARCELLE("\u001B[46m");
+    ANSI_BLEU_SARCELLE("\u001B[46m"),
+	ANSI_COULEUR_TEXTE("\u001B[30m");
 
     private final String code;
 
