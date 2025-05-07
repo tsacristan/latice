@@ -55,8 +55,11 @@ public class Plateau {
         return LIGNES * COLONNES;
     }
 
-    public void placerLaTuileSurLePlateau(int indexRack,int ligne,int colonne, RackJoueur rack) throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
-        if (ligne < 0 || ligne >= LIGNES || colonne < 0 || colonne >= COLONNES) {
+    public void placerLaTuileSurLePlateau(int indexRack, Coordonnees coordsTuile, RackJoueur rack) throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
+        int ligne = coordsTuile.ligne();
+        int colonne = coordsTuile.colonne();
+    	
+    	if (ligne < 0 || ligne >= LIGNES || colonne < 0 || colonne >= COLONNES) {
             throw new PlateauIndexInvalideException("Coordonnées en dehors du plateau : ligne=" + ligne + ", colonne=" + colonne);
         }
         if (indexRack < 0 || indexRack >= rack.taille_du_rack) {

@@ -57,7 +57,7 @@ public class LaticeJeuxEssais {
         AfficherPlateauConsole affichagePlateau = new AfficherPlateauConsole();
         affichagePlateau.afficher(plateau);
             
-        plateau.placerLaTuileSurLePlateau(2, 4, 3, rackJoueur2);
+        plateau.placerLaTuileSurLePlateau(2, new Coordonnees(4, 3), rackJoueur2);
         affichagePlateau.afficher(plateau);
                 
         //Jeu de test piocher
