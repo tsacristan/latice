@@ -1,32 +1,37 @@
 package latice.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import latice.util.PiocheInvalideException;
 import latice.util.RackInvalideException;
 
 public class RackJoueur {
-    private final Tuile[] rack;
+    private ArrayList<Tuile> rack;
     private final PileJoueur pileJoueur;
     
-    public static final int tailleDuRack = 5;
+    public static int taille_du_rack = 5;
 
-    public RackJoueur(Tuile[] rack, PileJoueur pileJoueur) {
-        this.rack = rack;
+    public RackJoueur(ArrayList<Tuile> rack, PileJoueur pileJoueur) {
+    	this.rack = rack;
         this.pileJoueur = pileJoueur;
     }
     
     public RackJoueur(PileJoueur pileJoueur) {
-        this(new Tuile[tailleDuRack], pileJoueur);
+    	ArrayList<Tuile> rack = new ArrayList<>();
+    	this.rack = rack;
+    	this.pileJoueur = pileJoueur;
     }
 
     public RackJoueur() {
-        this(new Tuile[tailleDuRack], new PileJoueur());
+    	ArrayList<Tuile> rack = new ArrayList<>();
+    	this.rack = rack;
+    	this.pileJoueur = new PileJoueur();
     }
 
     public void remplir() {
-        for (int i = 0; i < tailleDuRack; i++) {
-            rack[i] = pileJoueur.retirerTuile();
+        for (int i = 0; i < taille_du_rack; i++) {
+            rack.add(pileJoueur.retirerTuile());
         }
     }
     
@@ -34,28 +39,41 @@ public class RackJoueur {
        	if (pileJoueur.isEmpty()) {
     		throw new PiocheInvalideException("Erreur : la pioche est vide.");
     	}
-        for (int i = 0; i < tailleDuRack; i++) {
-            pileJoueur.ajouterTuile(rack[i]);
-            rack[i] = pileJoueur.retirerTuile();
+       	else if (pileJoueur.size() < taille_du_rack) {
+          	pileJoueur.addAll(rack);
+          	rack.clear();
+       		pileJoueur.melanger();
+       		for (int i = 0; i < taille_du_rack; i++) {
+                rack.add(pileJoueur.retirerTuile());
+            }
+       	}
+       	else {
+       		ArrayList<Tuile> rackTemporaire = new ArrayList<>();
+       		rackTemporaire.addAll(rack) ;
+       		rack.clear();
+       		for (int i = 0; i < taille_du_rack; i++) {
+                rack.add(pileJoueur.retirerTuile());
+            }
+       		pileJoueur.addAll(rackTemporaire);
         }
     }
     
-    public Tuile retirer(int index) throws RackInvalideException {
-    	if (rack.length == 0) {
+    public Tuile choisirTuile(int index) throws RackInvalideException {
+    	if (rack.size() == 0) {
             throw new RackInvalideException("Erreur : le rack doit contenir au moins 1 tuile.");
         }
-        Tuile aJouer = rack[index];
-        rack[index] = pileJoueur.retirerTuile();
+        Tuile aJouer = rack.get(index);
+        rack.remove(index);
         
         return aJouer;
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(rack);
+        return rack.toString();
     }
 
-	public Tuile[] getRack() {
+	public ArrayList<Tuile> getRack() {
 		return rack;
 	}
 }

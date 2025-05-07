@@ -14,9 +14,7 @@ public class PileDebut extends LaticePile {
         }
     }
 
-    public void melanger() {
-        Collections.shuffle(this);
-    }
+    
 
     public void distribuer(PileJoueur[] pilesJoueur) {
         for (LaticePile pileJoueur : pilesJoueur) {

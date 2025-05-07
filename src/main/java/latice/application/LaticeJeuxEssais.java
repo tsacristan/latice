@@ -59,6 +59,62 @@ public class LaticeJeuxEssais {
             
         plateau.placerLaTuileSurLePlateau(2, 4, 3, rackJoueur2);
         affichagePlateau.afficher(plateau);
+                
+        //Jeu de test piocher
+        PileDebut pileTest = new PileDebut();
+        pileTest.remplir();
+        pileTest.melanger();
+        
+        PileJoueur pileJoueur1 = new PileJoueur();
+        PileJoueur pileJoueur2 = new PileJoueur();
+        pileTest.distribuer(new PileJoueur[]{pileJoueur1, pileJoueur2});
+        
+        RackJoueur rack1 = new RackJoueur(pileJoueur1);
+        rack1.remplir();
+        RackJoueur rack2 = new RackJoueur(pileJoueur1);
+        rack2.remplir();
+        
+        for (int i = 0; i < 25; i++) {
+        	pileJoueur1.retirerTuile();
+        }
+        
+        Console.titre("Test de piocher si le contenu de la pile est inférieur a 5");
+        Console.message("Contenu de la pile joueur 1 :");
+        Console.message(pileJoueur1.toString());
+        
+        Console.message();
+        
+        Console.message("Contenu du rack Joueur 1 avant avoir piocher :");
+        Console.message(rackJoueur1.toString());
+        
+        Console.message();
+        
+        rackJoueur1.piocher();
+        Console.message("Contenu du rack Joueur 1 après avoir piocher  :");
+        Console.message(rackJoueur1.toString());
+    
+        //Jeu de test choisirTuile
+        PileDebut pileTuile = new PileDebut();
+        pileTuile.remplir();
+        pileTuile.melanger();
+        
+        PileJoueur pileJ1 = new PileJoueur();
+        PileJoueur pileJ2 = new PileJoueur();
+        pileTuile.distribuer(new PileJoueur[]{pileJ1, pileJ2});
+        
+        RackJoueur rackJ1 = new RackJoueur(pileJ1);
+        rackJ1.remplir();
+        
+        Console.titre("Test de piocher si le contenu de la pile est inférieur a 5");
+        
+        Console.message("Contenu du rack Joueur 1 avant de choisir la Tuile :");
+        Console.message(rackJ1.toString());
+        
+        Console.message();
+        
+        rackJoueur1.choisirTuile(2);
+        Console.message("Contenu du rack Joueur 1 après avoir choisi la Tuile :");
+        Console.message(rackJoueur1.toString());
         
     }
 }
