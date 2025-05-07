@@ -1,10 +1,10 @@
 package latice.model;
 
-public class Coordonnées {
+public class Coordonnees {
 	private final int ligne;
 	private final int colonne;
 	
-	public Coordonnées(int ligne, int colonne) {
+	public Coordonnees(int ligne, int colonne) {
 		this.ligne = ligne;
 		this.colonne = colonne;
 	}
