@@ -105,7 +105,7 @@ public class LaticeJeuxEssais {
         RackJoueur rackJ1 = new RackJoueur(pileJ1);
         rackJ1.remplir();
         
-        Console.titre("Test de piocher si le contenu de la pile est inférieur a 5");
+        Console.titre("Test de choisir la Tuile ");
         
         Console.message("Contenu du rack Joueur 1 avant de choisir la Tuile :");
         Console.message(rackJ1.toString());
@@ -115,6 +115,5 @@ public class LaticeJeuxEssais {
         rackJoueur1.choisirTuile(2);
         Console.message("Contenu du rack Joueur 1 après avoir choisi la Tuile :");
         Console.message(rackJoueur1.toString());
-        
     }
 }
