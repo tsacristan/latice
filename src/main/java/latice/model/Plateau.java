@@ -62,7 +62,7 @@ public class Plateau {
     	if (ligne < 0 || ligne >= LIGNES || colonne < 0 || colonne >= COLONNES) {
             throw new PlateauIndexInvalideException("Coordonnées en dehors du plateau : ligne=" + ligne + ", colonne=" + colonne);
         }
-        if (indexRack < 0 || indexRack >= rack.taille_du_rack) {
+        if (indexRack < 0 || indexRack >= rack.TAILLE_DU_RACK) {
             throw new RackIndexInvalideException("Coordonnées en dehors du rack : indexRack=" + indexRack);
         }
         if (grille[ligne][colonne].tuile() != null) throw new PlacementDejaExistantInvalide("Il existe déjà une tuile sur cette case");
