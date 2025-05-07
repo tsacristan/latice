@@ -19,4 +19,9 @@ public enum CouleurConsole {
     public String codeANSI() {
         return code;
     }
+    
+    @Override
+    public String toString() {
+    	return codeANSI();
+    }
 }

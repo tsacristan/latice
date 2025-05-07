@@ -24,6 +24,6 @@ public enum EmojiForme {
 
 	@Override
 	public String toString() {
-    	return emoji + " (" + name() + ")";
+    	return emoji();
 	}
 }

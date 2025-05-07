@@ -39,7 +39,8 @@ public class Case {
     	switch (typeCase) {
     		case CASE_OCCUPEE:
     			try {
-    				return getAnsiColor().codeANSI() + CouleurConsole.ANSI_COULEUR_TEXTE.codeANSI() + getEmojiForme().emoji() + CouleurConsole.ANSI_RESET.codeANSI();
+    				String styleANSI = getAnsiColor().codeANSI() + CouleurConsole.ANSI_COULEUR_TEXTE;
+    				return styleANSI + getEmojiForme().emoji() + CouleurConsole.ANSI_RESET;
     			} catch (CouleurInvalideException | FormeInvalideException e) {
     				return EmojiForme.CARACTERE_DEFAULT.emoji();
     			}
