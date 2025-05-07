@@ -10,7 +10,7 @@ public enum EmojiForme {
 	CASE_LUNE("◐"),
 	CASE_SOLEIL("✺"),
 	CASE_VIDE("□"),
-	CARACTERE_DEFAULT("?");
+	CARACTERE_INCONNU("?");
 	
 	private String emoji;
 
