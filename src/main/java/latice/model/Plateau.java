@@ -62,13 +62,17 @@ public class Plateau {
     	if (ligne < 0 || ligne >= LIGNES || colonne < 0 || colonne >= COLONNES) {
             throw new PlateauIndexInvalideException("Coordonnées en dehors du plateau : ligne=" + ligne + ", colonne=" + colonne);
         }
-        if (indexRack < 0 || indexRack >= rack.TAILLE_MAX_RACK) {
+        if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK) {
             throw new RackIndexInvalideException("Coordonnées en dehors du rack : indexRack=" + indexRack);
         }
-        if (grille[ligne][colonne].tuile() != null) throw new PlacementDejaExistantInvalide("Il existe déjà une tuile sur cette case");
+        if (obtenirTuile(coordsTuile).tuile() != null) throw new PlacementDejaExistantInvalide("Il existe déjà une tuile sur cette case");
 
         Tuile tuile = rack.choisirTuile(indexRack);
-        grille[ligne][colonne].changerTuile(tuile);
-        grille[ligne][colonne].changerTypeCase(TypeCase.CASE_OCCUPEE);
+        obtenirTuile(coordsTuile).changerTuile(tuile);
+        obtenirTuile(coordsTuile).changerTypeCase(TypeCase.CASE_OCCUPEE);
+    }
+    
+    public Case obtenirTuile(Coordonnees coords) {
+    	return grille[coords.ligne()][coords.colonne()];
     }
 }
