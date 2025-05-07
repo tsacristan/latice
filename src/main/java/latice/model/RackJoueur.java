@@ -8,6 +8,8 @@ import latice.util.RackInvalideException;
 public class RackJoueur {
     private final Tuile[] rack;
     private final PileJoueur pileJoueur;
+    
+    public static final int tailleDuRack = 5;
 
     public RackJoueur(Tuile[] rack, PileJoueur pileJoueur) {
         this.rack = rack;
@@ -15,15 +17,15 @@ public class RackJoueur {
     }
     
     public RackJoueur(PileJoueur pileJoueur) {
-        this(new Tuile[5], pileJoueur);
+        this(new Tuile[tailleDuRack], pileJoueur);
     }
 
     public RackJoueur() {
-        this(new Tuile[5], new PileJoueur());
+        this(new Tuile[tailleDuRack], new PileJoueur());
     }
 
     public void remplir() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < tailleDuRack; i++) {
             rack[i] = pileJoueur.retirerTuile();
         }
     }
@@ -32,7 +34,7 @@ public class RackJoueur {
        	if (pileJoueur.isEmpty()) {
     		throw new PiocheInvalideException("Erreur : la pioche est vide.");
     	}
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < tailleDuRack; i++) {
             pileJoueur.ajouterTuile(rack[i]);
             rack[i] = pileJoueur.retirerTuile();
         }
