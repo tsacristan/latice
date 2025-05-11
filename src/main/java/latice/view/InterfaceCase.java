@@ -20,14 +20,11 @@ public class InterfaceCase extends ImageView {
 	}
 	
 	public InterfaceCase(String cheminImage) {
-		super(new Image(cheminImage));
-		setFitWidth(TAILLE_IMAGE);
-		setFitHeight(TAILLE_IMAGE);
-		setCache(true);
+		this(new Image(cheminImage));
 	}
 	
 	public InterfaceCase(Case caseTuile) {
-		super(new Image(associerTuileAImage(caseTuile)));
+		this(new Image(associerTuileAImage(caseTuile)));
 	}
 
 	private static String associerTuileAImage(Case caseTuile) {
