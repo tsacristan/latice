@@ -3,18 +3,16 @@ package latice.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import latice.util.Observable;
 import latice.util.PiocheInvalideException;
-import latice.util.PlateauListener;
-import latice.util.RackListener;
 import latice.util.RackInvalideException;
+import latice.util.RackListener;
 
-public class RackJoueur {
+public class RackJoueur extends Observable<RackListener> {
     private ArrayList<Tuile> rack;
     private final PileJoueur pileJoueur;
     
     public static final int TAILLE_MAX_RACK = 5;
-    
-    private List<RackListener> listeners = new ArrayList<>();
 
     public RackJoueur(ArrayList<Tuile> rack, PileJoueur pileJoueur) {
     	this.rack = rack;
@@ -35,7 +33,7 @@ public class RackJoueur {
         for (int i = 0; i < TAILLE_MAX_RACK; i++) {
             rack.add(pileJoueur.retirerTuile());
         }
-        appelerListeners();
+        declencherListeners();
     }
     
     public void piocher() throws PiocheInvalideException {
@@ -60,7 +58,7 @@ public class RackJoueur {
        		pileJoueur.addAll(rackTemporaire);
         }
        	
-       	appelerListeners();
+       	declencherListeners();
     }
     
     public Tuile choisirTuile(int index) throws RackInvalideException {
@@ -70,7 +68,7 @@ public class RackJoueur {
         Tuile aJouer = rack.get(index);
         rack.remove(index);
         
-        appelerListeners();
+        declencherListeners();
         
         return aJouer;
     }
@@ -80,17 +78,14 @@ public class RackJoueur {
         return rack.toString();
     }
 
-	public ArrayList<Tuile> rack() {
+	public List<Tuile> rack() {
 		return rack;
 	}
-	
-	public void ajouterListener(RackListener listener) {
-    	listeners.add(listener);
-    }
-    
-    private void appelerListeners() {
-    	for (RackListener listener : listeners) {
+
+	@Override
+	protected void declencherListeners() {
+		for (RackListener listener : listeners) {
     	    listener.rackEstMisAJour();
     	}
-    }
+	}
 }

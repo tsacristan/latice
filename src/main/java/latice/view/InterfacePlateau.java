@@ -18,11 +18,6 @@ public class InterfacePlateau extends GridPane implements PlateauListener, Affic
 	}
 
 	@Override
-	public void plateauEstMisAJour() {
-		afficher(plateau);
-	}
-
-	@Override
 	public void afficher(Plateau plateau) {
 		for (int i = 0; i < Plateau.LIGNES; i++) {
 			for (int j = 0; j < Plateau.COLONNES; j++) {
@@ -30,5 +25,10 @@ public class InterfacePlateau extends GridPane implements PlateauListener, Affic
 				add(new InterfaceCase(caseTuile), i, j);
 			}
 		}		
+	}
+
+	@Override
+	public void plateauEstMisAJour() {
+		afficher(plateau);
 	}
 }

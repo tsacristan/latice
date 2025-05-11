@@ -5,6 +5,7 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import latice.model.Coordonnees;
 import latice.model.PileDebut;
 import latice.model.PileJoueur;
 import latice.model.Plateau;
@@ -30,13 +31,15 @@ public class LaticeGraphique extends Application {
         
         root.setTop(new PartieHaut());
         
-      	root.setCenter(initialiserInterfacePlateau());	
+      	root.setCenter(initialiserInterfacePlateau());
+      	
         
         root.setRight(new PartieInfo());
         
         root.setLeft(new PartieJoueur());
         
         root.setBottom(initialiserPartieControle());
+        plateau.placerLaTuileSurLePlateau(0, new Coordonnees(4, 4), rack1);
         
         primaryStage.setFullScreen(true);
         Scene scene = new Scene(root,1920,1005);
