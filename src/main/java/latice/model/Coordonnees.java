@@ -4,9 +4,9 @@ public class Coordonnees {
 	private final int ligne;
 	private final int colonne;
 	
-	public Coordonnees(int ligne, int colonne) {
-		this.ligne = ligne;
-		this.colonne = colonne;
+	public Coordonnees(int colonne, int ligne) {
+		this.ligne = colonne;
+		this.colonne = ligne;
 	}
 
 	public int ligne() {

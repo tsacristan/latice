@@ -1,14 +1,20 @@
 package latice.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import latice.util.PlacementDejaExistantInvalide;
 import latice.util.PlateauIndexInvalideException;
 import latice.util.RackIndexInvalideException;
 import latice.util.RackInvalideException;
+import latice.util.PlateauListener;
 
 public class Plateau {
     private final Case[][] grille;
     public static final int COLONNES = 9;
     public static final int LIGNES = 9;
+    
+    private List<PlateauListener> listeners = new ArrayList<>();
 
     public Plateau() {
         grille = new Case[LIGNES][COLONNES];
@@ -70,9 +76,21 @@ public class Plateau {
         Tuile tuile = rack.choisirTuile(indexRack);
         obtenirTuile(coordsTuile).changerTuile(tuile);
         obtenirTuile(coordsTuile).changerTypeCase(TypeCase.CASE_OCCUPEE);
+        
+        appelerListeners();
     }
     
     public Case obtenirTuile(Coordonnees coords) {
-    	return grille[coords.ligne()][coords.colonne()];
+    	return grille[coords.colonne()][coords.ligne()];
+    }
+    
+    public void ajouterListener(PlateauListener listener) {
+    	listeners.add(listener);
+    }
+    
+    private void appelerListeners() {
+    	for (PlateauListener listener : listeners) {
+    	    listener.plateauEstMisAJour();
+    	}
     }
 }
