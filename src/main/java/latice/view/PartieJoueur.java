@@ -8,6 +8,8 @@ import javafx.scene.layout.Region;
 
 public class PartieJoueur extends VBox {
 
+	private static final String STYLE_COMMUN = "-fx-font-size: 25px; -fx-alignment: center;";
+	
     private String joueur1 = "Joueur1";
     private String joueur2 = "Joueur2";
 
@@ -23,13 +25,22 @@ public class PartieJoueur extends VBox {
     private Label pointsJoueur1Label = new Label();
     private Label pointsJoueur2Label = new Label();
 
+    
+    
     public PartieJoueur() {
         setSpacing(10);
         setAlignment(Pos.TOP_LEFT);
+        setPrefWidth(200);
+        
+        joueLabel.setStyle(STYLE_COMMUN);
+        attenteLabel.setStyle(STYLE_COMMUN);
+        pointsLabel.setStyle(STYLE_COMMUN);
+        pointsJoueur1Label.setStyle(STYLE_COMMUN);
+        pointsJoueur2Label.setStyle(STYLE_COMMUN);
 
         Region espace = new Region();
         espace.setMinHeight(100);
-
+        
         VBox.setMargin(joueLabel, new Insets(0, 0, 0, 10));
         VBox.setMargin(attenteLabel, new Insets(0, 0, 0, 10));
         VBox.setMargin(pointsLabel, new Insets(0, 0, 0, 10));

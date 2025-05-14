@@ -2,6 +2,7 @@ package latice.application;
 
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -32,7 +33,6 @@ public class LaticeGraphique extends Application {
         root.setTop(new PartieHaut());
         
       	root.setCenter(initialiserInterfacePlateau());
-      	
         
         root.setRight(new PartieInfo());
         
@@ -70,7 +70,7 @@ public class LaticeGraphique extends Application {
     private InterfacePlateau initialiserInterfacePlateau() {
 		InterfacePlateau interfacePlateau = new InterfacePlateau(plateau);
 		plateau.ajouterListener(interfacePlateau);
-		
+	
 		return interfacePlateau;
     }
     

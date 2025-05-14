@@ -10,7 +10,7 @@ import latice.util.FormeInvalideException;
 
 public class InterfaceCase extends ImageView {
 	
-	public static final int TAILLE_IMAGE = 80;
+	public static final int TAILLE_IMAGE = 90;
 	
 	public InterfaceCase(Image image) {
 		super(image);

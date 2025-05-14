@@ -1,5 +1,7 @@
 package latice.view;
 
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import latice.ihm.AfficherPlateau;
 import latice.model.Case;
@@ -14,6 +16,7 @@ public class InterfacePlateau extends GridPane implements PlateauListener, Affic
 	public InterfacePlateau(Plateau plateau) {
 		super();
 		this.plateau = plateau;
+		setAlignment(Pos.CENTER);
 		afficher(plateau);
 	}
 

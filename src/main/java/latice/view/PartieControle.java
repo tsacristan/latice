@@ -1,6 +1,7 @@
 package latice.view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -10,13 +11,14 @@ public class PartieControle extends HBox {
 	
 	private GridPane tableauBas;
 	private InterfaceRack interfaceRack;
-	private static final String STYLE_COMMUN = "-fx-font-size: 20px; -fx-alignment: center;";
+	private static final String STYLE_COMMUN = "-fx-font-size: 25px; -fx-alignment: center;";
 
 	public PartieControle(RackJoueur rackJoueur) {
 		placerBoutons();
 		
 		interfaceRack = new InterfaceRack(rackJoueur);
-
+		setPadding(new Insets(0,20,0,0));
+		setAlignment(Pos.CENTER);
         tableauBas.add(interfaceRack, 1, 0);
 	}
 	
@@ -26,7 +28,7 @@ public class PartieControle extends HBox {
         Button piocher = new Button("Piocher");
         tableauBas = new GridPane();
 
-        tableauBas.setHgap(200);
+        tableauBas.setHgap(400);
         tableauBas.setPadding(new Insets(10, 20, 10, 100));
         valider.setStyle(STYLE_COMMUN);
         passer.setStyle(STYLE_COMMUN);
