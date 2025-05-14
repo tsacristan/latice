@@ -7,6 +7,7 @@ import latice.util.PlacementDejaExistantInvalide;
 import latice.util.PlateauIndexInvalideException;
 import latice.util.RackIndexInvalideException;
 import latice.util.RackInvalideException;
+import latice.controller.LaticeController;
 import latice.ihm.AfficherPlateauConsole;
 
 public class LaticeJeuxEssais {
@@ -115,5 +116,14 @@ public class LaticeJeuxEssais {
         rackJoueur1.choisirTuile(2);
         Console.message("Contenu du rack Joueur 1 après avoir choisi la Tuile :");
         Console.message(rackJoueur1.toString());
+        
+        
+        ///////////////////////////////////
+        
+       LaticeController.demarrerJeu();
+        
+        
+        
+        
     }
 }
