@@ -22,7 +22,11 @@ public class Plateau extends Observable<PlateauListener> {
             }
         }
 
-        grille[4][4] = new Case(TypeCase.CASE_LUNE);
+        initialisationCaseSoleilEtLune();
+    }
+
+	private void initialisationCaseSoleilEtLune() {
+		grille[4][4] = new Case(TypeCase.CASE_LUNE);
 
         grille[0][0] = new Case(TypeCase.CASE_SOLEIL);
         grille[1][1] = new Case(TypeCase.CASE_SOLEIL);
@@ -47,7 +51,7 @@ public class Plateau extends Observable<PlateauListener> {
         grille[6][6] = new Case(TypeCase.CASE_SOLEIL);
 
         grille[4][8] = new Case(TypeCase.CASE_SOLEIL);
-    }
+	}
 
     public Case[][] grille() {
         return grille;
@@ -57,17 +61,13 @@ public class Plateau extends Observable<PlateauListener> {
         return LIGNES * COLONNES;
     }
 
-    public void placerLaTuileSurLePlateau(int indexRack, Coordonnees coordsTuile, RackJoueur rack) throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
-        int ligne = coordsTuile.ligne();
-        int colonne = coordsTuile.colonne();
+    public void placerLaTuileSurLePlateau(int indexRack, Coordonnees coordsTuile, RackJoueur rack) throws RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
     	
-    	if (ligne < 0 || ligne >= LIGNES || colonne < 0 || colonne >= COLONNES) {
-            throw new PlateauIndexInvalideException("Coordonnées en dehors du plateau : ligne=" + ligne + ", colonne=" + colonne);
+        if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK) throw new RackIndexInvalideException("Coordonnées en dehors du rack : indexRack=" + indexRack);
+        
+        if (obtenirTuile(coordsTuile).typeCase() == TypeCase.CASE_OCCUPEE) {
+        	throw new PlacementDejaExistantInvalide("Il existe déjà une tuile sur cette case");
         }
-        if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK) {
-            throw new RackIndexInvalideException("Coordonnées en dehors du rack : indexRack=" + indexRack);
-        }
-        if (obtenirTuile(coordsTuile).tuile() != null) throw new PlacementDejaExistantInvalide("Il existe déjà une tuile sur cette case");
 
         Tuile tuile = rack.choisirTuile(indexRack);
         obtenirTuile(coordsTuile).changerTuile(tuile);

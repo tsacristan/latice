@@ -42,8 +42,8 @@ public class Case {
     		case CASE_OCCUPEE:
     			try {
     				CouleurConsole couleurTexteDefaut = CouleurConsole.ANSI_TEXTE_NOIR;
-    				String styleANSI = getAnsiBackgroundColor().codeANSI() + couleurTexteDefaut;
-    				return styleANSI + getEmojiForme().emoji() + CouleurConsole.ANSI_RESET;
+    				String styleANSI = obtenirAnsiBackgroundColor().codeANSI() + couleurTexteDefaut;
+    				return styleANSI + obtenirEmojiForme().emoji() + CouleurConsole.ANSI_RESET;
     			} catch (CouleurInvalideException | FormeInvalideException e) {
     				return EmojiForme.CARACTERE_INCONNU.emoji();
     			}
@@ -58,8 +58,8 @@ public class Case {
     	}
     }
 
-    private CouleurConsole getAnsiBackgroundColor() throws CouleurInvalideException {
-    	CouleurConsole couleurANSI;
+    private CouleurConsole obtenirAnsiBackgroundColor() throws CouleurInvalideException {
+        CouleurConsole couleurANSI;
         switch (tuile.couleur()) {
             case BLEU_MARINE:
                 couleurANSI = CouleurConsole.ANSI_FOND_BLEU_MARINE;
@@ -77,15 +77,15 @@ public class Case {
                 couleurANSI = CouleurConsole.ANSI_FOND_BLEU_SARCELLE;
                 break;
             case JAUNE:
-            	couleurANSI = CouleurConsole.ANSI_FOND_JAUNE;
-            	break;
+                couleurANSI = CouleurConsole.ANSI_FOND_JAUNE;
+                break;
             default:
-            	throw new CouleurInvalideException("Erreur ! Couleur " + tuile.couleur() + " non reconnue !");
+                throw new CouleurInvalideException("Erreur ! Couleur " + tuile.couleur() + " non reconnue !");
         }
         return couleurANSI;
     }
 
-    private EmojiForme getEmojiForme() throws FormeInvalideException {
+    private EmojiForme obtenirEmojiForme() throws FormeInvalideException {
         EmojiForme emojiForme;
         switch (tuile.forme()) {
             case OISEAU:
@@ -104,10 +104,10 @@ public class Case {
                 emojiForme = EmojiForme.DAUPHIN;
                 break;
             case PLUME:
-            	emojiForme = EmojiForme.PLUME;
-            	break;
+                emojiForme = EmojiForme.PLUME;
+                break;
             default:
-            	throw new FormeInvalideException("Erreur ! Forme " + tuile.forme() + " non reconnue !");
+                throw new FormeInvalideException("Erreur ! Forme " + tuile.forme() + " non reconnue !");
         }
         return emojiForme;
     }

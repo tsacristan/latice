@@ -11,6 +11,7 @@ import latice.model.PileDebut;
 import latice.model.PileJoueur;
 import latice.model.Plateau;
 import latice.model.RackJoueur;
+import latice.util.PlateauIndexInvalideException;
 import latice.view.InterfacePlateau;
 import latice.view.PartieControle;
 import latice.view.PartieHaut;
@@ -68,9 +69,16 @@ public class LaticeGraphique extends Application {
     }
     
     private InterfacePlateau initialiserInterfacePlateau() {
-		InterfacePlateau interfacePlateau = new InterfacePlateau(plateau);
-		plateau.ajouterListener(interfacePlateau);
-	
+		InterfacePlateau interfacePlateau = null;
+		try {
+			interfacePlateau = new InterfacePlateau(plateau);
+			plateau.ajouterListener(interfacePlateau);
+			
+			return interfacePlateau;
+		} catch (PlateauIndexInvalideException e) {
+			e.printStackTrace();
+		}
+		
 		return interfacePlateau;
     }
     

@@ -44,13 +44,13 @@ public class LaticeJeuxEssais {
         
         //Echange de rack avec 5 tuiles de la pile
         Console.message("Nouveau rack du joueur 1");
-        rackJoueur1.piocher();
+        rackJoueur1.remplir();
         Console.message(rackJoueur1.toString());
         
         Console.message("\n");
         
         Console.message("Nouveau rack du joueur 2");
-        rackJoueur1.piocher();
+        rackJoueur1.remplir();
         Console.message(rackJoueur2.toString());
 
         Plateau plateau = new Plateau();
@@ -89,7 +89,7 @@ public class LaticeJeuxEssais {
         
         Console.message();
         
-        rackJoueur1.piocher();
+        rackJoueur1.remplir();
         Console.message("Contenu du rack Joueur 1 après avoir piocher  :");
         Console.message(rackJoueur1.toString());
     

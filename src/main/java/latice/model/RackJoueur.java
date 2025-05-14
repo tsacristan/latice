@@ -29,18 +29,11 @@ public class RackJoueur extends Observable<RackListener> {
     	this.pileJoueur = new PileJoueur();
     }
 
-    public void remplir() {
-        for (int i = 0; i < TAILLE_MAX_RACK; i++) {
-            rack.add(pileJoueur.retirerTuile());
-        }
-        declencherListeners();
-    }
-    
-    public void piocher() throws PiocheInvalideException {
-       	if (pileJoueur.isEmpty()) {
+    public void remplir() throws PiocheInvalideException {
+    	if (pileJoueur.isEmpty()) {
     		throw new PiocheInvalideException("Erreur : la pioche est vide.");
     	}
-       	else if (pileJoueur.size() < TAILLE_MAX_RACK) {
+    	else if (pileJoueur.size() < TAILLE_MAX_RACK) {
           	pileJoueur.addAll(rack);
           	rack.clear();
        		pileJoueur.melanger();

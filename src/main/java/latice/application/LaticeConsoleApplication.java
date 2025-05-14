@@ -4,10 +4,11 @@ import latice.ihm.Console;
 import latice.model.PileDebut;
 import latice.model.PileJoueur;
 import latice.model.RackJoueur;
+import latice.util.PiocheInvalideException;
 
 public class LaticeConsoleApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws PiocheInvalideException {
         PileDebut pile = new PileDebut();
         pile.remplir();
         pile.melanger();
