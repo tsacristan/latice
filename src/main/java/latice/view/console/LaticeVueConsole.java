@@ -29,7 +29,8 @@ public class LaticeVueConsole extends LaticeVue {
 	public void afficherPlateau(Plateau plateau) {
 		Console.messagef(Textes.AIDE_PLATEAU, EmojiForme.PLUME.emoji(), EmojiForme.OISEAU.emoji(), 
 				EmojiForme.TORTUE.emoji(), EmojiForme.FLEUR.emoji(), EmojiForme.GECKO.emoji(), EmojiForme.DAUPHIN.emoji(), 
-				EmojiForme.CASE_LUNE.emoji(), EmojiForme.CASE_SOLEIL.emoji(), EmojiForme.CASE_VIDE.emoji());
+				EmojiForme.CASE_LUNE.emoji(), CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET,
+				EmojiForme.CASE_VIDE.emoji());
 		afficheur.afficherPlateau(plateau);
 	}
 
