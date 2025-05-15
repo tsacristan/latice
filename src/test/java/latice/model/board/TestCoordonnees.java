@@ -1,11 +1,10 @@
-package latice.model;
+package latice.model.board;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import latice.model.board.Coordonnees;
 import latice.util.exception.PlateauIndexInvalideException;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCoordonnees {
 

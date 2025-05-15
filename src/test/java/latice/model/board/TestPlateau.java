@@ -1,4 +1,4 @@
-package latice.model;
+package latice.model.board;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -6,8 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import latice.model.board.Coordonnees;
-import latice.model.board.Plateau;
+import latice.model.PileDebut;
 import latice.model.material.Case;
 import latice.model.material.Tuile;
 import latice.model.material.TypeCase;
