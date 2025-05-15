@@ -1,6 +1,5 @@
 package latice.application;
 
-import latice.controller.LaticeController;
 import latice.model.PileDebut;
 import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
@@ -120,10 +119,5 @@ public class LaticeJeuxEssais {
         rackJoueur1.choisirTuile(2);
         Console.message("Contenu du rack Joueur 1 après avoir choisi la Tuile :");
         Console.message(rackJoueur1.toString());
-        
-        
-        ///////////////////////////////////
-        
-       LaticeController.demarrerJeu();
     }
 }

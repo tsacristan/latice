@@ -1,5 +1,7 @@
 package latice.model.player;
 
+import java.util.Objects;
+
 import latice.util.exception.PiocheInvalideException;
 
 public class Joueur {
@@ -36,6 +38,24 @@ public class Joueur {
 	
 	public PileJoueur pileJoueur() {
 		return pileJoueur;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(pileJoueur, pseudo, rackJoueur);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Joueur other = (Joueur) obj;
+		return Objects.equals(pileJoueur, other.pileJoueur) && Objects.equals(pseudo, other.pseudo)
+				&& Objects.equals(rackJoueur, other.rackJoueur);
 	}
 
 }

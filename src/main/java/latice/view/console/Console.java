@@ -21,5 +21,9 @@ public class Console {
 	public static void messageAligne(String texte) {
 		System.out.print(texte);
 	}
+	
+	public static void messagef(Object texte, Object...args) {
+		Console.message(String.format(texte.toString(), args));
+	}
 
 }
