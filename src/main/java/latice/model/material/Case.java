@@ -63,57 +63,41 @@ public class Case {
     }
 
     private CouleurConsole obtenirAnsiBackgroundColor() throws CouleurInvalideException {
-        CouleurConsole couleurANSI;
         switch (tuile.couleur()) {
             case BLEU_MARINE:
-                couleurANSI = CouleurConsole.ANSI_FOND_BLEU_MARINE;
-                break;
+                return CouleurConsole.ANSI_FOND_BLEU_MARINE;
             case MAGENTA:
-                couleurANSI = CouleurConsole.ANSI_FOND_MAGENTA;
-                break;
+                return CouleurConsole.ANSI_FOND_MAGENTA;
             case ROUGE:
-                couleurANSI = CouleurConsole.ANSI_FOND_ROUGE;
-                break;
+                return CouleurConsole.ANSI_FOND_ROUGE;
             case VERT:
-                couleurANSI = CouleurConsole.ANSI_FOND_VERT;
-                break;
+                return CouleurConsole.ANSI_FOND_VERT;
             case BLEU_SARCELLE:
-                couleurANSI = CouleurConsole.ANSI_FOND_BLEU_SARCELLE;
-                break;
+                return CouleurConsole.ANSI_FOND_BLEU_SARCELLE;
             case JAUNE:
-                couleurANSI = CouleurConsole.ANSI_FOND_JAUNE;
-                break;
+                return CouleurConsole.ANSI_FOND_JAUNE;
             default:
                 throw new CouleurInvalideException("Erreur ! Couleur " + tuile.couleur() + " non reconnue !");
         }
-        return couleurANSI;
     }
 
     private EmojiForme obtenirEmojiForme() throws FormeInvalideException {
-        EmojiForme emojiForme;
         switch (tuile.forme()) {
             case OISEAU:
-                emojiForme = EmojiForme.OISEAU;
-                break;
+                return EmojiForme.OISEAU;
             case TORTUE:
-                emojiForme = EmojiForme.TORTUE;
-                break;
+                return EmojiForme.TORTUE;
             case FLEUR:
-                emojiForme = EmojiForme.FLEUR;
-                break;
+                return EmojiForme.FLEUR;
             case GECKO:
-                emojiForme = EmojiForme.GECKO;
-                break;
+                return EmojiForme.GECKO;
             case DAUPHIN:
-                emojiForme = EmojiForme.DAUPHIN;
-                break;
+                return EmojiForme.DAUPHIN;
             case PLUME:
-                emojiForme = EmojiForme.PLUME;
-                break;
+                return EmojiForme.PLUME;
             default:
                 throw new FormeInvalideException("Erreur ! Forme " + tuile.forme() + " non reconnue !");
         }
-        return emojiForme;
     }
 
 	@Override
