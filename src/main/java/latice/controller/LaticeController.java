@@ -3,11 +3,11 @@ package latice.controller;
 import java.util.Random;
 import java.util.Scanner;
 
-import latice.ihm.Console;
-import latice.model.Joueur;
 import latice.model.PileDebut;
-import latice.model.PileJoueur;
-import latice.util.PiocheInvalideException;
+import latice.model.player.Joueur;
+import latice.model.player.PileJoueur;
+import latice.util.exception.PiocheInvalideException;
+import latice.view.console.Console;
 
 public class LaticeController {
 	

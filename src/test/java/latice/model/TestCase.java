@@ -5,8 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import latice.ihm.CouleurConsole;
-import latice.ihm.EmojiForme;
+import latice.model.material.Case;
+import latice.model.material.Couleur;
+import latice.model.material.Forme;
+import latice.model.material.Tuile;
+import latice.model.material.TypeCase;
+import latice.view.console.CouleurConsole;
+import latice.view.console.EmojiForme;
 
 class TestCase {
 	

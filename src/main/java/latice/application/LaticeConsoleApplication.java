@@ -1,10 +1,10 @@
 package latice.application;
 
-import latice.ihm.Console;
 import latice.model.PileDebut;
-import latice.model.PileJoueur;
-import latice.model.RackJoueur;
-import latice.util.PiocheInvalideException;
+import latice.model.player.PileJoueur;
+import latice.model.player.RackJoueur;
+import latice.util.exception.PiocheInvalideException;
+import latice.view.console.Console;
 
 public class LaticeConsoleApplication {
 

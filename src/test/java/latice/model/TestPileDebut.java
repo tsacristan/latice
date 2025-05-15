@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
+import latice.model.player.PileJoueur;
+
 class TestPileDebut {
 	
 	private static final int TAILLE_PILE_DEBUT = 72;

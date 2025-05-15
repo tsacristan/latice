@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import latice.model.material.Couleur;
+import latice.model.material.Forme;
+import latice.model.material.Tuile;
+
 class TestTuile {
 	
 	private static final Tuile TUILE_BLEU_MARINE_DAUPHIN = new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN);

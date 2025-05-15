@@ -2,21 +2,20 @@ package latice.application;
 
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import latice.model.Coordonnees;
 import latice.model.PileDebut;
-import latice.model.PileJoueur;
-import latice.model.Plateau;
-import latice.model.RackJoueur;
-import latice.util.PlateauIndexInvalideException;
-import latice.view.InterfacePlateau;
-import latice.view.PartieControle;
-import latice.view.PartieHaut;
-import latice.view.PartieInfo;
-import latice.view.PartieJoueur;
+import latice.model.board.Coordonnees;
+import latice.model.board.Plateau;
+import latice.model.player.PileJoueur;
+import latice.model.player.RackJoueur;
+import latice.util.exception.PlateauIndexInvalideException;
+import latice.view.gui.InterfacePlateau;
+import latice.view.gui.PartieControle;
+import latice.view.gui.PartieHaut;
+import latice.view.gui.PartieInfo;
+import latice.view.gui.PartieJoueur;
 
 public class LaticeGraphique extends Application { 
 	

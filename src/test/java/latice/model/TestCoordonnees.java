@@ -2,7 +2,8 @@ package latice.model;
 
 import org.junit.jupiter.api.Test;
 
-import latice.util.PlateauIndexInvalideException;
+import latice.model.board.Coordonnees;
+import latice.util.exception.PlateauIndexInvalideException;
 
 import static org.junit.jupiter.api.Assertions.*;
 

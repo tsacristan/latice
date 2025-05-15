@@ -3,6 +3,8 @@ package latice.model;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import latice.model.material.Tuile;
+
 public abstract class LaticePile extends ArrayList<Tuile> {
     public Tuile retirerTuile() {
         return remove(0);

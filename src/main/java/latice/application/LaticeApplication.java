@@ -1,11 +1,23 @@
 package latice.application;
 
-import latice.ihm.Console;
-import latice.ihm.AfficherPlateauConsole;
-import latice.model.*;
-import latice.util.*;
 import java.util.Random;
 import java.util.Scanner;
+
+import latice.model.PileDebut;
+import latice.model.board.Coordonnees;
+import latice.model.board.Plateau;
+import latice.model.material.Case;
+import latice.model.material.Tuile;
+import latice.model.material.TypeCase;
+import latice.model.player.Joueur;
+import latice.model.player.PileJoueur;
+import latice.util.exception.PiocheInvalideException;
+import latice.util.exception.PlacementDejaExistantInvalide;
+import latice.util.exception.PlateauIndexInvalideException;
+import latice.util.exception.RackIndexInvalideException;
+import latice.util.exception.RackInvalideException;
+import latice.view.console.AfficherPlateauConsole;
+import latice.view.console.Console;
 
 public class LaticeApplication {
     public static void main(String[] args) throws PiocheInvalideException, RackInvalideException, PlateauIndexInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
@@ -20,7 +32,7 @@ public class LaticeApplication {
         Joueur joueur2 = new Joueur("2");
         
         pile.distribuer(new PileJoueur[]{joueur1.pileJoueur(), joueur2.pileJoueur()});
-
+        
         joueur1.remplirRack();
         joueur2.remplirRack();
 

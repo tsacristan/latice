@@ -1,14 +1,18 @@
 package latice.application;
 
-import latice.ihm.Console;
-import latice.model.*;
-import latice.util.PiocheInvalideException;
-import latice.util.PlacementDejaExistantInvalide;
-import latice.util.PlateauIndexInvalideException;
-import latice.util.RackIndexInvalideException;
-import latice.util.RackInvalideException;
 import latice.controller.LaticeController;
-import latice.ihm.AfficherPlateauConsole;
+import latice.model.PileDebut;
+import latice.model.board.Coordonnees;
+import latice.model.board.Plateau;
+import latice.model.player.PileJoueur;
+import latice.model.player.RackJoueur;
+import latice.util.exception.PiocheInvalideException;
+import latice.util.exception.PlacementDejaExistantInvalide;
+import latice.util.exception.PlateauIndexInvalideException;
+import latice.util.exception.RackIndexInvalideException;
+import latice.util.exception.RackInvalideException;
+import latice.view.console.AfficherPlateauConsole;
+import latice.view.console.Console;
 
 public class LaticeJeuxEssais {
 

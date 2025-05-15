@@ -2,6 +2,11 @@ package latice.model;
 
 import java.util.Collections;
 
+import latice.model.material.Couleur;
+import latice.model.material.Forme;
+import latice.model.material.Tuile;
+import latice.model.player.PileJoueur;
+
 public class PileDebut extends LaticePile {
 	public final static int NOMBRE_TUILE_TOTAL = 72;
 	
