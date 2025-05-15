@@ -6,9 +6,6 @@ import java.util.Scanner;
 import latice.model.PileDebut;
 import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
-import latice.model.material.Case;
-import latice.model.material.Tuile;
-import latice.model.material.TypeCase;
 import latice.model.player.Joueur;
 import latice.model.player.PileJoueur;
 import latice.util.exception.PiocheInvalideException;
@@ -16,7 +13,7 @@ import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.PlateauIndexInvalideException;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
-import latice.view.console.AfficherPlateauConsole;
+import latice.view.console.AfficheurElementsJeu;
 import latice.view.console.Console;
 
 public class LaticeApplication {
@@ -37,7 +34,7 @@ public class LaticeApplication {
         joueur2.remplirRack();
 
         Plateau plateau = new Plateau();
-        AfficherPlateauConsole affichage = new AfficherPlateauConsole();
+        AfficheurElementsJeu afficheurElementJeu = new AfficheurElementsJeu();
 
         Console.titre("Bienvenue dans le jeu LATICE !");
 
@@ -53,15 +50,11 @@ public class LaticeApplication {
 
             Joueur joueurActuel = (joueurActif == 1) ? joueur1 : joueur2;
             Console.titre("Plateau actuel :");
-            affichage.afficher(plateau);
+            afficheurElementJeu.afficherPlateau(plateau);
 
             Console.message("Rack du joueur " + joueurActif + " :");
 
-            for (int i = 0; i < joueurActuel.rackJoueur().rack().size(); i++) {
-                Tuile tuile = joueurActuel.rackJoueur().rack().get(i);
-                Case caseTuile = new Case(tuile, TypeCase.CASE_OCCUPEE);
-                Console.message((i + 1) + ". " + caseTuile.toString());
-            }
+            afficheurElementJeu.afficherRack(joueurActuel.rackJoueur());
 
             int tailleRack = joueurActuel.rackJoueur().rack().size();
             int indexTuile = demanderEntierDansIntervalle(scanner,

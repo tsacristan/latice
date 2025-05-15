@@ -19,6 +19,10 @@ public class Case {
     public Case(TypeCase typeCase) {
         this(null, typeCase);
     }
+    
+    public Case(Tuile tuile) {
+        this(tuile, TypeCase.CASE_OCCUPEE);
+    }
 
     public Tuile tuile() {
         return tuile;

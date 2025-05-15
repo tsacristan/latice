@@ -7,7 +7,6 @@ import latice.model.player.RackJoueur;
 import latice.util.Observable;
 import latice.util.PlateauListener;
 import latice.util.exception.PlacementDejaExistantInvalide;
-import latice.util.exception.PlateauIndexInvalideException;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
 

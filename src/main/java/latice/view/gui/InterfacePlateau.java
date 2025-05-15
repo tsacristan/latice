@@ -17,11 +17,11 @@ public class InterfacePlateau extends GridPane implements PlateauListener, Affic
 		super();
 		this.plateau = plateau;
 		setAlignment(Pos.CENTER);
-		afficher(plateau);
+		afficherPlateau(plateau);
 	}
 
 	@Override
-	public void afficher(Plateau plateau) {
+	public void afficherPlateau(Plateau plateau) {
 		for (int i = 0; i < Plateau.LIGNES; i++) {
 			for (int j = 0; j < Plateau.COLONNES; j++) {
 				Case caseTuile;
@@ -38,6 +38,6 @@ public class InterfacePlateau extends GridPane implements PlateauListener, Affic
 
 	@Override
 	public void plateauEstMisAJour() {
-		afficher(plateau);
+		afficherPlateau(plateau);
 	}
 }

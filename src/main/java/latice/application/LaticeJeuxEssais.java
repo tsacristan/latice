@@ -11,7 +11,7 @@ import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.PlateauIndexInvalideException;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
-import latice.view.console.AfficherPlateauConsole;
+import latice.view.console.AfficheurElementsJeu;
 import latice.view.console.Console;
 
 public class LaticeJeuxEssais {
@@ -59,11 +59,11 @@ public class LaticeJeuxEssais {
         Console.message(rackJoueur2.toString());
 
         Plateau plateau = new Plateau();
-        AfficherPlateauConsole affichagePlateau = new AfficherPlateauConsole();
-        affichagePlateau.afficher(plateau);
+        AfficheurElementsJeu affichagePlateau = new AfficheurElementsJeu();
+        affichagePlateau.afficherPlateau(plateau);
             
         plateau.placerLaTuileSurLePlateau(2, new Coordonnees(4, 3), rackJoueur2);
-        affichagePlateau.afficher(plateau);
+        affichagePlateau.afficherPlateau(plateau);
                 
         //Jeu de test piocher
         PileDebut pileTest = new PileDebut();
@@ -125,9 +125,5 @@ public class LaticeJeuxEssais {
         ///////////////////////////////////
         
        LaticeController.demarrerJeu();
-        
-        
-        
-        
     }
 }

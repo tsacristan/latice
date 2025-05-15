@@ -7,8 +7,9 @@ import latice.model.material.Tuile;
 import latice.model.material.TypeCase;
 import latice.model.player.RackJoueur;
 import latice.util.RackListener;
+import latice.view.AfficherRack;
 
-public class InterfaceRack extends HBox implements RackListener {
+public class InterfaceRack extends HBox implements RackListener, AfficherRack {
 	private RackJoueur rackJoueur;
 	
 	public InterfaceRack(RackJoueur rackJoueur) {
@@ -17,11 +18,16 @@ public class InterfaceRack extends HBox implements RackListener {
 		setSpacing(10);
         setAlignment(Pos.CENTER);
         
-        rackEstMisAJour();
+        afficherRack(rackJoueur);
 	}
 	
 	@Override
 	public void rackEstMisAJour() {
+		afficherRack(rackJoueur);
+	}
+
+	@Override
+	public void afficherRack(RackJoueur rack) {
 		getChildren().clear();
 		for (Tuile tuile : rackJoueur.rack()) {
         	Case caseTuile = new Case(tuile, TypeCase.CASE_OCCUPEE);

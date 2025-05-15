@@ -1,7 +1,5 @@
 package latice.model;
 
-import java.util.Collections;
-
 import latice.model.material.Couleur;
 import latice.model.material.Forme;
 import latice.model.material.Tuile;
