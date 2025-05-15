@@ -7,7 +7,6 @@ import latice.ihm.Console;
 import latice.model.Joueur;
 import latice.model.PileDebut;
 import latice.model.PileJoueur;
-import latice.model.RackJoueur;
 import latice.util.PiocheInvalideException;
 
 public class LaticeController {
@@ -32,8 +31,8 @@ public class LaticeController {
 		
 		pile.distribuer(new PileJoueur[]{joueur1.pileJoueur(),joueur2.pileJoueur()});
 		
-		joueur1.rackJoueur().remplir();
-		joueur2.rackJoueur().remplir();
+		joueur1.remplirRack();
+		joueur2.remplirRack();
 		
 		Joueur[] joueurs = {joueur1,joueur2};
 		
@@ -43,6 +42,6 @@ public class LaticeController {
 		
 		Console.message(joueurs[joueurActif].rackJoueur().toString());
 		
-		
+		choix.close();
 	}
 }

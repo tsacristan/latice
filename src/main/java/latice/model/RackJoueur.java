@@ -9,27 +9,19 @@ import latice.util.RackInvalideException;
 import latice.util.RackListener;
 
 public class RackJoueur extends Observable<RackListener> {
-    private ArrayList<Tuile> rack;
-    private final PileJoueur pileJoueur;
+    private List<Tuile> rack;
     
     public static final int TAILLE_MAX_RACK = 5;
 
-    public RackJoueur(ArrayList<Tuile> rack, PileJoueur pileJoueur) {
+    public RackJoueur(List<Tuile> rack) {
     	this.rack = rack;
-        this.pileJoueur = pileJoueur;
-    }
-    
-    public RackJoueur(PileJoueur pileJoueur) {
-    	this.rack = new ArrayList<>();
-    	this.pileJoueur = pileJoueur;
     }
 
     public RackJoueur() {
-    	this.rack = new ArrayList<>();
-    	this.pileJoueur = new PileJoueur();
+    	this(new ArrayList<>());
     }
 
-    public void remplir() throws PiocheInvalideException {
+    public void remplir(PileJoueur pileJoueur) throws PiocheInvalideException {
     	if (pileJoueur.isEmpty()) {
     		throw new PiocheInvalideException("Erreur : la pioche est vide.");
     	}

@@ -30,14 +30,14 @@ public class LaticeJeuxEssais {
 
         //Attribution des racks aux joueurs
         RackJoueur rackJoueur1 = new RackJoueur(pile1);
-        rackJoueur1.remplir();
+        rackJoueur1.remplir(pile1);
         Console.message("Voici le rack du joueur 1");
         Console.message(rackJoueur1.toString());
         
         Console.message("\n");
         
         RackJoueur rackJoueur2 = new RackJoueur(pile2);
-        rackJoueur2.remplir();
+        rackJoueur2.remplir(pile2);
         Console.message("Voici le rack du joueur 2");
         Console.message(rackJoueur2.toString());
         
@@ -45,13 +45,13 @@ public class LaticeJeuxEssais {
         
         //Echange de rack avec 5 tuiles de la pile
         Console.message("Nouveau rack du joueur 1");
-        rackJoueur1.remplir();
+        rackJoueur1.remplir(pile1);
         Console.message(rackJoueur1.toString());
         
         Console.message("\n");
         
         Console.message("Nouveau rack du joueur 2");
-        rackJoueur1.remplir();
+        rackJoueur1.remplir(pile1);
         Console.message(rackJoueur2.toString());
 
         Plateau plateau = new Plateau();
@@ -70,10 +70,10 @@ public class LaticeJeuxEssais {
         PileJoueur pileJoueur2 = new PileJoueur();
         pileTest.distribuer(new PileJoueur[]{pileJoueur1, pileJoueur2});
         
-        RackJoueur rack1 = new RackJoueur(pileJoueur1);
-        rack1.remplir();
-        RackJoueur rack2 = new RackJoueur(pileJoueur1);
-        rack2.remplir();
+        RackJoueur rack1 = new RackJoueur();
+        rack1.remplir(pile1);
+        RackJoueur rack2 = new RackJoueur();
+        rack2.remplir(pile1);
         
         for (int i = 0; i < 25; i++) {
         	pileJoueur1.retirerTuile();
@@ -90,7 +90,7 @@ public class LaticeJeuxEssais {
         
         Console.message();
         
-        rackJoueur1.remplir();
+        rackJoueur1.remplir(pile1);
         Console.message("Contenu du rack Joueur 1 après avoir piocher  :");
         Console.message(rackJoueur1.toString());
     
@@ -103,8 +103,8 @@ public class LaticeJeuxEssais {
         PileJoueur pileJ2 = new PileJoueur();
         pileTuile.distribuer(new PileJoueur[]{pileJ1, pileJ2});
         
-        RackJoueur rackJ1 = new RackJoueur(pileJ1);
-        rackJ1.remplir();
+        RackJoueur rackJ1 = new RackJoueur();
+        rackJ1.remplir(pile1);
         
         Console.titre("Test de choisir la Tuile ");
         

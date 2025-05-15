@@ -1,18 +1,11 @@
 package latice.model;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import latice.ihm.Console;
-import latice.model.Case;
-import latice.model.Coordonnees;
-import latice.model.PileDebut;
-import latice.model.PileJoueur;
-import latice.model.Plateau;
-import latice.model.RackJoueur;
-import latice.model.Tuile;
-import latice.model.TypeCase;
 import latice.util.PiocheInvalideException;
 import latice.util.PlacementDejaExistantInvalide;
 import latice.util.PlateauIndexInvalideException;
@@ -34,8 +27,8 @@ class TestPlateau {
         PileJoueur pileTest = new PileJoueur();
         PileJoueur pileTest2 = new PileJoueur();
         pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
-        RackJoueur rackTest = new RackJoueur(pileTest);
-        rackTest.remplir();
+        RackJoueur rackTest = new RackJoueur();
+        rackTest.remplir(pileTest);
         Tuile tuileAPoser = rackTest.rack().get(2);
      
         plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(4, 6), rackTest);
@@ -58,8 +51,8 @@ class TestPlateau {
         PileJoueur pileTest = new PileJoueur();
         PileJoueur pileTest2 = new PileJoueur();
         pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
-        RackJoueur rackTest = new RackJoueur(pileTest);
-        rackTest.remplir();
+        RackJoueur rackTest = new RackJoueur();
+        rackTest.remplir(pileTest);
         //Act
         //Assert
         PlateauIndexInvalideException e = assertThrows(
@@ -85,8 +78,8 @@ class TestPlateau {
         PileJoueur pileTest = new PileJoueur();
         PileJoueur pileTest2 = new PileJoueur();
         pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
-        RackJoueur rackTest = new RackJoueur(pileTest);
-        rackTest.remplir();
+        RackJoueur rackTest = new RackJoueur();
+        rackTest.remplir(pileTest);
         //Act
 
         //Assert
@@ -113,8 +106,8 @@ class TestPlateau {
         PileJoueur pileTest = new PileJoueur();
         PileJoueur pileTest2 = new PileJoueur();
         pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
-        RackJoueur rackTest = new RackJoueur(pileTest);
-        rackTest.remplir();
+        RackJoueur rackTest = new RackJoueur();
+        rackTest.remplir(pileTest);
         //Act
         plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), rackTest);
         //Assert

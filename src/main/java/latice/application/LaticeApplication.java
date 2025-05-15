@@ -15,15 +15,14 @@ public class LaticeApplication {
         PileDebut pile = new PileDebut();
         pile.remplir();
         pile.melanger();
+        
+        Joueur joueur1 = new Joueur("1");
+        Joueur joueur2 = new Joueur("2");
+        
+        pile.distribuer(new PileJoueur[]{joueur1.pileJoueur(), joueur2.pileJoueur()});
 
-        PileJoueur pile1 = new PileJoueur();
-        PileJoueur pile2 = new PileJoueur();
-        pile.distribuer(new PileJoueur[]{pile1, pile2});
-
-        RackJoueur rack1 = new RackJoueur(pile1);
-        RackJoueur rack2 = new RackJoueur(pile2);
-        rack1.remplir();
-        rack2.remplir();
+        joueur1.remplirRack();
+        joueur2.remplirRack();
 
         Plateau plateau = new Plateau();
         AfficherPlateauConsole affichage = new AfficherPlateauConsole();
@@ -31,6 +30,7 @@ public class LaticeApplication {
         Console.titre("Bienvenue dans le jeu LATICE !");
 
         int joueurActif = random.nextBoolean() ? 1 : 2;
+
         Console.message("Le joueur " + joueurActif + " commence !");
 
         int tour = 1;
@@ -39,19 +39,19 @@ public class LaticeApplication {
         while (tour <= TOURS_MAX) {
             Console.titre("Tour " + tour + " / " + TOURS_MAX);
 
-            RackJoueur rackActuel = (joueurActif == 1) ? rack1 : rack2;
+            Joueur joueurActuel = (joueurActif == 1) ? joueur1 : joueur2;
             Console.titre("Plateau actuel :");
             affichage.afficher(plateau);
 
             Console.message("Rack du joueur " + joueurActif + " :");
 
-            for (int i = 0; i < rackActuel.rack().size(); i++) {
-                Tuile tuile = rackActuel.rack().get(i);
+            for (int i = 0; i < joueurActuel.rackJoueur().rack().size(); i++) {
+                Tuile tuile = joueurActuel.rackJoueur().rack().get(i);
                 Case caseTuile = new Case(tuile, TypeCase.CASE_OCCUPEE);
                 Console.message((i + 1) + ". " + caseTuile.toString());
             }
 
-            int tailleRack = rackActuel.rack().size();
+            int tailleRack = joueurActuel.rackJoueur().rack().size();
             int indexTuile = demanderEntierDansIntervalle(scanner,
                 "Quelle tuile jouer ? (index de 1 à " + tailleRack + ", ou -1 pour quitter)",
                 -1, tailleRack);
@@ -66,9 +66,9 @@ public class LaticeApplication {
             colonne -= 1;
 
             try {
-                plateau.placerLaTuileSurLePlateau(indexTuile, new Coordonnees(colonne, ligne), rackActuel);
+                plateau.placerLaTuileSurLePlateau(indexTuile, new Coordonnees(colonne, ligne), joueurActuel.rackJoueur());
                 Console.message("Tuile placée !");
-                rackActuel.remplir();
+                joueurActuel.remplirRack();
             } catch (Exception e) {
                 Console.message("Erreur : " + e.getMessage());
                 continue;

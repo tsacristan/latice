@@ -61,9 +61,9 @@ public class LaticeGraphique extends Application {
 		pile2 = new PileJoueur();
         pile.distribuer(new PileJoueur[]{pile1, pile2});
 		rack1 = new RackJoueur(pile1);
-		rack1.remplir();
+		rack1.remplir(pile1);
 		rack2 = new RackJoueur(pile2);
-		rack2.remplir();
+		rack2.remplir(pile2);
 		
 		plateau = new Plateau();
     }

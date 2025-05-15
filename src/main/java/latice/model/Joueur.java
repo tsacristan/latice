@@ -1,5 +1,7 @@
 package latice.model;
 
+import latice.util.PiocheInvalideException;
+
 public class Joueur {
 	
 	private String pseudo;
@@ -20,6 +22,10 @@ public class Joueur {
 		this("Défaut", new RackJoueur(), new PileJoueur());
 	}
 	
+	public void remplirRack() throws PiocheInvalideException {
+		rackJoueur.remplir(pileJoueur);
+	}
+
 	public String pseudo() {
 		return pseudo;
 	}
