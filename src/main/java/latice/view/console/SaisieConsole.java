@@ -18,7 +18,7 @@ public class SaisieConsole {
 
                 valeurSaisie = Integer.parseInt(saisie);
 
-                if (valeurSaisie < min || valeurSaisie > max) {
+                if (!(min <= valeurSaisie && valeurSaisie <= max)) {
                     throw new IllegalArgumentException("Erreur : la valeur doit être comprise entre " + min + " et " + max + ".");
                 }
 
