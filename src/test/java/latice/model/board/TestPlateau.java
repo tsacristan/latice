@@ -17,6 +17,7 @@ import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.PlateauIndexInvalideException;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
+import latice.view.TextesErreurs;
 
 class TestPlateau {
 
@@ -68,7 +69,7 @@ class TestPlateau {
         	    }
         	);
 
-        	assertEquals("Coordonnées en dehors du plateau : ligne=" + colonne + ", colonne=" + ligne, e.getMessage()); 
+        	assertEquals(String.format(TextesErreurs.COORDONNEES_HORS_PLATEAU.toString(), colonne, ligne), e.getMessage()); 
     }
 
     @Test
@@ -96,7 +97,7 @@ class TestPlateau {
         	    }
         	);
 
-        	assertEquals("Coordonnées en dehors du rack : indexRack=" + indexRack, e.getMessage()); 
+        	assertEquals(String.format(TextesErreurs.COORDONNEES_HORS_RACK.toString(), indexRack), e.getMessage()); 
     
     }
     @Test

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import latice.util.exception.CouleurInvalideException;
 import latice.util.exception.FormeInvalideException;
+import latice.view.Textes;
 import latice.view.console.CouleurConsole;
 import latice.view.console.EmojiForme;
 
@@ -42,24 +43,24 @@ public class Case {
 
     @Override
     public String toString() {
-    	switch (typeCase) {
-    		case CASE_OCCUPEE:
-    			try {
-    				CouleurConsole couleurTexteDefaut = CouleurConsole.ANSI_TEXTE_NOIR;
-    				String styleANSI = obtenirAnsiBackgroundColor().codeANSI() + couleurTexteDefaut;
-    				return styleANSI + obtenirEmojiForme().emoji() + CouleurConsole.ANSI_RESET;
-    			} catch (CouleurInvalideException | FormeInvalideException e) {
-    				return EmojiForme.CARACTERE_INCONNU.emoji();
-    			}
-	    	case CASE_VIDE:
-	    		return EmojiForme.CASE_VIDE.emoji();
-	    	case CASE_SOLEIL:
-	    		return CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET;
-	    	case CASE_LUNE:
-	    		return EmojiForme.CASE_LUNE.emoji();
-	    	default:
-	    		return EmojiForme.CARACTERE_INCONNU.emoji();
-    	}
+        switch (typeCase) {
+            case CASE_OCCUPEE:
+                try {
+                    CouleurConsole couleurTexteDefaut = CouleurConsole.ANSI_TEXTE_NOIR;
+                    String styleANSI = obtenirAnsiBackgroundColor().codeANSI() + couleurTexteDefaut;
+                    return styleANSI + obtenirEmojiForme().emoji() + CouleurConsole.ANSI_RESET;
+                } catch (CouleurInvalideException | FormeInvalideException e) {
+                    return EmojiForme.CARACTERE_INCONNU.emoji();
+                }
+            case CASE_VIDE:
+                return EmojiForme.CASE_VIDE.emoji();
+            case CASE_SOLEIL:
+                return Textes.AFFICHAGE_SOLEIL.texte();
+            case CASE_LUNE:
+                return EmojiForme.CASE_LUNE.emoji();
+            default:
+                return EmojiForme.CARACTERE_INCONNU.emoji();
+        }
     }
 
     private CouleurConsole obtenirAnsiBackgroundColor() throws CouleurInvalideException {

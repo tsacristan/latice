@@ -6,6 +6,4 @@ public class RackIndexInvalideException extends Exception {
     public RackIndexInvalideException(String message) {
         super(message);
     }
-
-
 }

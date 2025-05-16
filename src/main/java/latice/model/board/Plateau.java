@@ -9,6 +9,7 @@ import latice.util.PlateauListener;
 import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
+import latice.view.TextesErreurs;
 
 public class Plateau extends Observable<PlateauListener> {
     private final Case[][] grille;
@@ -66,11 +67,14 @@ public class Plateau extends Observable<PlateauListener> {
 
     public void placerLaTuileSurLePlateau(int indexRack, Coordonnees coordsTuile, RackJoueur rack) throws RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
     	
-        if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK) throw new RackIndexInvalideException("Coordonnées en dehors du rack : indexRack=" + indexRack);
+    	if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK)
+    	    throw new RackIndexInvalideException(
+    	        String.format(TextesErreurs.COORDONNEES_HORS_RACK.toString(), indexRack));
+
         
-        if (obtenirTuile(coordsTuile).typeCase() == TypeCase.CASE_OCCUPEE) {
-        	throw new PlacementDejaExistantInvalide("Il existe déjà une tuile sur cette case");
-        }
+    	if (obtenirTuile(coordsTuile).typeCase() == TypeCase.CASE_OCCUPEE) {
+    	    throw new PlacementDejaExistantInvalide(TextesErreurs.PLACEMENT_DEJA_EXISTANT.toString());
+    	}
 
         Tuile tuile = rack.choisirTuile(indexRack);
         obtenirTuile(coordsTuile).changerTuile(tuile);

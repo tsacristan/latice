@@ -1,5 +1,8 @@
 package latice.view;
 
+import latice.view.console.CouleurConsole;
+import latice.view.console.EmojiForme;
+
 public enum Textes {
 	AIDE_PLATEAU("Plume : %s, Oiseau : %s, Tortue : %s, Fleur : %s, Geko : %s, Dauphin : %s, Case lune : %s, Case soleil : %s, Case vide : %s"),
 	CHOIX_PSEUDO("Veuillez choisir le pseudonyme pour le joueur n°%d : "),
@@ -12,7 +15,8 @@ public enum Textes {
 	INDICE_RACK_INVALIDE("L'indice du rack n'est pas valide !"),
 	RACK_VIDE("Le rack est vide !"),
 	CASE_NON_VIDE("La case n'est pas vide !"),
-	ERREUR_PILE_VIDE("La pile est vide !");
+	ERREUR_PILE_VIDE("La pile est vide !"),
+	AFFICHAGE_SOLEIL(CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET);
 	
 	private String texte;
 
