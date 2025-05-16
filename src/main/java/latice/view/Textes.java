@@ -7,6 +7,7 @@ public enum Textes {
 	AIDE_PLATEAU("Plume : %s, Oiseau : %s, Tortue : %s, Fleur : %s, Geko : %s, Dauphin : %s, Case lune : %s, Case soleil : %s, Case vide : %s"),
 	CHOIX_PSEUDO("Veuillez choisir le pseudonyme pour le joueur n°%d : "),
 	PSEUDO_VIDE("Pseudo invalide (vide) ! Veuillez choisir le pseudonyme pour le joueur n°%d : "),
+	PSEUDO_DEJA_PRIS("Pseudo déjà pris par un joueur. Veuillez choisir un pseudonyme différent de ce joueur !"),
 	NB_TOUR("Tour n°%d : %s"),
 	DEMANDER_TUILE("Quelle tuile jouer ? (index de 1 à %d) : "),
 	DEMANDER_LIGNE("Sur quelle ligne ? (%d à %d)"),
