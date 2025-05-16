@@ -1,9 +1,7 @@
 package latice.view;
 
 public enum TextesErreurs {
-	COORDONNEES_HORS_PLATEAU("Coordonnées en dehors du plateau : ligne=%d, colonne=%d"),
 	PLACEMENT_DEJA_EXISTANT("Il existe déjà une tuile sur cette case"),
-	COORDONNEES_HORS_RACK("Coordonnées en dehors du rack : indexRack=%d"),
 	FORME_TUILE_INVALIDE("Erreur ! Forme %s non reconnue !"),
 	COULEUR_TUILE_INVALIDE("Erreur ! Couleur %s non reconnue !"),
 	PSEUDO_VIDE("Pseudo invalide (vide) ! Veuillez choisir le pseudonyme pour le joueur n°%d : "),
@@ -13,7 +11,8 @@ public enum TextesErreurs {
 	INDICE_RACK_INVALIDE("L'indice du rack n'est pas valide !"),
 	RACK_VIDE("Le rack est vide !"),
 	CASE_NON_VIDE("La case n'est pas vide !"),
-	ERREUR_PILE_VIDE("La pile est vide !");
+	ERREUR_PILE_VIDE("La pile est vide !"),
+	PIOCHE_VIDE("Erreur : la pioche est vide.");
 	
 	private String texte;
 

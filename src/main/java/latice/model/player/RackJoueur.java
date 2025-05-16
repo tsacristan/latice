@@ -8,6 +8,7 @@ import latice.util.Observable;
 import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
 import latice.util.exception.RackInvalideException;
+import latice.view.TextesErreurs;
 
 public class RackJoueur extends Observable<RackListener> {
     private List<Tuile> rack;
@@ -24,15 +25,17 @@ public class RackJoueur extends Observable<RackListener> {
 
     public void remplir(PileJoueur pileJoueur) throws PiocheInvalideException {
     	if (pileJoueur.isEmpty()) {
-    		throw new PiocheInvalideException("Erreur : la pioche est vide.");
+    		throw new PiocheInvalideException(
+    				String.format(TextesErreurs.PIOCHE_VIDE.toString()));
     	}
     	else if (pileJoueur.size() < TAILLE_MAX_RACK) {
           	pileJoueur.addAll(rack);
           	rack.clear();
        		pileJoueur.melanger();
-       		for (int i = 0; i < TAILLE_MAX_RACK; i++) {
-                rack.add(pileJoueur.retirerTuile());
-            }
+       		int tuilesARetirer = Math.min(TAILLE_MAX_RACK, pileJoueur.size());
+       		for (int i = 0; i < tuilesARetirer; i++) {
+       		    rack.add(pileJoueur.retirerTuile());
+       		}
        	}
        	else {
        		ArrayList<Tuile> rackTemporaire = new ArrayList<>();
@@ -49,7 +52,8 @@ public class RackJoueur extends Observable<RackListener> {
     
     public Tuile choisirTuile(int index) throws RackInvalideException {
     	if (rack.isEmpty()) {
-            throw new RackInvalideException("Erreur : le rack doit contenir au moins 1 tuile.");
+            throw new RackInvalideException(
+            		String.format(TextesErreurs.RACK_VIDE.toString()));
         }
         Tuile aJouer = rack.get(index);
         rack.remove(index);
