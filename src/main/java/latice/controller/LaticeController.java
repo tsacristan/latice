@@ -87,7 +87,7 @@ public class LaticeController {
 		boolean emplacementValide = false;
 		
 		while (!emplacementValide) {
-			int emplacementRack = laticeVue.demanderTuileAPoser(joueur);
+			int emplacementRack = laticeVue.demanderTuileAPoser(joueur) - 1;
 			Coordonnees emplacementPlateau = laticeVue.choisirEmplacementPlateau();
 			try {
 				plateau.placerLaTuileSurLePlateau(emplacementRack, emplacementPlateau, joueur.rackJoueur());

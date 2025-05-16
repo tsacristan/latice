@@ -27,11 +27,11 @@ public class LaticeVueConsole extends LaticeVue {
 
 	@Override
 	public void afficherPlateau(Plateau plateau) {
+		afficheur.afficherPlateau(plateau);
 		Console.messagef(Textes.AIDE_PLATEAU, EmojiForme.PLUME.emoji(), EmojiForme.OISEAU.emoji(), 
 				EmojiForme.TORTUE.emoji(), EmojiForme.FLEUR.emoji(), EmojiForme.GECKO.emoji(), EmojiForme.DAUPHIN.emoji(), 
 				EmojiForme.CASE_LUNE.emoji(), CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET,
 				EmojiForme.CASE_VIDE.emoji());
-		afficheur.afficherPlateau(plateau);
 	}
 
 	@Override
@@ -56,7 +56,6 @@ public class LaticeVueConsole extends LaticeVue {
 	public int demanderTuileAPoser(Joueur joueur) {
 		int tailleRack = joueur.rackJoueur().rack().size();
 		String texte = String.format(Textes.DEMANDER_TUILE.toString(), tailleRack);
-		Console.message(String.valueOf(tailleRack));
         return SaisieConsole.demanderEntierDansIntervalle(scanner, texte, 0, tailleRack);
 	}
 	
