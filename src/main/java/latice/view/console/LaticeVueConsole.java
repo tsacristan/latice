@@ -56,8 +56,7 @@ public class LaticeVueConsole extends LaticeVue {
 	public int demanderTuileAPoser(Joueur joueur) {
 		int tailleRack = joueur.rackJoueur().rack().size();
 		String texte = String.format(Textes.DEMANDER_TUILE.toString(), tailleRack);
-		Console.message(String.valueOf(tailleRack));
-        return SaisieConsole.demanderEntierDansIntervalle(scanner, texte, 0, tailleRack);
+        return SaisieConsole.demanderEntierDansIntervalle(scanner, texte, 1, tailleRack);
 	}
 	
 	@Override
