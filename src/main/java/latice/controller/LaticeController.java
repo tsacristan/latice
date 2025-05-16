@@ -1,5 +1,6 @@
 package latice.controller;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import latice.model.PileDebut;
@@ -13,11 +14,12 @@ import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
 import latice.view.LaticeVue;
 import latice.view.Textes;
+import latice.view.console.Console;
 
 public class LaticeController {
 	
 	private LaticeVue laticeVue;
-	private Joueur[] joueurs = new Joueur[2];
+	private ArrayList<Joueur> joueurs;
 	private Plateau plateau;
 	private Random random;
 	
@@ -36,13 +38,26 @@ public class LaticeController {
 	}
 
 	private void initialiserPartie() {
+		
+		joueurs = new ArrayList<>();
+		
 		String pseudoJoueur1 = laticeVue.choisirPseudo(1);
+		
 		Joueur joueur1 = new Joueur(pseudoJoueur1);
-		
+		ArrayList<String> joueursPseudo = new ArrayList<>();
+		joueurs.add(joueur1);
+		joueursPseudo.add(joueur1.pseudo());
+	
 		String pseudoJoueur2 = laticeVue.choisirPseudo(2);
-		Joueur joueur2 = new Joueur(pseudoJoueur2);
 		
-		joueurs = new Joueur[]{joueur1,joueur2};
+		while (joueursPseudo.contains(pseudoJoueur2)) {
+				Console.messagef(Textes.PSEUDO_DEJA_PRIS, 2);
+				pseudoJoueur2 = laticeVue.choisirPseudo(2);
+		}
+		
+		Joueur joueur2 = new Joueur(pseudoJoueur2);
+		joueurs.add(joueur2);
+		joueursPseudo.add(joueur2.pseudo());
 		
 		PileDebut pile = new PileDebut();
 		pile.remplir();
@@ -62,14 +77,14 @@ public class LaticeController {
 	}
 	
 	private void jouer() {
-		Joueur joueurCourant = random.nextBoolean() ? joueurs[0] : joueurs[1];
+		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(1) : joueurs.get(2);
 		int nombreTour = 1;
 		
 		while (nombreTour < TOURS_MAX) {
 			jouerTour(joueurCourant, nombreTour);
 			
 			nombreTour++;
-			joueurCourant = joueurCourant.equals(joueurs[1]) ? joueurs[0] : joueurs[1];
+			joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(1) : joueurs.get(2);
 		}
 	}
 	
@@ -102,7 +117,7 @@ public class LaticeController {
 		}
 	}
 	
-	public Joueur[] joueurs() {
+	public ArrayList<Joueur> joueurs() {
 		return joueurs;
 	}
 	

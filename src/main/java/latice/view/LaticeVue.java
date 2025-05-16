@@ -12,7 +12,7 @@ public abstract class LaticeVue {
 
 	public abstract void afficherRack(RackJoueur rackJoueur);
 	public abstract void afficherPlateau(Plateau plateau);
-	public abstract String choisirPseudo(int numeroJoueur);
+	public abstract String choisirPseudo(int numeroJoueur1);
 	public abstract void afficherTour(Joueur joueur, int nombreTour);
 	public abstract int demanderTuileAPoser(Joueur joueur);
 	public abstract Coordonnees choisirEmplacementPlateau();
