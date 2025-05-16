@@ -17,6 +17,7 @@ import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.PlateauIndexInvalideException;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
+import latice.view.Textes;
 import latice.view.TextesErreurs;
 
 class TestPlateau {
@@ -69,7 +70,7 @@ class TestPlateau {
         	    }
         	);
 
-        	assertEquals(String.format(TextesErreurs.COORDONNEES_HORS_PLATEAU.toString(), colonne, ligne), e.getMessage()); 
+        	assertEquals(String.format(Textes.COORDONNEES_HORS_PLATEAU.toString(), colonne, ligne), e.getMessage()); 
     }
 
     @Test
@@ -97,7 +98,7 @@ class TestPlateau {
         	    }
         	);
 
-        	assertEquals(String.format(TextesErreurs.COORDONNEES_HORS_RACK.toString(), indexRack), e.getMessage()); 
+        	assertEquals(String.format(Textes.COORDONNEES_HORS_RACK.toString(), indexRack), e.getMessage()); 
     
     }
     @Test
@@ -145,7 +146,7 @@ class TestPlateau {
         	    }
         	);
 
-        	assertEquals("Erreur : le rack doit contenir au moins 1 tuile.", e.getMessage()); 
+        assertEquals(String.format(TextesErreurs.RACK_VIDE.toString()), e.getMessage());  
     
     }
     @Test

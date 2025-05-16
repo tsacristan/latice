@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import org.junit.jupiter.api.Test;
 
 import latice.model.player.PileJoueur;
+import latice.util.exception.PiocheInvalideException;
 
 class TestPileDebut {
 	
@@ -31,7 +32,7 @@ class TestPileDebut {
 	}
 
 	@Test
-	void test_distribution_taille_des_piles_joueurs_egales() {
+	void test_distribution_taille_des_piles_joueurs_egales() throws PiocheInvalideException {
 		PileDebut pile = new PileDebut();
 		pile.remplir();
 		

@@ -8,6 +8,7 @@ import latice.util.Observable;
 import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
 import latice.util.exception.RackInvalideException;
+import latice.view.Textes;
 import latice.view.TextesErreurs;
 
 public class RackJoueur extends Observable<RackListener> {
