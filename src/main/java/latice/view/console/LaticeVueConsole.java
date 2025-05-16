@@ -9,6 +9,7 @@ import latice.model.player.RackJoueur;
 import latice.util.exception.PlateauIndexInvalideException;
 import latice.view.LaticeVue;
 import latice.view.Textes;
+import latice.view.TextesErreurs;
 
 public class LaticeVueConsole extends LaticeVue {
 	
@@ -42,11 +43,11 @@ public class LaticeVueConsole extends LaticeVue {
 		
 		while (pseudoChoisi.isBlank() || pseudoChoisi.length() > 16) {
 			if (pseudoChoisi.isBlank()) {
-				Console.messagef(Textes.PSEUDO_VIDE, numeroJoueur);
+				Console.messagef(TextesErreurs.PSEUDO_VIDE, numeroJoueur);
 				pseudoChoisi = scanner.nextLine();
 			}
 			else if (pseudoChoisi.length() > 16) {
-				Console.messagef(Textes.PSEUDO_TROP_GRAND, numeroJoueur);
+				Console.messagef(TextesErreurs.PSEUDO_TROP_GRAND, numeroJoueur);
 				pseudoChoisi = scanner.nextLine();
 			}
 			
@@ -82,7 +83,7 @@ public class LaticeVueConsole extends LaticeVue {
 				coordsFinal = new Coordonnees(ligne, colonne);
 				estValide = true;
 			} catch (PlateauIndexInvalideException e) {
-				Console.messagef(Textes.COORDS_INVALIDE);
+				Console.messagef(TextesErreurs.COORDS_INVALIDE);
 			}
 		}
 		

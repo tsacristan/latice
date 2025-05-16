@@ -13,7 +13,7 @@ import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
 import latice.view.LaticeVue;
-import latice.view.Textes;
+import latice.view.TextesErreurs;
 import latice.view.console.Console;
 
 public class LaticeController {
@@ -51,7 +51,7 @@ public class LaticeController {
 		String pseudoJoueur2 = laticeVue.choisirPseudo(2);
 		
 		while (joueursPseudo.contains(pseudoJoueur2)) {
-				Console.messagef(Textes.PSEUDO_DEJA_PRIS, 2);
+				Console.messagef(TextesErreurs.PSEUDO_DEJA_PRIS, 2);
 				pseudoJoueur2 = laticeVue.choisirPseudo(2);
 		}
 		
@@ -70,7 +70,7 @@ public class LaticeController {
 				joueur.remplirRack();
 			}
 		} catch (PiocheInvalideException e) {
-			laticeVue.afficherErreur(Textes.ERREUR_PILE_VIDE.toString());
+			laticeVue.afficherErreur(TextesErreurs.ERREUR_PILE_VIDE.toString());
 			return;
 		}
 		plateau = new Plateau();
@@ -108,11 +108,11 @@ public class LaticeController {
 				plateau.placerLaTuileSurLePlateau(emplacementRack, emplacementPlateau, joueur.rackJoueur());
 				emplacementValide = true;
 			} catch (RackInvalideException e) {
-				laticeVue.afficherErreur(Textes.RACK_VIDE.toString());
+				laticeVue.afficherErreur(TextesErreurs.RACK_VIDE.toString());
 			} catch (RackIndexInvalideException e) {
-				laticeVue.afficherErreur(Textes.INDICE_RACK_INVALIDE.toString());
+				laticeVue.afficherErreur(TextesErreurs.INDICE_RACK_INVALIDE.toString());
 			} catch (PlacementDejaExistantInvalide e) {
-				laticeVue.afficherErreur(Textes.CASE_NON_VIDE.toString());
+				laticeVue.afficherErreur(TextesErreurs.CASE_NON_VIDE.toString());
 			}
 		}
 	}
