@@ -26,13 +26,13 @@ public class LaticeVueConsole extends LaticeVue {
 	}
 
 	@Override
-    public void afficherPlateau(Plateau plateau) {
-        afficheur.afficherPlateau(plateau);
-        Console.messagef(Textes.AIDE_PLATEAU, EmojiForme.PLUME.emoji(), EmojiForme.OISEAU.emoji(), 
-                EmojiForme.TORTUE.emoji(), EmojiForme.FLEUR.emoji(), EmojiForme.GECKO.emoji(), EmojiForme.DAUPHIN.emoji(), 
-                EmojiForme.CASE_LUNE.emoji(), Textes.AFFICHAGE_SOLEIL,
-                EmojiForme.CASE_VIDE.emoji());
-    }
+	public void afficherPlateau(Plateau plateau) {
+		afficheur.afficherPlateau(plateau);
+		Console.messagef(Textes.AIDE_PLATEAU, EmojiForme.PLUME.emoji(), EmojiForme.OISEAU.emoji(), 
+				EmojiForme.TORTUE.emoji(), EmojiForme.FLEUR.emoji(), EmojiForme.GECKO.emoji(), EmojiForme.DAUPHIN.emoji(), 
+				EmojiForme.CASE_LUNE.emoji(), CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET,
+				EmojiForme.CASE_VIDE.emoji());
+	}
 
 	@Override
 	public String choisirPseudo(int numeroJoueur) {
@@ -40,8 +40,16 @@ public class LaticeVueConsole extends LaticeVue {
 		
 		String pseudoChoisi = scanner.nextLine();
 		
-		while (pseudoChoisi.isBlank()) {
-			Console.messagef(Textes.PSEUDO_VIDE, numeroJoueur);
+		while (pseudoChoisi.isBlank() || pseudoChoisi.length() > 16) {
+			if (pseudoChoisi.isBlank()) {
+				Console.messagef(Textes.PSEUDO_VIDE, numeroJoueur);
+				pseudoChoisi = scanner.nextLine();
+			}
+			else if (pseudoChoisi.length() > 16) {
+				Console.messagef(Textes.PSEUDO_TROP_GRAND, numeroJoueur);
+				pseudoChoisi = scanner.nextLine();
+			}
+			
 		}
 		
 		return pseudoChoisi;
