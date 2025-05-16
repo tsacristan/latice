@@ -5,6 +5,7 @@ import java.util.Objects;
 import latice.util.exception.CouleurInvalideException;
 import latice.util.exception.FormeInvalideException;
 import latice.view.Textes;
+import latice.view.TextesErreurs;
 import latice.view.console.CouleurConsole;
 import latice.view.console.EmojiForme;
 
@@ -78,7 +79,8 @@ public class Case {
             case JAUNE:
                 return CouleurConsole.ANSI_FOND_JAUNE;
             default:
-                throw new CouleurInvalideException("Erreur ! Couleur " + tuile.couleur() + " non reconnue !");
+                throw new CouleurInvalideException(
+                		String.format(TextesErreurs.FORME_TUILE_INVALIDE.toString(), tuile.couleur()));
         }
     }
 
@@ -97,7 +99,8 @@ public class Case {
             case PLUME:
                 return EmojiForme.PLUME;
             default:
-                throw new FormeInvalideException("Erreur ! Forme " + tuile.forme() + " non reconnue !");
+                throw new FormeInvalideException(
+                		String.format(TextesErreurs.COULEUR_TUILE_INVALIDE.toString(), tuile.forme()));
         }
     }
 
