@@ -9,6 +9,7 @@ import latice.util.PlateauListener;
 import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
+import latice.view.Textes;
 import latice.view.TextesErreurs;
 
 public class Plateau extends Observable<PlateauListener> {
@@ -69,7 +70,7 @@ public class Plateau extends Observable<PlateauListener> {
     	
     	if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK)
     	    throw new RackIndexInvalideException(
-    	        String.format(TextesErreurs.COORDONNEES_HORS_RACK.toString(), indexRack));
+    	        String.format(Textes.COORDONNEES_HORS_RACK.toString(), indexRack));
 
         
     	if (obtenirTuile(coordsTuile).typeCase() == TypeCase.CASE_OCCUPEE) {

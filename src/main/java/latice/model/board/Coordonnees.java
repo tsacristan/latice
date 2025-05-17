@@ -1,7 +1,7 @@
 package latice.model.board;
 
 import latice.util.exception.PlateauIndexInvalideException;
-import latice.view.TextesErreurs;
+import latice.view.Textes;
 
 public class Coordonnees {
 	private final int ligne;
@@ -12,7 +12,7 @@ public class Coordonnees {
 		this.colonne = colonne;
 		if (ligne < 0 || ligne >= Plateau.LIGNES || colonne < 0 || colonne >= Plateau.COLONNES) {
 			throw new PlateauIndexInvalideException(
-					String.format(TextesErreurs.COORDONNEES_HORS_PLATEAU.toString(), ligne, colonne));
+					String.format(Textes.COORDONNEES_HORS_PLATEAU.toString(), ligne, colonne));
         }
 	}
 	
