@@ -6,7 +6,7 @@ import latice.model.material.Tuile;
 import latice.model.player.PileJoueur;
 
 public class PileDebut extends LaticePile {
-	public final static int NOMBRE_TUILE_TOTAL = 72;
+	public static final int NOMBRE_TUILE_TOTAL = 72;
 	
     public void remplir() {
         for (Couleur couleur : Couleur.values()) {
@@ -16,9 +16,7 @@ public class PileDebut extends LaticePile {
             }
         }
     }
-
     
-
     public void distribuer(PileJoueur[] pilesJoueur) {
         for (LaticePile pileJoueur : pilesJoueur) {
             for (int i = 0; i < NOMBRE_TUILE_TOTAL / pilesJoueur.length; i++) {

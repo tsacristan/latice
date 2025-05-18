@@ -8,7 +8,6 @@ import latice.util.Observable;
 import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
 import latice.util.exception.RackInvalideException;
-import latice.view.Textes;
 import latice.view.TextesErreurs;
 
 public class RackJoueur extends Observable<RackListener> {
@@ -28,8 +27,7 @@ public class RackJoueur extends Observable<RackListener> {
     	if (pileJoueur.isEmpty()) {
     		throw new PiocheInvalideException(
     				String.format(TextesErreurs.PIOCHE_VIDE.toString()));
-    	}
-    	else if (pileJoueur.size() < TAILLE_MAX_RACK) {
+    	} else if (pileJoueur.size() < TAILLE_MAX_RACK) {
           	pileJoueur.addAll(rack);
           	rack.clear();
        		pileJoueur.melanger();
@@ -37,8 +35,7 @@ public class RackJoueur extends Observable<RackListener> {
        		for (int i = 0; i < tuilesARetirer; i++) {
        		    rack.add(pileJoueur.retirerTuile());
        		}
-       	}
-       	else {
+       	} else {
        		ArrayList<Tuile> rackTemporaire = new ArrayList<>();
        		rackTemporaire.addAll(rack) ;
        		rack.clear();

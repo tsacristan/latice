@@ -17,7 +17,7 @@ public class LaticeConsoleApplication {
         PileJoueur pile2 = new PileJoueur();
         pile.distribuer(new PileJoueur[]{pile1, pile2});
         
-        RackJoueur rackJoueur = new RackJoueur(pile1);
+        RackJoueur rackJoueur = new RackJoueur();
         rackJoueur.remplir(pile1);
         Console.message(rackJoueur.toString());
     }
