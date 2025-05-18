@@ -77,14 +77,14 @@ public class LaticeController {
 	}
 	
 	private void jouer() {
-		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(1) : joueurs.get(2);
+		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(0) : joueurs.get(1);
 		int nombreTour = 1;
 		
 		while (nombreTour < TOURS_MAX) {
 			jouerTour(joueurCourant, nombreTour);
 			
 			nombreTour++;
-			joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(1) : joueurs.get(2);
+			joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
 		}
 	}
 	
