@@ -12,7 +12,8 @@ public enum TextesErreurs {
 	RACK_VIDE("Le rack est vide !"),
 	CASE_NON_VIDE("La case n'est pas vide !"),
 	ERREUR_PILE_VIDE("La pile est vide !"),
-	PIOCHE_VIDE("Erreur : la pioche est vide.");
+	PIOCHE_VIDE("Erreur : la pioche est vide."),
+	ETAT_INCONNU("Etat pseudo inconnu !");
 	
 	private String texte;
 

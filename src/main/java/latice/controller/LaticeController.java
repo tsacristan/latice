@@ -84,6 +84,7 @@ public class LaticeController {
 					Console.messagef(TextesErreurs.PSEUDO_VIDE, numeroJoueur);
 					break;
 				default:
+					Console.message(TextesErreurs.ETAT_INCONNU.texte());
 					break;
 			}
 			
