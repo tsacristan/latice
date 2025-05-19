@@ -41,18 +41,6 @@ public class LaticeVueConsole extends LaticeVue {
 		
 		String pseudoChoisi = scanner.nextLine();
 		
-		while (pseudoChoisi.isBlank() || pseudoChoisi.length() > 16) {
-			if (pseudoChoisi.isBlank()) {
-				Console.messagef(TextesErreurs.PSEUDO_VIDE, numeroJoueur);
-				pseudoChoisi = scanner.nextLine();
-			}
-			else if (pseudoChoisi.length() > 16) {
-				Console.messagef(TextesErreurs.PSEUDO_TROP_GRAND, numeroJoueur);
-				pseudoChoisi = scanner.nextLine();
-			}
-			
-		}
-		
 		return pseudoChoisi;
 	}
 

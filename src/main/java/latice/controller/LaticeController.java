@@ -6,6 +6,7 @@ import java.util.Random;
 import latice.model.PileDebut;
 import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
+import latice.model.player.EtatsPseudo;
 import latice.model.player.Joueur;
 import latice.model.player.PileJoueur;
 import latice.util.exception.PiocheInvalideException;
@@ -39,31 +40,13 @@ public class LaticeController {
 
 	private void initialiserPartie() {
 		
-		joueurs = new ArrayList<>();
-		
-		String pseudoJoueur1 = laticeVue.choisirPseudo(1);
-		
-		Joueur joueur1 = new Joueur(pseudoJoueur1);
-		ArrayList<String> joueursPseudo = new ArrayList<>();
-		joueurs.add(joueur1);
-		joueursPseudo.add(joueur1.pseudo());
-	
-		String pseudoJoueur2 = laticeVue.choisirPseudo(2);
-		
-		while (joueursPseudo.contains(pseudoJoueur2)) {
-				Console.messagef(TextesErreurs.PSEUDO_DEJA_PRIS, 2);
-				pseudoJoueur2 = laticeVue.choisirPseudo(2);
-		}
-		
-		Joueur joueur2 = new Joueur(pseudoJoueur2);
-		joueurs.add(joueur2);
-		joueursPseudo.add(joueur2.pseudo());
+		initialiserJoueurs();
 		
 		PileDebut pile = new PileDebut();
 		pile.remplir();
 		pile.melanger();
 		
-		pile.distribuer(new PileJoueur[]{joueur1.pileJoueur(),joueur2.pileJoueur()});
+		pile.distribuer(new PileJoueur[]{joueurs.get(0).pileJoueur(),joueurs.get(1).pileJoueur()});
 		
 		try {
 			for (Joueur joueur : joueurs) {
@@ -74,6 +57,41 @@ public class LaticeController {
 			return;
 		}
 		plateau = new Plateau();
+	}
+	
+	private void initialiserJoueurs() {
+		joueurs = new ArrayList<>();
+		
+		for (int i = 1; i < 3; i++) {
+			Joueur nouveauJoueur = initialiserJoueur(i);
+			joueurs.add(nouveauJoueur);
+		}
+	}
+	
+	private Joueur initialiserJoueur(int numeroJoueur) {
+		String pseudoChoisi = laticeVue.choisirPseudo(numeroJoueur);
+		
+		EtatsPseudo validitePseudo = estPseudoValide(pseudoChoisi);
+		while (validitePseudo != EtatsPseudo.PSEUDO_CORRECT) {
+			switch (validitePseudo) {
+				case PSEUDO_DEJA_PRIS:
+					Console.messagef(TextesErreurs.PSEUDO_DEJA_PRIS, numeroJoueur);
+					break;
+				case PSEUDO_TROP_GRAND:
+					Console.messagef(TextesErreurs.PSEUDO_TROP_GRAND, numeroJoueur);
+					break;
+				case PSEUDO_VIDE:
+					Console.messagef(TextesErreurs.PSEUDO_VIDE, numeroJoueur);
+					break;
+				default:
+					break;
+			}
+			
+			pseudoChoisi = laticeVue.choisirPseudo(numeroJoueur);
+			validitePseudo = estPseudoValide(pseudoChoisi);
+		}
+		
+		return new Joueur(pseudoChoisi);
 	}
 	
 	private void jouer() {
@@ -115,6 +133,22 @@ public class LaticeController {
 				laticeVue.afficherErreur(TextesErreurs.CASE_NON_VIDE.toString());
 			}
 		}
+	}
+	
+	private EtatsPseudo estPseudoValide(String pseudo) {
+		boolean pseudoExistant = false;
+		for (Joueur joueur : joueurs) {
+			if (joueur.pseudo().equals(pseudo)) {
+				pseudoExistant = true;
+			}
+		}
+		
+		if (pseudoExistant) return EtatsPseudo.PSEUDO_DEJA_PRIS;
+		
+		if (pseudo.length() > 16) return EtatsPseudo.PSEUDO_TROP_GRAND;
+		if (pseudo.isEmpty()) return EtatsPseudo.PSEUDO_VIDE;
+		
+		return EtatsPseudo.PSEUDO_CORRECT;
 	}
 	
 	public ArrayList<Joueur> joueurs() {
