@@ -1,4 +1,3 @@
- 
 package latice.view.gui;
 
 import javafx.geometry.Insets;
@@ -10,10 +9,13 @@ import javafx.scene.layout.Priority;
 public class PartieHaut extends HBox {
 	
 	private static final String STYLE_COMMUN = "-fx-font-size: 30px; -fx-alignment: center;";
+	private static final String TEXT_TOUR = "Tour : ";
+	
+	private Label lblTour;
     
     public PartieHaut() {
         Label lblHeure = new Label("00:00");
-        Label lblTour = new Label("Tour :");
+        lblTour = new Label(TEXT_TOUR);
         Button btnAide = new Button("Règles");
         
         lblHeure.setStyle(STYLE_COMMUN);
@@ -30,6 +32,12 @@ public class PartieHaut extends HBox {
         HBox.setHgrow(btnAide, Priority.ALWAYS);
 
         getChildren().addAll(lblHeure,lblTour,btnAide);
+    }
+    
+    public void changerTour(int nombreTour) {
+    	String nouveauTexte = TEXT_TOUR + nombreTour;
+    	
+    	lblTour.setText(nouveauTexte);
     }
     
 }

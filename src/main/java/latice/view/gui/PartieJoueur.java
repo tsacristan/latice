@@ -50,17 +50,21 @@ public class PartieJoueur extends VBox {
         getChildren().addAll(joueLabel, attenteLabel, espace,
                              pointsLabel, pointsJoueur1Label, pointsJoueur2Label);
 
-        updateAffichage();
+        mettreAJourAffichage();
     }
 
-    private void changerDeJoueur() {
+    public void changerDeJoueur(String pseudoJoueur) {
+    	if (pseudoJoueur.equals(joueurActif)) {
+    		mettreAJourAffichage();
+    		return;
+    	}
         String temp = joueurActif;
         joueurActif = joueurEnAttente;
         joueurEnAttente = temp;
-        updateAffichage();
+        mettreAJourAffichage();
     }
 
-    private void updateClassement() {
+    private void mettreAJourClassement() {
         if (scoreJoueur1 >= scoreJoueur2) {
             pointsJoueur1Label.setText(joueur1 + " : " + scoreJoueur1);
             pointsJoueur2Label.setText(joueur2 + " : " + scoreJoueur2);
@@ -70,9 +74,9 @@ public class PartieJoueur extends VBox {
         }
     }
 
-    private void updateAffichage() {
+    private void mettreAJourAffichage() {
         joueLabel.setText("Joue : " + joueurActif);
         attenteLabel.setText("Attente : " + joueurEnAttente);
-        updateClassement();
+        mettreAJourClassement();
     }
 }
