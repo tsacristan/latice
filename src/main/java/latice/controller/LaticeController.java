@@ -75,13 +75,13 @@ public class LaticeController {
 		while (validitePseudo != EtatsPseudo.PSEUDO_CORRECT) {
 			switch (validitePseudo) {
 				case PSEUDO_DEJA_PRIS:
-					Console.messagef(TextesErreurs.PSEUDO_DEJA_PRIS, numeroJoueur);
+					laticeVue.afficherErreur(String.format(TextesErreurs.PSEUDO_DEJA_PRIS.texte(), numeroJoueur));
 					break;
 				case PSEUDO_TROP_GRAND:
-					Console.messagef(TextesErreurs.PSEUDO_TROP_GRAND, numeroJoueur);
+					laticeVue.afficherErreur(String.format(TextesErreurs.PSEUDO_TROP_GRAND.texte(), numeroJoueur));
 					break;
 				case PSEUDO_VIDE:
-					Console.messagef(TextesErreurs.PSEUDO_VIDE, numeroJoueur);
+					laticeVue.afficherErreur(String.format(TextesErreurs.PSEUDO_VIDE.texte(), numeroJoueur));
 					break;
 				default:
 					Console.message(TextesErreurs.ETAT_INCONNU.texte());
