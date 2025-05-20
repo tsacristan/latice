@@ -25,9 +25,12 @@ public class LaticeController {
 	private Random random;
 	
 	private static final int TOURS_MAX = 10;
+	
+	private boolean nePasPlacer = true;
 
-	public LaticeController(LaticeVue laticeVue) {
+	public LaticeController(LaticeVue laticeVue, boolean nePasPlacer) {
 		this.laticeVue = laticeVue;
+		this.nePasPlacer = nePasPlacer; // TODO : l'enlever une fois qu'on fera le placement
 		laticeVue.changerController(this);
 		random = new Random();
 	}
@@ -99,7 +102,7 @@ public class LaticeController {
 		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(0) : joueurs.get(1);
 		int nombreTour = 1;
 		
-		while (nombreTour < TOURS_MAX) {
+		while (nombreTour <= TOURS_MAX) {
 			jouerTour(joueurCourant, nombreTour);
 			
 			nombreTour++;
@@ -112,9 +115,9 @@ public class LaticeController {
 		laticeVue.afficherPlateau(plateau);
 		laticeVue.afficherRack(joueur.rackJoueur());
 		
-		
-		placerTuile(joueur);
-		
+		if (!nePasPlacer) {
+			placerTuile(joueur);
+		}
 	}
 	
 	private void placerTuile(Joueur joueur) {		

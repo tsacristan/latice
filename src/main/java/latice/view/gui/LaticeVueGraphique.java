@@ -27,7 +27,7 @@ public class LaticeVueGraphique extends LaticeVue {
 
 	@Override
 	public void afficherPlateau(Plateau plateau) {
-		if (interfaceJeu.getCenter() == null) interfaceJeu.initialiserInterfacePlateau(plateau);
+		if (interfaceJeu.getCenter() == null) interfaceJeu.setCenter(interfaceJeu.initialiserInterfacePlateau(plateau));
 	}
 
 	@Override

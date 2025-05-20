@@ -21,7 +21,7 @@ public class LaticeGraphique extends Application {
         primaryStage.setTitle("Latice");
         primaryStage.show();
         
-        LaticeController controller = new LaticeController(laticeVue);
+        LaticeController controller = new LaticeController(laticeVue, true);
         controller.demarrerJeu();
     }
 

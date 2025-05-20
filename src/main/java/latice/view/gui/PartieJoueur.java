@@ -17,7 +17,7 @@ public class PartieJoueur extends VBox {
     private String joueurEnAttente = joueur2;
 
     private int scoreJoueur1 = 0;
-    private int scoreJoueur2 = 3;
+    private int scoreJoueur2 = 0;
 
     private Label joueLabel = new Label();
     private Label attenteLabel = new Label();
