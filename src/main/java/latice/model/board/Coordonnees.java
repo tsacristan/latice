@@ -18,19 +18,19 @@ public class Coordonnees {
 	
 	
 	public Coordonnees verificationCaseAdjacenteHaute() throws PlateauIndexInvalideException {
-		return new Coordonnees(colonne+1,ligne);
+		return new Coordonnees(colonne,ligne + 1);
 	}
 	
 	public Coordonnees verificationCaseAdjacenteDroite() throws PlateauIndexInvalideException {
-		return new Coordonnees(colonne,ligne+1);
+		return new Coordonnees(colonne + 1,ligne);
 	}
 	
 	public Coordonnees verificationCaseAdjacenteBas() throws PlateauIndexInvalideException {
-		return new Coordonnees(colonne-1,ligne);
+		return new Coordonnees(colonne,ligne - 1);
 	}
 	
 	public Coordonnees verificationCaseAdjacenteGauche() throws PlateauIndexInvalideException {
-		return new Coordonnees(colonne,ligne-1);
+		return new Coordonnees(colonne - 1,ligne);
 	}
 
 	public int ligne() {
