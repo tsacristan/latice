@@ -7,7 +7,7 @@ public class Coordonnees {
 	private final int ligne;
 	private final int colonne;
 	
-	public Coordonnees(int colonne, int ligne) throws PlateauIndexInvalideException {
+	public Coordonnees( int colonne,int ligne) throws PlateauIndexInvalideException {
 		this.ligne = ligne;
 		this.colonne = colonne;
 		if (ligne < 0 || ligne >= Plateau.LIGNES || colonne < 0 || colonne >= Plateau.COLONNES) {
@@ -25,12 +25,14 @@ public class Coordonnees {
 		return new Coordonnees(colonne + 1,ligne);
 	}
 	
+	
 	public Coordonnees verificationCaseAdjacenteBas() throws PlateauIndexInvalideException {
 		return new Coordonnees(colonne,ligne - 1);
 	}
 	
 	public Coordonnees verificationCaseAdjacenteGauche() throws PlateauIndexInvalideException {
 		return new Coordonnees(colonne - 1,ligne);
+		
 	}
 
 	public int ligne() {
