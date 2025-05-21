@@ -110,13 +110,13 @@ public class LaticeController {
 		}
 	}
 	
-	private void jouerTour(Joueur joueur, int nombreTour) {
-		laticeVue.afficherTour(joueur, nombreTour);
+	private void jouerTour(Joueur joueurQuiJoue, int nombreTour) {
+		laticeVue.afficherTour(joueurs, joueurQuiJoue, nombreTour);
 		laticeVue.afficherPlateau(plateau);
-		laticeVue.afficherRack(joueur.rackJoueur());
+		laticeVue.afficherRack(joueurQuiJoue.rackJoueur());
 		
 		if (!nePasPlacer) {
-			placerTuile(joueur);
+			placerTuile(joueurQuiJoue);
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package latice.view.gui;
 
+import java.util.List;
 import java.util.Optional;
 
 import javafx.scene.control.Alert;
@@ -48,11 +49,6 @@ public class LaticeVueGraphique extends LaticeVue {
 	}
 
 	@Override
-	public void afficherTour(Joueur joueur, int nombreTour) {
-		interfaceJeu.changerTourEtJoueur(joueur.pseudo(), nombreTour);
-	}
-
-	@Override
 	public int demanderTuileAPoser(Joueur joueur) {
 		// TODO Valeur par défaut le temps de la V4, à réimplémenter en V5
 		return 5;
@@ -81,6 +77,11 @@ public class LaticeVueGraphique extends LaticeVue {
 	
 	public InterfaceJeu interfaceJeu() {
 		return interfaceJeu;
+	}
+
+	@Override
+	public void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour) {
+		interfaceJeu.afficherJoueursScoreTour(joueurQuiJoue, joueurs, nombreTour);
 	}
 
 }

@@ -12,7 +12,8 @@ public enum Textes {
 	DEMANDER_COLONNE("Sur quelle colonne ? (%d à %d)"),
 	COORDONNEES_HORS_PLATEAU("Coordonnées en dehors du plateau : ligne=%d, colonne=%d"),
 	COORDONNEES_HORS_RACK("Coordonnées en dehors du rack : indexRack=%d"),
-	AFFICHAGE_SOLEIL(CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET);
+	AFFICHAGE_SOLEIL(CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET),
+	AFFICHAGE_JOUEUR("%s : %d points.");
 	
 	private String texte;
 

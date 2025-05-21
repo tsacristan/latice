@@ -9,19 +9,21 @@ public class Joueur {
 	private String pseudo;
 	private RackJoueur rackJoueur;
 	private PileJoueur pileJoueur;
+	private int score;
 	
-	public Joueur(String pseudo, RackJoueur rackJoueur, PileJoueur pileJoueur) {
+	public Joueur(String pseudo, RackJoueur rackJoueur, PileJoueur pileJoueur, int score) {
 		this.pseudo = pseudo;
 		this.rackJoueur = rackJoueur;
 		this.pileJoueur = pileJoueur;
+		this.score = score;
 	}
 	
 	public Joueur(String pseudo) {
-		this(pseudo, new RackJoueur(), new PileJoueur());
+		this(pseudo, new RackJoueur(), new PileJoueur(), 0);
 	}
 	
 	public Joueur() {
-		this("Défaut", new RackJoueur(), new PileJoueur());
+		this("Défaut");
 	}
 	
 	public void remplirRack() throws PiocheInvalideException {
@@ -39,10 +41,14 @@ public class Joueur {
 	public PileJoueur pileJoueur() {
 		return pileJoueur;
 	}
+	
+	public int score() {
+		return score;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(pileJoueur, pseudo, rackJoueur);
+		return Objects.hash(pileJoueur, pseudo, rackJoueur, score);
 	}
 
 	@Override
@@ -55,7 +61,7 @@ public class Joueur {
 			return false;
 		Joueur other = (Joueur) obj;
 		return Objects.equals(pileJoueur, other.pileJoueur) && Objects.equals(pseudo, other.pseudo)
-				&& Objects.equals(rackJoueur, other.rackJoueur);
+				&& Objects.equals(rackJoueur, other.rackJoueur) && score == other.score;
 	}
 
 }
