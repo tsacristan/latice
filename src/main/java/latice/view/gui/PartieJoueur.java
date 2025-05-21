@@ -1,82 +1,62 @@
 package latice.view.gui;
 
+import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import latice.model.player.Joueur;
+import latice.view.Textes;
 
 public class PartieJoueur extends VBox {
 
-	private static final String STYLE_COMMUN = "-fx-font-size: 25px; -fx-alignment: center;";
-	
-    private String joueur1 = "Joueur1";
-    private String joueur2 = "Joueur2";
-
-    private String joueurActif = joueur1;
-    private String joueurEnAttente = joueur2;
-
-    private int scoreJoueur1 = 0;
-    private int scoreJoueur2 = 0;
-
-    private Label joueLabel = new Label();
-    private Label attenteLabel = new Label();
+	private static final String STYLE_COMMUN = "-fx-font-size: 25px;";
     private Label pointsLabel = new Label("Points :");
-    private Label pointsJoueur1Label = new Label();
-    private Label pointsJoueur2Label = new Label();
-
     
-    
+    private Region espace;
+        
     public PartieJoueur() {
         setSpacing(10);
         setAlignment(Pos.TOP_LEFT);
         setPrefWidth(200);
         
-        joueLabel.setStyle(STYLE_COMMUN);
-        attenteLabel.setStyle(STYLE_COMMUN);
         pointsLabel.setStyle(STYLE_COMMUN);
-        pointsJoueur1Label.setStyle(STYLE_COMMUN);
-        pointsJoueur2Label.setStyle(STYLE_COMMUN);
 
-        Region espace = new Region();
+        espace = new Region();
         espace.setMinHeight(100);
         
-        VBox.setMargin(joueLabel, new Insets(0, 0, 0, 10));
-        VBox.setMargin(attenteLabel, new Insets(0, 0, 0, 10));
         VBox.setMargin(pointsLabel, new Insets(0, 0, 0, 10));
-        VBox.setMargin(pointsJoueur1Label, new Insets(0, 0, 0, 20));
-        VBox.setMargin(pointsJoueur2Label, new Insets(0, 0, 0, 20));
-
-        getChildren().addAll(joueLabel, attenteLabel, espace,
-                             pointsLabel, pointsJoueur1Label, pointsJoueur2Label);
-
-        mettreAJourAffichage();
     }
 
-    public void changerDeJoueur(String pseudoJoueur) {
-    	if (pseudoJoueur.equals(joueurActif)) {
-    		mettreAJourAffichage();
-    		return;
+    public void afficherJoueurs(Joueur joueurQuiJoue, List<Joueur> joueurs) {
+    	getChildren().clear();
+    	afficherJoueursPresent(joueurQuiJoue, joueurs);
+    	getChildren().add(espace);
+    	afficherJoueursScores(joueurs);
+    }
+    
+    private void afficherJoueursPresent(Joueur joueurQuiJoue, List<Joueur> joueurs) {
+    	String prefixe;
+    	Label lblJoueur;
+    	for (Joueur joueur : joueurs) {
+    		prefixe = joueur.equals(joueurQuiJoue) ? "Joue : " : "Attente : ";
+    		lblJoueur = new Label(prefixe + joueur.pseudo());
+    		lblJoueur.setStyle(STYLE_COMMUN);
+    		VBox.setMargin(lblJoueur, new Insets(0, 0, 0, 10));
+    		getChildren().add(lblJoueur);
     	}
-        String temp = joueurActif;
-        joueurActif = joueurEnAttente;
-        joueurEnAttente = temp;
-        mettreAJourAffichage();
     }
-
-    private void mettreAJourClassement() {
-        if (scoreJoueur1 >= scoreJoueur2) {
-            pointsJoueur1Label.setText(joueur1 + " : " + scoreJoueur1);
-            pointsJoueur2Label.setText(joueur2 + " : " + scoreJoueur2);
-        } else {
-            pointsJoueur1Label.setText(joueur2 + " : " + scoreJoueur2);
-            pointsJoueur2Label.setText(joueur1 + " : " + scoreJoueur1);
-        }
-    }
-
-    private void mettreAJourAffichage() {
-        joueLabel.setText("Joue : " + joueurActif);
-        attenteLabel.setText("Attente : " + joueurEnAttente);
-        mettreAJourClassement();
-    }
+    
+    private void afficherJoueursScores(List<Joueur> joueurs) {
+    	getChildren().add(pointsLabel);
+    	Label lblJoueur;
+    	for (Joueur joueur : joueurs) {
+    		lblJoueur = new Label(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()));
+    		lblJoueur.setStyle(STYLE_COMMUN);
+    		VBox.setMargin(lblJoueur, new Insets(0, 0, 0, 20));
+    		getChildren().add(lblJoueur);
+    	}
+	}
 }

@@ -1,7 +1,10 @@
 package latice.view.gui;
 
+import java.util.List;
+
 import javafx.scene.layout.BorderPane;
 import latice.model.board.Plateau;
+import latice.model.player.Joueur;
 import latice.model.player.RackJoueur;
 import latice.util.exception.PlateauIndexInvalideException;
 
@@ -25,8 +28,8 @@ public class InterfaceJeu extends BorderPane {
         setBottom(null);
 	}
 	
-	public void changerTourEtJoueur(String pseudo, int nombreTour) {
-		partieJoueur.changerDeJoueur(pseudo);
+	public void afficherJoueursScoreTour(Joueur joueurQuiJoue, List<Joueur> joueurs, int nombreTour) {
+		partieJoueur.afficherJoueurs(joueurQuiJoue, joueurs);
 		partieHaut.changerTour(nombreTour);
 	}
 	

@@ -1,5 +1,7 @@
 package latice.view;
 
+import java.util.List;
+
 import latice.controller.LaticeController;
 import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
@@ -13,7 +15,7 @@ public abstract class LaticeVue {
 	public abstract void afficherRack(RackJoueur rackJoueur);
 	public abstract void afficherPlateau(Plateau plateau);
 	public abstract String choisirPseudo(int numeroJoueur1);
-	public abstract void afficherTour(Joueur joueur, int nombreTour);
+	public abstract void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour);
 	public abstract int demanderTuileAPoser(Joueur joueur);
 	public abstract Coordonnees choisirEmplacementPlateau();
 	public abstract void afficherErreur(String message);

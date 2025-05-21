@@ -1,5 +1,6 @@
 package latice.view.console;
 
+import java.util.List;
 import java.util.Scanner;
 
 import latice.model.board.Coordonnees;
@@ -39,14 +40,15 @@ public class LaticeVueConsole extends LaticeVue {
 	public String choisirPseudo(int numeroJoueur) {
 		Console.messagef(Textes.CHOIX_PSEUDO, numeroJoueur);
 		
-		String pseudoChoisi = scanner.nextLine();
-		
-		return pseudoChoisi;
+		return scanner.nextLine();
 	}
 
 	@Override
-	public void afficherTour(Joueur joueur, int nombreTour) {
-		Console.messagef(Textes.NB_TOUR, nombreTour, joueur.pseudo());
+	public void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour) {
+		Console.messagef(Textes.NB_TOUR, nombreTour, joueurQuiJoue.pseudo());
+		for (Joueur joueur : joueurs) {
+			Console.messagef(Textes.AFFICHAGE_JOUEUR, joueur.pseudo(), 0);
+		}
 	}
 	
 	@Override
