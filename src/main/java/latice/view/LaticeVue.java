@@ -19,9 +19,9 @@ public abstract class LaticeVue {
 	public abstract int demanderTuileAPoser(Joueur joueur);
 	public abstract Coordonnees choisirEmplacementPlateau();
 	public abstract void afficherErreur(String message);
+	public abstract void setJoueurCourant(Joueur joueurQuiJoue);
 	
 	public void changerController(LaticeController controller) {
 		this.controller = controller;
 	}
-
 }

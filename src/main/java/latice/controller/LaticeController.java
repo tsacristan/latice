@@ -34,7 +34,7 @@ public class LaticeController {
 
 	public LaticeController(LaticeVue laticeVue, boolean nePasPlacer) {
 		this.laticeVue = laticeVue;
-		this.nePasPlacer = nePasPlacer; // TODO : l'enlever une fois qu'on fera le placement
+		this.nePasPlacer = nePasPlacer;
 		laticeVue.changerController(this);
 		random = new Random();
 	}
@@ -118,6 +118,7 @@ public class LaticeController {
 	}
 	
 	private void jouerTour(Joueur joueurQuiJoue, int nombreTour, boolean jouerCentre) {
+		laticeVue.setJoueurCourant(joueurQuiJoue);
 		laticeVue.afficherTour(joueurs, joueurQuiJoue, nombreTour);
 		laticeVue.afficherPlateau(plateau);
 		laticeVue.afficherRack(joueurQuiJoue.rackJoueur());

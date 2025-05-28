@@ -33,10 +33,10 @@ public class InterfaceJeu extends BorderPane {
 		partieHaut.changerTour(nombreTour);
 	}
 	
-	public InterfacePlateau initialiserInterfacePlateau(Plateau plateau) {
+	public InterfacePlateau initialiserInterfacePlateau(Plateau plateau, RackJoueur rackJoueur) {
 		InterfacePlateau interfacePlateau = null;
 		try {
-			interfacePlateau = new InterfacePlateau(plateau);
+			interfacePlateau = new InterfacePlateau(plateau, rackJoueur);
 			plateau.ajouterListener(interfacePlateau);
 			
 			return interfacePlateau;

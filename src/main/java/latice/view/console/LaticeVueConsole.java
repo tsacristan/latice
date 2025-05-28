@@ -84,5 +84,11 @@ public class LaticeVueConsole extends LaticeVue {
 	public void afficherErreur(String message) {
 		Console.message(message);
 	}
+
+	@Override
+	public void setJoueurCourant(Joueur joueurQuiJoue) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }

@@ -14,21 +14,32 @@ import latice.util.exception.PlateauIndexInvalideException;
 import latice.view.LaticeVue;
 
 public class LaticeVueGraphique extends LaticeVue {
-	
+	private RackJoueur rack;
 	private InterfaceJeu interfaceJeu;
+	private InterfaceRack interfaceRack;
 	
 	public LaticeVueGraphique() {
 		interfaceJeu = new InterfaceJeu();
 	}
-
-	@Override
-	public void afficherRack(RackJoueur rackJoueur) {
-		interfaceJeu.setBottom(interfaceJeu.initialiserPartieControle(rackJoueur));
+	public void setJoueurCourant(Joueur joueur) {
+	    this.rack = joueur.rackJoueur();
 	}
 
 	@Override
+	public void afficherRack(RackJoueur rackJoueur) {
+	if (interfaceRack == null) {
+		interfaceRack = new InterfaceRack(rackJoueur);
+		rackJoueur.ajouterListener(interfaceRack);
+		interfaceJeu.setBottom(interfaceJeu.initialiserPartieControle(rackJoueur));
+	} else {
+		interfaceRack.afficherRack(rackJoueur);
+	}
+	}
+	
+
+	@Override
 	public void afficherPlateau(Plateau plateau) {
-		if (interfaceJeu.getCenter() == null) interfaceJeu.setCenter(interfaceJeu.initialiserInterfacePlateau(plateau));
+		if (interfaceJeu.getCenter() == null) interfaceJeu.setCenter(interfaceJeu.initialiserInterfacePlateau(plateau, rack));
 	}
 
 	@Override
