@@ -1,12 +1,18 @@
 package latice.model.board;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import latice.model.material.Case;
 import latice.model.material.Tuile;
 import latice.model.material.TypeCase;
 import latice.model.player.RackJoueur;
 import latice.util.Observable;
 import latice.util.PlateauListener;
+import latice.util.exception.AucuneCouleurOuFormeCorrespondantException;
+import latice.util.exception.AucuneTuileAdjacenteException;
 import latice.util.exception.PlacementDejaExistantInvalide;
+import latice.util.exception.PlateauIndexInvalideException;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
 import latice.view.Textes;
@@ -16,6 +22,8 @@ public class Plateau extends Observable<PlateauListener> {
     private final Case[][] grille;
     public static final int COLONNES = 9;
     public static final int LIGNES = 9;
+    
+    private Coordonnees plateauCentre;
 
     public Plateau() {
         grille = new Case[LIGNES][COLONNES];
@@ -26,6 +34,12 @@ public class Plateau extends Observable<PlateauListener> {
                 grille[i][j] = new Case(TypeCase.CASE_VIDE);
             }
         }
+        
+        try {
+			plateauCentre = new Coordonnees(COLONNES / 2, LIGNES / 2);
+		} catch (PlateauIndexInvalideException e) {
+			e.printStackTrace();
+		}
 
         initialisationCaseSoleilEtLune();
     }
@@ -66,7 +80,7 @@ public class Plateau extends Observable<PlateauListener> {
         return LIGNES * COLONNES;
     }
 
-    public void placerLaTuileSurLePlateau(int indexRack, Coordonnees coordsTuile, RackJoueur rack) throws RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
+    public void placerLaTuileSurLePlateau(int indexRack, Coordonnees coordsTuile, RackJoueur rack) throws RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
     	
     	if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK)
     	    throw new RackIndexInvalideException(
@@ -76,8 +90,14 @@ public class Plateau extends Observable<PlateauListener> {
     	if (obtenirTuile(coordsTuile).typeCase() == TypeCase.CASE_OCCUPEE) {
     	    throw new PlacementDejaExistantInvalide(TextesErreurs.PLACEMENT_DEJA_EXISTANT.toString());
     	}
+    	
+    	boolean estAuMilieu = coordsTuile.equals(plateauCentre);
+    	if (!estAuMilieu) {
+    		Tuile tuileAPlacer = rack.rack().get(indexRack);
+    		verificationPlacementValide(tuileAPlacer, coordsTuile);
+    	}
 
-        Tuile tuile = rack.choisirTuile(indexRack);
+        Tuile tuile = rack.choisirTuile(indexRack);        
         obtenirTuile(coordsTuile).changerTuile(tuile);
         obtenirTuile(coordsTuile).changerTypeCase(TypeCase.CASE_OCCUPEE);
         
@@ -88,10 +108,53 @@ public class Plateau extends Observable<PlateauListener> {
     	return grille[coords.colonne()][coords.ligne()];
     }
     
+    private void verificationPlacementValide(Tuile tuileAPlacer, Coordonnees aPlacerSur) throws AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
+    	ArrayList<Case> casesAdjacentes = obtenirCasesAdjacentesPresenteAUnPoint(aPlacerSur);
+    	if (casesAdjacentes.isEmpty()) throw new AucuneTuileAdjacenteException(TextesErreurs.TUILE_ISOLEE.toString());
+    	
+    	if (!existeCaseAvecFormeOuCouleur(casesAdjacentes, tuileAPlacer)) throw new AucuneCouleurOuFormeCorrespondantException(TextesErreurs.TUILE_NI_COULEUR_NI_FORME.toString());
+    }
+    
+    private ArrayList<Case> obtenirCasesAdjacentesPresenteAUnPoint(Coordonnees coordsDuPoint) {
+    	ArrayList<Case> casesAdjacentes = new ArrayList<>();
+    	
+    	List<Coordonnees> coordsAdjacentes = coordsDuPoint.obtenirCoordonneesAdjacentesValides();
+    	for (Coordonnees coord : coordsAdjacentes) {
+    		Case caseAVerifier = obtenirTuile(coord);
+    		if (caseAVerifier.tuile() != null) casesAdjacentes.add(caseAVerifier);
+    	}
+    	
+    	return casesAdjacentes;
+    }
+    
+    private boolean existeCaseAvecFormeOuCouleur(ArrayList<Case> casesAdjacentes, Tuile tuileAPlacer) {
+    	boolean existeUneCaseQuiCorrespond = false;
+    	
+    	int i = 0;
+    	while (!existeUneCaseQuiCorrespond && i < casesAdjacentes.size()) {
+    		Case caseAdjacente = casesAdjacentes.get(i);
+    		Tuile tuileAdjacente = caseAdjacente.tuile();
+    		
+    		boolean estMemeCouleur = tuileAdjacente.couleur() == tuileAPlacer.couleur();
+    		boolean estMemeForme = tuileAdjacente.forme() == tuileAPlacer.forme();
+    		
+    		if (estMemeCouleur || estMemeForme) {
+    			existeUneCaseQuiCorrespond = true;
+    		}
+    		i++;
+    	}
+    	
+    	return existeUneCaseQuiCorrespond;
+    }
+    
 	@Override
 	protected void declencherListeners() {
 		for (PlateauListener listener : listeners()) {
     	    listener.plateauEstMisAJour();
     	}
+	}
+
+	public Coordonnees plateauCentre() {
+		return plateauCentre;
 	}
 }

@@ -13,7 +13,9 @@ public enum TextesErreurs {
 	CASE_NON_VIDE("La case n'est pas vide !"),
 	ERREUR_PILE_VIDE("La pile est vide !"),
 	PIOCHE_VIDE("Erreur : la pioche est vide."),
-	ETAT_INCONNU("Etat pseudo inconnu !");
+	ETAT_INCONNU("Etat pseudo inconnu !"),
+	TUILE_ISOLEE("Erreur : la tuile ne peut pas être isolée !"),
+	TUILE_NI_COULEUR_NI_FORME("Erreur : aucune tuile adjacente a la bonne couleur ou la bonne forme.");
 	
 	private String texte;
 

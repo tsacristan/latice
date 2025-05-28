@@ -5,6 +5,8 @@ import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
 import latice.model.player.PileJoueur;
 import latice.model.player.RackJoueur;
+import latice.util.exception.AucuneCouleurOuFormeCorrespondantException;
+import latice.util.exception.AucuneTuileAdjacenteException;
 import latice.util.exception.PiocheInvalideException;
 import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.PlateauIndexInvalideException;
@@ -15,7 +17,7 @@ import latice.view.console.Console;
 
 public class LaticeJeuxEssais {
 
-    public static void main(String[] args) throws PiocheInvalideException,RackInvalideException,PlateauIndexInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide {
+    public static void main(String[] args) throws PiocheInvalideException,RackInvalideException,PlateauIndexInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
         
         //Creation d'une pile principale, la remplire et la mélanger
         PileDebut pile = new PileDebut();
@@ -32,14 +34,14 @@ public class LaticeJeuxEssais {
         Console.message("Les joueurs ont bien 2 piles également réparties ! \n");
 
         //Attribution des racks aux joueurs
-        RackJoueur rackJoueur1 = new RackJoueur(pile1);
+        RackJoueur rackJoueur1 = new RackJoueur();
         rackJoueur1.remplir(pile1);
         Console.message("Voici le rack du joueur 1");
         Console.message(rackJoueur1.toString());
         
         Console.message("\n");
         
-        RackJoueur rackJoueur2 = new RackJoueur(pile2);
+        RackJoueur rackJoueur2 = new RackJoueur();
         rackJoueur2.remplir(pile2);
         Console.message("Voici le rack du joueur 2");
         Console.message(rackJoueur2.toString());
