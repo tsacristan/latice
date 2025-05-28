@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import latice.model.PileDebut;
@@ -15,6 +16,8 @@ import latice.model.material.TypeCase;
 import latice.model.player.PileJoueur;
 import latice.model.player.RackJoueur;
 import latice.util.PlateauListener;
+import latice.util.exception.AucuneCouleurOuFormeCorrespondantException;
+import latice.util.exception.AucuneTuileAdjacenteException;
 import latice.util.exception.PiocheInvalideException;
 import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.PlateauIndexInvalideException;
@@ -24,28 +27,35 @@ import latice.view.Textes;
 import latice.view.TextesErreurs;
 
 class TestPlateau {
-
-    @Test
-    void placer_tuile_sur_le_plateau() throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, PiocheInvalideException{
-    	int ligne = 6;
-    	int colonne = 4;
-    	int indexRack = 2;
-        Plateau plateau = new Plateau();
+	
+	private static RackJoueur rackTest;
+	
+	@BeforeAll
+	static void initialiser_objets() throws PiocheInvalideException {		
         PileDebut pileDebutTest = new PileDebut();
         pileDebutTest.remplir();
         pileDebutTest.melanger();
         PileJoueur pileTest = new PileJoueur();
         PileJoueur pileTest2 = new PileJoueur();
         pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
-        RackJoueur rackTest = new RackJoueur();
-        rackTest.remplir(pileTest);
-        Tuile tuileAPoser = rackTest.rack().get(2);
-     
-        plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(4, 6), rackTest);
-        Case[][] grille = plateau.grille();
-        System.out.println(grille[ligne][colonne]);
         
-        assertEquals(tuileAPoser, grille[colonne][ligne].tuile());
+        rackTest = new RackJoueur();
+        rackTest.remplir(pileTest);
+	}
+
+    @Test
+    void placer_tuile_sur_le_plateau_centre() throws RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
+    	Plateau plateau = new Plateau();
+    	
+    	Coordonnees coordsCentre = plateau.plateauCentre();
+    	int indexRack = 2;
+    	Tuile tuileAPoser = rackTest.rack().get(indexRack);
+     
+        plateau.placerLaTuileSurLePlateau(indexRack, coordsCentre, rackTest);
+        Case[][] grille = plateau.grille();
+        Case tuilePosee = grille[coordsCentre.ligne()][coordsCentre.colonne()];
+        
+        assertEquals(tuileAPoser, tuilePosee.tuile());
     }
     
     @Test
@@ -92,31 +102,18 @@ class TestPlateau {
         assertEquals(String.format(Textes.COORDONNEES_HORS_RACK.toString(), indexRack), e.getMessage());
     }
 
-    
-    
-    
-    
-    
     @Test
-    void placer_tuile_sur_tuile_deja_sur_plateau() throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PiocheInvalideException, PlacementDejaExistantInvalide {
-        int ligne = 6;
-        int colonne = 4;
-        int indexRack = 2;
-        Plateau plateau = new Plateau();
-        PileDebut pileDebutTest = new PileDebut();
-        pileDebutTest.remplir();
-        pileDebutTest.melanger();
-        PileJoueur pileTest = new PileJoueur();
-        PileJoueur pileTest2 = new PileJoueur();
-        pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
-        RackJoueur rackTest = new RackJoueur();
-        rackTest.remplir(pileTest);
-
-        plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), rackTest);
+    void placer_tuile_sur_tuile_deja_sur_plateau() throws RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
+    	Plateau plateau = new Plateau();
+    	
+    	Coordonnees coordsCentre = plateau.plateauCentre();
+    	int indexRack = 1;
+    	
+        plateau.placerLaTuileSurLePlateau(indexRack, coordsCentre, rackTest);
 
         PlacementDejaExistantInvalide exception = assertThrows(
             PlacementDejaExistantInvalide.class,
-            () -> plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), rackTest)
+            () -> plateau.placerLaTuileSurLePlateau(indexRack, coordsCentre, rackTest)
         );
         assertEquals("Il existe déjà une tuile sur cette case", exception.getMessage());
     }
@@ -124,23 +121,19 @@ class TestPlateau {
     @Test
     void placer_tuile_rack_invalide() {
         // Arrange
-        int ligne = 6;
-        int colonne = 4;
-        int indexRack = 2;
+        
+        int indexRack = 1;
 
         Plateau plateau = new Plateau();
-        PileJoueur pileTest = new PileJoueur();  // pile vide
-        RackJoueur rackTest = new RackJoueur(pileTest);  // rack initialisé avec pile vide
-
-        // Act & Assert : on s'attend à une exception si le rack est vide
+        Coordonnees coordsCentre = plateau.plateauCentre();
+        RackJoueur rackVide = new RackJoueur();
+        
         RackInvalideException e = assertThrows(RackInvalideException.class, () -> {
-            plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), rackTest);
+            plateau.placerLaTuileSurLePlateau(indexRack, coordsCentre, rackVide);
         });
 
-        // Vérifie que le message d'exception est bien celui attendu
         assertEquals(TextesErreurs.RACK_VIDE.toString(), e.getMessage());
     }
-
 
     @Test
     void test_taille_du_plateau() {

@@ -7,7 +7,9 @@ import latice.model.material.Tuile;
 import latice.util.Observable;
 import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
+import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
+import latice.view.Textes;
 import latice.view.TextesErreurs;
 
 public class RackJoueur extends Observable<RackListener> {
@@ -48,11 +50,12 @@ public class RackJoueur extends Observable<RackListener> {
        	declencherListeners();
     }
     
-    public Tuile choisirTuile(int index) throws RackInvalideException {
+    public Tuile choisirTuile(int index) throws RackInvalideException, RackIndexInvalideException {
     	if (rack.isEmpty()) {
             throw new RackInvalideException(
             		String.format(TextesErreurs.RACK_VIDE.toString()));
         }
+    	
         Tuile aJouer = rack.get(index);
         rack.remove(index);
         

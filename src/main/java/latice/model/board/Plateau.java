@@ -81,11 +81,11 @@ public class Plateau extends Observable<PlateauListener> {
     }
 
     public void placerLaTuileSurLePlateau(int indexRack, Coordonnees coordsTuile, RackJoueur rack) throws RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
-    	
-    	if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK)
+
+    	if (indexRack < 0 || indexRack >= RackJoueur.TAILLE_MAX_RACK) {
     	    throw new RackIndexInvalideException(
     	        String.format(Textes.COORDONNEES_HORS_RACK.toString(), indexRack));
-
+    	}
         
     	if (obtenirTuile(coordsTuile).typeCase() == TypeCase.CASE_OCCUPEE) {
     	    throw new PlacementDejaExistantInvalide(TextesErreurs.PLACEMENT_DEJA_EXISTANT.toString());
