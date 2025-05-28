@@ -19,7 +19,7 @@ public class InterfaceRack extends HBox implements RackListener, AfficherRack {
 	    setAlignment(Pos.CENTER);
 	    setMinWidth(600); 
 	    setPrefWidth(600);
-
+	    setStyle("-fx-background-color: saddlebrown; -fx-background-radius: 10px;");
 	    afficherRack(rackJoueur);
 	}
 	
