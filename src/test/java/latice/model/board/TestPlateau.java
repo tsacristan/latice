@@ -120,8 +120,6 @@ class TestPlateau {
 
     @Test
     void placer_tuile_rack_invalide() {
-        // Arrange
-        
         int indexRack = 1;
 
         Plateau plateau = new Plateau();
@@ -180,13 +178,12 @@ class TestPlateau {
 
 	@Test
 	void testDeclencherListenersManuel() {
-	    // Arrange
 	    TestListener listener1 = new TestListener();
 	    TestListener listener2 = new TestListener();
 
 	    Plateau plateau = new Plateau() {
 	        @Override
-			public List listeners() {
+			public List<PlateauListener> listeners() {
 	            return List.of(listener1, listener2);
 	        }
 
@@ -196,10 +193,8 @@ class TestPlateau {
 	        }
 	    };
 
-	    // Act
 	    plateau.declencherListeners();
 
-	    // Assert
 	    assertTrue(listener1.called, "Listener1 should have been notified");
 	    assertTrue(listener2.called, "Listener2 should have been notified");
 	}
