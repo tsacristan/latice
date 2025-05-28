@@ -33,8 +33,7 @@ public class RackJoueur extends Observable<RackListener> {
           	pileJoueur.addAll(rack);
           	rack.clear();
        		pileJoueur.melanger();
-       		int tuilesARetirer = Math.min(TAILLE_MAX_RACK, pileJoueur.size());
-       		for (int i = 0; i < tuilesARetirer; i++) {
+       		for (int i = 0; i < TAILLE_MAX_RACK; i++) {
        		    rack.add(pileJoueur.retirerTuile());
        		}
        	} else {

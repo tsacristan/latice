@@ -1,5 +1,8 @@
-package latice.model.material;
+package latice.model.player;
 
+import latice.model.material.Couleur;
+import latice.model.material.Forme;
+import latice.model.material.Tuile;
 import latice.model.player.Joueur;
 import latice.model.player.PileJoueur;
 import latice.model.player.RackJoueur;
@@ -91,5 +94,16 @@ public class TestJoueur {
         assertNotEquals(joueur, null);
         assertNotEquals(joueur, "pas un joueur");
         assertEquals(joueur, joueur);
+    }
+    
+    @Test
+    void test_score_du_joueur() {
+    	RackJoueur rack1 = new RackJoueur();
+        PileJoueur pile1 = new PileJoueur();
+    	Joueur j1 = new Joueur("Bernard",rack1,pile1,12);
+    	
+    	Integer score = 12;
+    	
+    	assertEquals(j1.score(),12);
     }
 }

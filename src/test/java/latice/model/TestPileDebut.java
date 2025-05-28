@@ -43,5 +43,10 @@ class TestPileDebut {
 		
 		assertEquals(pile1.size(), pile2.size());
 	}
-
+	
+	@Test
+	void test_equals() {
+		PileDebut pile = new PileDebut();
+		
+	}
 }

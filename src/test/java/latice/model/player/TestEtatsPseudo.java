@@ -1,4 +1,4 @@
-package latice.model.material;
+package latice.model.player;
 
 import latice.model.player.EtatsPseudo;
 import org.junit.jupiter.api.Test;

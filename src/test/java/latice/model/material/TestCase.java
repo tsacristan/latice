@@ -5,11 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
-import latice.model.material.Case;
-import latice.model.material.Couleur;
-import latice.model.material.Forme;
-import latice.model.material.Tuile;
-import latice.model.material.TypeCase;
+
 import latice.view.console.CouleurConsole;
 import latice.view.console.EmojiForme;
 
@@ -129,4 +125,7 @@ class TestCase {
 	void test_equals_objet_null() {
 		assertNotEquals(null, CASE_JAUNE_GECKO_OCCUPEE);
 	}
+	
+	
+	
 }
