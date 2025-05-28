@@ -89,6 +89,6 @@ public class LaticeVueConsole extends LaticeVue {
 	public void setJoueurCourant(Joueur joueurQuiJoue) {
 		// TODO Auto-generated method stub
 		
-	}
+	} 
 	
 }
