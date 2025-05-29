@@ -7,7 +7,6 @@ import java.util.Random;
 import latice.model.PileDebut;
 import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
-import latice.model.player.EtatsPseudo;
 import latice.model.player.Joueur;
 import latice.model.player.PileJoueur;
 import latice.model.player.RackJoueur;
@@ -19,7 +18,6 @@ import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
 import latice.view.LaticeVue;
 import latice.view.TextesErreurs;
-import latice.view.console.Console;
 
 public class LaticeController {
 	
@@ -46,7 +44,7 @@ public class LaticeController {
 
 	private void initialiserPartie() {
 		
-		initialiserJoueurs();
+		joueurs = (ArrayList<Joueur>) ControllerInitialisationJoueur.initialiserJoueurs(laticeVue);
 		
 		PileDebut pile = new PileDebut();
 		pile.remplir();
@@ -65,41 +63,7 @@ public class LaticeController {
 		plateau = new Plateau();
 	}
 	
-	private void initialiserJoueurs() {
-		joueurs = new ArrayList<>();
-		
-		for (int i = 1; i < 3; i++) {
-			Joueur nouveauJoueur = initialiserJoueur(i);
-			joueurs.add(nouveauJoueur);
-		}
-	}
 	
-	private Joueur initialiserJoueur(int numeroJoueur) {
-		String pseudoChoisi = laticeVue.choisirPseudo(numeroJoueur);
-		
-		EtatsPseudo validitePseudo = estPseudoValide(pseudoChoisi);
-		while (validitePseudo != EtatsPseudo.PSEUDO_CORRECT) {
-			switch (validitePseudo) {
-				case PSEUDO_DEJA_PRIS:
-					laticeVue.afficherErreur(String.format(TextesErreurs.PSEUDO_DEJA_PRIS.texte(), numeroJoueur));
-					break;
-				case PSEUDO_TROP_GRAND:
-					laticeVue.afficherErreur(String.format(TextesErreurs.PSEUDO_TROP_GRAND.texte(), numeroJoueur));
-					break;
-				case PSEUDO_VIDE:
-					laticeVue.afficherErreur(String.format(TextesErreurs.PSEUDO_VIDE.texte(), numeroJoueur));
-					break;
-				default:
-					Console.message(TextesErreurs.ETAT_INCONNU.texte());
-					break;
-			}
-			
-			pseudoChoisi = laticeVue.choisirPseudo(numeroJoueur);
-			validitePseudo = estPseudoValide(pseudoChoisi);
-		}
-		
-		return new Joueur(pseudoChoisi);
-	}
 	
 	private void jouer() {
 		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(0) : joueurs.get(1);
@@ -159,22 +123,6 @@ public class LaticeController {
 			laticeVue.afficherErreur(TextesErreurs.TUILE_NI_COULEUR_NI_FORME.toString());
 		}
 		return false;
-	}
-	
-	private EtatsPseudo estPseudoValide(String pseudo) {
-		boolean pseudoExistant = false;
-		for (Joueur joueur : joueurs) {
-			if (joueur.pseudo().equals(pseudo)) {
-				pseudoExistant = true;
-			}
-		}
-		
-		if (pseudoExistant) return EtatsPseudo.PSEUDO_DEJA_PRIS;
-		
-		if (pseudo.length() > 16) return EtatsPseudo.PSEUDO_TROP_GRAND;
-		if (pseudo.isEmpty()) return EtatsPseudo.PSEUDO_VIDE;
-		
-		return EtatsPseudo.PSEUDO_CORRECT;
 	}
 	
 	public List<Joueur> joueurs() {
