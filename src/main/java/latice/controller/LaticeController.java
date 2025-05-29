@@ -27,8 +27,6 @@ public class LaticeController {
 	private Random random;
 	
 	private static final int TOURS_MAX = 10;
-	
-	private boolean nePasPlacer = true;
 
 	public LaticeController(LaticeVue laticeVue) {
 		this.laticeVue = laticeVue;
@@ -88,12 +86,10 @@ public class LaticeController {
 		laticeVue.afficherPlateau(plateau);
 		laticeVue.afficherRack(joueurQuiJoue.rackJoueur());
 		
-		if (!nePasPlacer) {
-			if (!jouerCentre) placerTuile(joueurQuiJoue);
-			else {
-				int emplacementRack = laticeVue.demanderTuileAPoser(joueurQuiJoue) - 1;
-				placerTuileEtGererErreurs(emplacementRack, plateau.plateauCentre(), joueurQuiJoue.rackJoueur());
-			}
+		if (!jouerCentre) placerTuile(joueurQuiJoue);
+		else {
+			int emplacementRack = laticeVue.demanderTuileAPoser(joueurQuiJoue) - 1;
+			placerTuileEtGererErreurs(emplacementRack, plateau.plateauCentre(), joueurQuiJoue.rackJoueur());
 		}
 	}
 	
