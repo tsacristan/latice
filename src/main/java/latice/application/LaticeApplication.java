@@ -7,7 +7,7 @@ import latice.view.console.LaticeVueConsole;
 public class LaticeApplication {
     public static void main(String[] args) {
     	LaticeVue vue = new LaticeVueConsole();
-    	LaticeController controller = new LaticeController(vue, false);
+    	LaticeController controller = new LaticeController(vue);
     	
     	controller.demarrerJeu();
     }

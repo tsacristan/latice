@@ -32,9 +32,8 @@ public class LaticeController {
 	
 	private boolean nePasPlacer = true;
 
-	public LaticeController(LaticeVue laticeVue, boolean nePasPlacer) {
+	public LaticeController(LaticeVue laticeVue) {
 		this.laticeVue = laticeVue;
-		this.nePasPlacer = nePasPlacer;
 		laticeVue.changerController(this);
 		random = new Random();
 	}
@@ -105,12 +104,14 @@ public class LaticeController {
 	private void jouer() {
 		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(0) : joueurs.get(1);
 		int nombreTour = 1;
+		boolean estPremierTour = true;
 		
-		jouerTour(joueurCourant, nombreTour, true);
+		jouerTour(joueurCourant, nombreTour, estPremierTour);
 		nombreTour++;
 		joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
+		estPremierTour = !estPremierTour;
 		while (nombreTour <= TOURS_MAX) {
-			jouerTour(joueurCourant, nombreTour, false);
+			jouerTour(joueurCourant, nombreTour, estPremierTour);
 			
 			nombreTour++;
 			joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
