@@ -5,17 +5,10 @@ import java.util.List;
 import java.util.Random;
 
 import latice.model.PileDebut;
-import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
 import latice.model.player.Joueur;
 import latice.model.player.PileJoueur;
-import latice.model.player.RackJoueur;
-import latice.util.exception.AucuneCouleurOuFormeCorrespondantException;
-import latice.util.exception.AucuneTuileAdjacenteException;
 import latice.util.exception.PiocheInvalideException;
-import latice.util.exception.PlacementDejaExistantInvalide;
-import latice.util.exception.RackIndexInvalideException;
-import latice.util.exception.RackInvalideException;
 import latice.view.LaticeVue;
 import latice.view.TextesErreurs;
 
@@ -61,8 +54,6 @@ public class LaticeController {
 		plateau = new Plateau();
 	}
 	
-	
-	
 	private void jouer() {
 		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(0) : joueurs.get(1);
 		int nombreTour = 1;
@@ -86,39 +77,11 @@ public class LaticeController {
 		laticeVue.afficherPlateau(plateau);
 		laticeVue.afficherRack(joueurQuiJoue.rackJoueur());
 		
-		if (!jouerCentre) placerTuile(joueurQuiJoue);
+		if (!jouerCentre) LaticeControllerPlacerTuileConsole.placerTuile(joueurQuiJoue, plateau, laticeVue);
 		else {
 			int emplacementRack = laticeVue.demanderTuileAPoser(joueurQuiJoue) - 1;
-			placerTuileEtGererErreurs(emplacementRack, plateau.plateauCentre(), joueurQuiJoue.rackJoueur());
+			LaticeControllerPlacerTuileConsole.placerTuileEtGererErreurs(emplacementRack, plateau.plateauCentre(), joueurQuiJoue.rackJoueur(), plateau, laticeVue);
 		}
-	}
-	
-	private void placerTuile(Joueur joueur) {		
-		boolean emplacementValide = false;
-		
-		while (!emplacementValide) {
-			int emplacementRack = laticeVue.demanderTuileAPoser(joueur) - 1;
-			Coordonnees emplacementPlateau = laticeVue.choisirEmplacementPlateau();
-			emplacementValide = placerTuileEtGererErreurs(emplacementRack, emplacementPlateau, joueur.rackJoueur());
-		}
-	}
-	
-	private boolean placerTuileEtGererErreurs(int emplacementRack, Coordonnees emplacementPlateau, RackJoueur rackJoueur) {
-		try {
-			plateau.placerLaTuileSurLePlateau(emplacementRack, emplacementPlateau, rackJoueur);
-			return true;
-		} catch (RackInvalideException e) {
-			laticeVue.afficherErreur(TextesErreurs.RACK_VIDE.toString());
-		} catch (RackIndexInvalideException e) {
-			laticeVue.afficherErreur(TextesErreurs.INDICE_RACK_INVALIDE.toString());
-		} catch (PlacementDejaExistantInvalide e) {
-			laticeVue.afficherErreur(TextesErreurs.CASE_NON_VIDE.toString());
-		} catch (AucuneTuileAdjacenteException e) {
-			laticeVue.afficherErreur(TextesErreurs.TUILE_ISOLEE.toString());
-		} catch (AucuneCouleurOuFormeCorrespondantException e) {
-			laticeVue.afficherErreur(TextesErreurs.TUILE_NI_COULEUR_NI_FORME.toString());
-		}
-		return false;
 	}
 	
 	public List<Joueur> joueurs() {
