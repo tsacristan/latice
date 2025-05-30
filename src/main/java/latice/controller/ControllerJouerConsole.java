@@ -19,11 +19,11 @@ import latice.view.console.LaticeVueConsole;
 public class ControllerJouerConsole extends ControllerJouer {
 	
 	private LaticeVueConsole laticeVue;
-	private Random random;
 	
 	public ControllerJouerConsole(LaticeVueConsole laticeVue) {
 		super();
 		this.laticeVue = laticeVue;
+		random = new Random();
 	}
 	
 	@Override
