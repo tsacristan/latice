@@ -2,7 +2,6 @@ package latice.controller;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import latice.model.PileDebut;
 import latice.model.board.Plateau;
@@ -17,24 +16,23 @@ public class LaticeController {
 	private LaticeVue laticeVue;
 	private ArrayList<Joueur> joueurs;
 	private Plateau plateau;
-	private Random random;
+	private ControllerJouer controllerPlacement;
 	
-	private static final int TOURS_MAX = 10;
+	public static final int TOURS_MAX = 10;
 
-	public LaticeController(LaticeVue laticeVue) {
+	public LaticeController(LaticeVue laticeVue, ControllerJouer controllerPlacement) {
 		this.laticeVue = laticeVue;
+		this.controllerPlacement = controllerPlacement;
 		laticeVue.changerController(this);
-		random = new Random();
 	}
 	
 	public void demarrerJeu() {
 		initialiserPartie();
 		
-		jouer();
+		controllerPlacement.jouer(joueurs);
 	}
-
-	private void initialiserPartie() {
-		
+	
+	private void initialiserPartie() {	
 		joueurs = (ArrayList<Joueur>) ControllerInitialisationJoueur.initialiserJoueurs(laticeVue);
 		
 		PileDebut pile = new PileDebut();
@@ -52,36 +50,8 @@ public class LaticeController {
 			return;
 		}
 		plateau = new Plateau();
-	}
-	
-	private void jouer() {
-		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(0) : joueurs.get(1);
-		int nombreTour = 1;
-		boolean estPremierTour = true;
 		
-		jouerTour(joueurCourant, nombreTour, estPremierTour);
-		nombreTour++;
-		joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
-		estPremierTour = !estPremierTour;
-		while (nombreTour <= TOURS_MAX) {
-			jouerTour(joueurCourant, nombreTour, estPremierTour);
-			
-			nombreTour++;
-			joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
-		}
-	}
-	
-	private void jouerTour(Joueur joueurQuiJoue, int nombreTour, boolean jouerCentre) {
-		laticeVue.setJoueurCourant(joueurQuiJoue);
-		laticeVue.afficherTour(joueurs, joueurQuiJoue, nombreTour);
-		laticeVue.afficherPlateau(plateau);
-		laticeVue.afficherRack(joueurQuiJoue.rackJoueur());
-		
-		if (!jouerCentre) LaticeControllerPlacerTuileConsole.placerTuile(joueurQuiJoue, plateau, laticeVue);
-		else {
-			int emplacementRack = laticeVue.demanderTuileAPoser(joueurQuiJoue) - 1;
-			LaticeControllerPlacerTuileConsole.placerTuileEtGererErreurs(emplacementRack, plateau.plateauCentre(), joueurQuiJoue.rackJoueur(), plateau, laticeVue);
-		}
+		controllerPlacement.initialiserPlateau(plateau);
 	}
 	
 	public List<Joueur> joueurs() {

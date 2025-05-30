@@ -51,14 +51,12 @@ public class LaticeVueConsole extends LaticeVue {
 		}
 	}
 	
-	@Override
 	public int demanderTuileAPoser(Joueur joueur) {
 		int tailleRack = joueur.rackJoueur().rack().size();
 		String texte = String.format(Textes.DEMANDER_TUILE.toString(), tailleRack);
         return SaisieConsole.demanderEntierDansIntervalle(scanner, texte, 1, tailleRack);
 	}
 	
-	@Override
 	public Coordonnees choisirEmplacementPlateau() {
 		boolean estValide = false;
 		Coordonnees coordsFinal = null;
@@ -83,12 +81,6 @@ public class LaticeVueConsole extends LaticeVue {
 	@Override
 	public void afficherErreur(String message) {
 		Console.message(message);
-	}
-
-	@Override
-	public void setJoueurCourant(Joueur joueurQuiJoue) {
-		// TODO Auto-generated method stub
-		
 	} 
 	
 }

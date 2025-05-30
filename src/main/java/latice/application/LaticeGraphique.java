@@ -4,6 +4,7 @@ package latice.application;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import latice.controller.ControllerJouerGraphique;
 import latice.controller.LaticeController;
 import latice.view.gui.InterfaceJeu;
 import latice.view.gui.LaticeVueGraphique;
@@ -21,7 +22,7 @@ public class LaticeGraphique extends Application {
         primaryStage.setTitle("Latice");
         primaryStage.show();
         
-        LaticeController controller = new LaticeController(laticeVue);
+        LaticeController controller = new LaticeController(laticeVue, new ControllerJouerGraphique(laticeVue));
         controller.demarrerJeu();
     }
 

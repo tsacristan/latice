@@ -1,6 +1,8 @@
 package latice.view.gui;
 
 import javafx.geometry.Pos;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
@@ -9,21 +11,23 @@ import latice.model.player.RackJoueur;
 import latice.util.PlateauListener;
 import latice.util.exception.PlateauIndexInvalideException;
 import latice.view.AfficherPlateau;
+import latice.view.LaticeVue;
 
 public class InterfacePlateau extends GridPane implements PlateauListener, AfficherPlateau {
 	
 	private Plateau plateau;
-	private RackJoueur rackJoueur; // 🆕 on garde une référence pour pouvoir déposer
+	private RackJoueur rackJoueur;
+	private LaticeVue laticeVue;
 
-	public InterfacePlateau(Plateau plateau, RackJoueur rackJoueur) throws PlateauIndexInvalideException {
+	public InterfacePlateau(Plateau plateau, RackJoueur rackJoueur, LaticeVue laticeVue) {
 		super();
 		this.plateau = plateau;
 		this.rackJoueur = rackJoueur;
+		this.laticeVue = laticeVue;
 
 		setAlignment(Pos.CENTER);
 		afficherPlateau(plateau);
 	}
-
 
 	@Override
 	public void afficherPlateau(Plateau plateau) {
@@ -34,38 +38,7 @@ public class InterfacePlateau extends GridPane implements PlateauListener, Affic
 	            try {
 	                Case caseTuile = plateau.obtenirTuile(new Coordonnees(i, j));
 	                InterfaceCase vueCase = new InterfaceCase(caseTuile);
-
-	                final int ligne = i;
-	                final int colonne = j;
-
-	                // 🟨 Gérer le survol
-	                vueCase.setOnDragOver(event -> {
-	                    if (event.getGestureSource() != vueCase && event.getDragboard().hasString()) {
-	                        event.acceptTransferModes(javafx.scene.input.TransferMode.MOVE);
-	                    }
-	                    event.consume();
-	                });
-
-	                // 🟩 Gérer le drop
-	                vueCase.setOnDragDropped(event -> {
-	                    var db = event.getDragboard();
-	                    boolean success = false;
-
-	                    if (db.hasString()) {
-	                        try {
-	                            int indexRack = Integer.parseInt(db.getString());
-	                            plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), this.rackJoueur);
-	                            success = true;
-	                        } catch (Exception e) {
-	                            e.printStackTrace();
-	                            
-	                        }
-	                    }
-
-	                    event.setDropCompleted(success);
-	                    event.consume();
-	                });
-
+	                
 	                add(vueCase, i, j);
 
 	            } catch (PlateauIndexInvalideException e) {
@@ -74,7 +47,11 @@ public class InterfacePlateau extends GridPane implements PlateauListener, Affic
 	        }
 	    }
 	}
-
+	
+	public void actualiserRack(RackJoueur rackJoueur) {
+		this.rackJoueur = rackJoueur;
+		afficherPlateau(plateau);
+	}
 
 	@Override
 	public void plateauEstMisAJour() {

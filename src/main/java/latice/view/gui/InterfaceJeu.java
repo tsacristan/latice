@@ -6,7 +6,7 @@ import javafx.scene.layout.BorderPane;
 import latice.model.board.Plateau;
 import latice.model.player.Joueur;
 import latice.model.player.RackJoueur;
-import latice.util.exception.PlateauIndexInvalideException;
+import latice.view.LaticeVue;
 
 public class InterfaceJeu extends BorderPane {
 	
@@ -33,16 +33,11 @@ public class InterfaceJeu extends BorderPane {
 		partieHaut.changerTour(nombreTour);
 	}
 	
-	public InterfacePlateau initialiserInterfacePlateau(Plateau plateau, RackJoueur rackJoueur) {
+	public InterfacePlateau initialiserInterfacePlateau(Plateau plateau, RackJoueur rackJoueur, LaticeVue laticeVue) {
 		InterfacePlateau interfacePlateau = null;
-		try {
-			interfacePlateau = new InterfacePlateau(plateau, rackJoueur);
-			plateau.ajouterListener(interfacePlateau);
-			
-			return interfacePlateau;
-		} catch (PlateauIndexInvalideException e) {
-			e.printStackTrace();
-		}
+		
+		interfacePlateau = new InterfacePlateau(plateau, rackJoueur, laticeVue);
+		plateau.ajouterListener(interfacePlateau);
 		
 		return interfacePlateau;
     }
@@ -53,5 +48,9 @@ public class InterfaceJeu extends BorderPane {
         
         return partie;
     }
-	
+    
+    public InterfacePlateau interfacePlateau() {
+    	if (getCenter() instanceof InterfacePlateau) return (InterfacePlateau) getCenter();
+    	return null;
+    }
 }
