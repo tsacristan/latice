@@ -23,8 +23,8 @@ public class LaticeVueConsole extends LaticeVue {
 	}
 
 	@Override
-	public void afficherRack(RackJoueur rackJoueur) {
-		afficheur.afficherRack(rackJoueur);
+	public void afficherRack(Joueur joueur) {
+		afficheur.afficherRack(joueur.rackJoueur());
 	}
 
 	@Override

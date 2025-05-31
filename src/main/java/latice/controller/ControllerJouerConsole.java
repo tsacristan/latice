@@ -85,7 +85,7 @@ public class ControllerJouerConsole extends ControllerJouer {
 	private void jouerTour(Joueur joueurQuiJoue, int nombreTour, boolean jouerCentre) {
 		laticeVue.afficherTour(joueurs, joueurQuiJoue, nombreTour);
 		laticeVue.afficherPlateau(plateau);
-		laticeVue.afficherRack(joueurQuiJoue.rackJoueur());
+		laticeVue.afficherRack(joueurQuiJoue);
 		
 		jouerTuile(joueurQuiJoue, jouerCentre);
 	}

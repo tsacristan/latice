@@ -28,6 +28,7 @@ public class InterfaceJeu extends BorderPane {
         setBottom(null);
 	}
 	
+	
 	public void afficherJoueursScoreTour(Joueur joueurQuiJoue, List<Joueur> joueurs, int nombreTour) {
 		partieJoueur.afficherJoueurs(joueurQuiJoue, joueurs);
 		partieHaut.changerTour(nombreTour);
@@ -42,9 +43,10 @@ public class InterfaceJeu extends BorderPane {
 		return interfacePlateau;
     }
     
-    public PartieControle initialiserPartieControle(RackJoueur rack) {
-    	PartieControle partie = new PartieControle(rack);
-        rack.ajouterListener(partie.interfaceRack());
+    public PartieControle initialiserPartieControle(Joueur joueur) {
+    	PartieControle partie = new PartieControle(joueur);
+    	joueur.rackJoueur().ajouterListener(partie.interfaceRack());
+        
         
         return partie;
     }

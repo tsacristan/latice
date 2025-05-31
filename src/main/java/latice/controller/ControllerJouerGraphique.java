@@ -39,7 +39,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	}
 
 	public void jouerTuile() {
-		PartieControle nouvellePartie = laticeVue.interfaceJeu().initialiserPartieControle(joueurCourant.rackJoueur());
+		PartieControle nouvellePartie = laticeVue.interfaceJeu().initialiserPartieControle(joueurCourant);
 		
 		laticeVue.interfaceJeu().setBottom(nouvellePartie);
 		laticeVue.interfaceJeu().interfacePlateau().actualiserRack(joueurCourant.rackJoueur());
@@ -53,7 +53,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		}
 		
 		laticeVue.afficherPlateau(plateau);
-		laticeVue.afficherRack(joueurCourant.rackJoueur());
+		laticeVue.afficherRack(joueurCourant);
 		laticeVue.afficherTour(joueurs, joueurCourant, tourCourant);
 		
 		jouerTuile();

@@ -11,7 +11,7 @@ public abstract class LaticeVue {
 	
 	protected LaticeController controller;
 
-	public abstract void afficherRack(RackJoueur rackJoueur);
+	public abstract void afficherRack(Joueur joueur);
 	public abstract void afficherPlateau(Plateau plateau);
 	public abstract String choisirPseudo(int numeroJoueur1);
 	public abstract void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour);

@@ -21,13 +21,13 @@ public class LaticeVueGraphique extends LaticeVue {
 	}
 
 	@Override
-	public void afficherRack(RackJoueur rackJoueur) {
+	public void afficherRack(Joueur joueur) {
 		if (interfaceRack == null) {
-			interfaceRack = new InterfaceRack(rackJoueur);
-			rackJoueur.ajouterListener(interfaceRack);
-			interfaceJeu.setBottom(interfaceJeu.initialiserPartieControle(rackJoueur));
+			interfaceRack = new InterfaceRack(joueur.rackJoueur());
+			joueur.rackJoueur().ajouterListener(interfaceRack);
+			interfaceJeu.setBottom(interfaceJeu.initialiserPartieControle(joueur));
 		} else {
-			interfaceRack.afficherRack(rackJoueur);
+			interfaceRack.afficherRack(joueur.rackJoueur());
 		}
 	}
 
@@ -70,5 +70,7 @@ public class LaticeVueGraphique extends LaticeVue {
 	public void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour) {
 		interfaceJeu.afficherJoueursScoreTour(joueurQuiJoue, joueurs, nombreTour);
 	}
+	
+	
 
 }
