@@ -62,6 +62,7 @@ public class RackJoueur extends Observable<RackListener> {
         
         return aJouer;
     }
+    
 
     @Override
     public String toString() {

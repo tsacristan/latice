@@ -3,13 +3,17 @@ package latice.model.player;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import latice.model.PileDebut;
+import latice.model.board.Plateau;
 import latice.model.material.Couleur;
 import latice.model.material.Forme;
 import latice.model.material.Tuile;
+import latice.util.PlateauListener;
+import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
 
 class TestRackJoueur {
@@ -57,4 +61,37 @@ class TestRackJoueur {
 		assertEquals(3,pileJ1.size());
 		assertEquals(5,rackJ1.rack().size());
 	}
+	
+	static class TestListener implements RackListener {
+        boolean called = false;
+
+        @Override
+        public void rackEstMisAJour() {
+            called = true;
+        }
+    }
+
+    @Test
+    void testDeclencherListenersManuellement() {
+        TestListener listener1 = new TestListener();
+        TestListener listener2 = new TestListener();
+
+        RackJoueur rackJoueur = new RackJoueur() {
+            {
+                // Ajoute manuellement les listeners
+                ajouterListener(listener1);
+                ajouterListener(listener2);
+            }
+
+            @Override
+            public void declencherListeners() {
+                super.declencherListeners();
+            }
+        };
+
+        rackJoueur.declencherListeners();
+
+        assertTrue(listener1.called, "Listener1 aurait dû être notifié");
+        assertTrue(listener2.called, "Listener2 aurait dû être notifié");
+    }
 }

@@ -46,7 +46,7 @@ public class Case {
     public String toString() {
         switch (typeCase) {
             case CASE_OCCUPEE:
-                try {
+            	try {
                     CouleurConsole couleurTexteDefaut = CouleurConsole.ANSI_TEXTE_NOIR;
                     String styleANSI = obtenirAnsiBackgroundColor().codeANSI() + couleurTexteDefaut;
                     return styleANSI + obtenirEmojiForme().emoji() + CouleurConsole.ANSI_RESET;

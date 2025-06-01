@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -11,6 +12,8 @@ import org.junit.jupiter.api.Test;
 
 import latice.model.PileDebut;
 import latice.model.material.Case;
+import latice.model.material.Couleur;
+import latice.model.material.Forme;
 import latice.model.material.Tuile;
 import latice.model.material.TypeCase;
 import latice.model.player.PileJoueur;
@@ -132,6 +135,62 @@ class TestPlateau {
 
         assertEquals(TextesErreurs.RACK_VIDE.toString(), e.getMessage());
     }
+    @Test
+    void placer_tuile_sur_plateau_valide() throws RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException, PiocheInvalideException, PlateauIndexInvalideException {  
+        Plateau plateau = new Plateau();
+        RackJoueur rackTest = new RackJoueur();
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.OISEAU));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.FLEUR));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.GECKO));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.PLUME));
+        Coordonnees coord = new Coordonnees(3, 4);
+        
+        plateau.placerLaTuileSurLePlateau(2, plateau.plateauCentre(), rackTest);
+        plateau.placerLaTuileSurLePlateau(3, coord, rackTest);
+        
+        assertEquals(TypeCase.CASE_OCCUPEE,plateau.obtenirTuile(coord).typeCase());
+        
+        
+    }
+    
+    @Test
+    void testCasesAdjacentesVideDansVerificationPlacementValide() throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
+    	Plateau plateau = new Plateau();
+        RackJoueur rackTest = new RackJoueur();
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.OISEAU));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.FLEUR));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.GECKO));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.PLUME));
+        Coordonnees coord = new Coordonnees(1, 1);
+        
+        AucuneTuileAdjacenteException e = assertThrows(AucuneTuileAdjacenteException.class, () -> {
+        	plateau.placerLaTuileSurLePlateau(3, coord, rackTest);
+        });
+        
+        assertEquals(TextesErreurs.TUILE_ISOLEE.toString(),e.getMessage());
+    }
+    
+    @Test
+    void testExisteCaseAvecFormeOuCouleurDansVerificationPlacementValide() throws PlateauIndexInvalideException, RackInvalideException, RackIndexInvalideException, PlacementDejaExistantInvalide, AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
+    	Plateau plateau = new Plateau();
+        RackJoueur rackTest = new RackJoueur();
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN));
+        rackTest.rack().add(new Tuile(Couleur.ROUGE,Forme.DAUPHIN));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.FLEUR));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.GECKO));
+        rackTest.rack().add(new Tuile(Couleur.BLEU_MARINE,Forme.PLUME));
+        Coordonnees coord = new Coordonnees(4, 3);
+        
+        plateau.placerLaTuileSurLePlateau(1, plateau.plateauCentre(), rackTest);
+        
+        AucuneCouleurOuFormeCorrespondantException e = assertThrows(AucuneCouleurOuFormeCorrespondantException.class, () -> {
+        	plateau.placerLaTuileSurLePlateau(2, coord, rackTest);
+        });
+        
+        assertEquals(TextesErreurs.TUILE_NI_COULEUR_NI_FORME.toString(),e.getMessage());
+    }
 
     @Test
     void test_taille_du_plateau() {
@@ -198,6 +257,8 @@ class TestPlateau {
 	    assertTrue(listener1.called, "Listener1 should have been notified");
 	    assertTrue(listener2.called, "Listener2 should have been notified");
 	}
+	
+	
 
-    
 }
+    

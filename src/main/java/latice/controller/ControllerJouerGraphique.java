@@ -44,6 +44,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		laticeVue.interfaceJeu().setBottom(nouvellePartie);
 		laticeVue.interfaceJeu().interfacePlateau().actualiserRack(joueurCourant.rackJoueur());
 		appliquerDnDToutesCases();
+		
 	}
 	
 	private void jouerTour() {

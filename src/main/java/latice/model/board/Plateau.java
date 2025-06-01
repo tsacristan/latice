@@ -110,9 +110,11 @@ public class Plateau extends Observable<PlateauListener> {
     
     private void verificationPlacementValide(Tuile tuileAPlacer, Coordonnees aPlacerSur) throws AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
     	ArrayList<Case> casesAdjacentes = obtenirCasesAdjacentesPresenteAUnPoint(aPlacerSur);
-    	if (casesAdjacentes.isEmpty()) throw new AucuneTuileAdjacenteException(TextesErreurs.TUILE_ISOLEE.toString());
+    	if (casesAdjacentes.isEmpty()) 
+    		throw new AucuneTuileAdjacenteException(TextesErreurs.TUILE_ISOLEE.toString());
     	
-    	if (!existeCaseAvecFormeOuCouleur(casesAdjacentes, tuileAPlacer)) throw new AucuneCouleurOuFormeCorrespondantException(TextesErreurs.TUILE_NI_COULEUR_NI_FORME.toString());
+    	if (!existeCaseAvecFormeOuCouleur(casesAdjacentes, tuileAPlacer)) 
+    			throw new AucuneCouleurOuFormeCorrespondantException(TextesErreurs.TUILE_NI_COULEUR_NI_FORME.toString());
     }
     
     private ArrayList<Case> obtenirCasesAdjacentesPresenteAUnPoint(Coordonnees coordsDuPoint) {

@@ -126,6 +126,27 @@ class TestCase {
 		assertNotEquals(null, CASE_JAUNE_GECKO_OCCUPEE);
 	}
 	
+	@Test
+	void testCaseConstructeurTuileSeulement() {
+		Case caseTest = new Case(new Tuile(Couleur.BLEU_MARINE, Forme.DAUPHIN));
+		
+		TypeCase typeDeLaCase = caseTest.typeCase();
+		Couleur CouleurDeLaCase = caseTest.tuile().couleur();
+		Forme FormeDeLaCase = caseTest.tuile().forme();
+		
+		assertEquals(TypeCase.CASE_OCCUPEE,typeDeLaCase);
+		assertEquals(Couleur.BLEU_MARINE,CouleurDeLaCase);
+		assertEquals(Forme.DAUPHIN,FormeDeLaCase);
+		
+	}
 	
-	
+	@Test
+	void testToStringCaseVide() {
+		Case caseTest = new Case(new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN),TypeCase.CASE_VIDE);
+		
+		String resultat = caseTest.toString();
+		
+		assertEquals(EmojiForme.CASE_VIDE.emoji(),resultat);
+		}
+		
 }
