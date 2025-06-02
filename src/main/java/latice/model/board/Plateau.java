@@ -136,17 +136,19 @@ public class Plateau extends Observable<PlateauListener> {
     	while (!existeUneCaseQuiCorrespond && i < casesAdjacentes.size()) {
     		Case caseAdjacente = casesAdjacentes.get(i);
     		Tuile tuileAdjacente = caseAdjacente.tuile();
-    		
-    		boolean estMemeCouleur = tuileAdjacente.couleur() == tuileAPlacer.couleur();
-    		boolean estMemeForme = tuileAdjacente.forme() == tuileAPlacer.forme();
-    		
-    		if (estMemeCouleur || estMemeForme) {
-    			existeUneCaseQuiCorrespond = true;
-    		}
+
+    		existeUneCaseQuiCorrespond = correspondParFormeOuCouleur(tuileAPlacer, tuileAdjacente);
     		i++;
     	}
     	
     	return existeUneCaseQuiCorrespond;
+    }
+    
+    public boolean correspondParFormeOuCouleur(Tuile coord1, Tuile coord2) {
+    	boolean estMemeCouleur = coord1.couleur() == coord2.couleur();
+		boolean estMemeForme = coord1.forme() == coord2.forme();
+		
+		return estMemeCouleur || estMemeForme;
     }
     
 	@Override
