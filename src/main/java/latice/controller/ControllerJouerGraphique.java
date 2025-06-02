@@ -61,7 +61,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	
 	private void piocher() {
 		try {
-            joueurCourant.remplirRack();
+            joueurCourant.piocher();
         } catch (PiocheInvalideException e) {
             laticeVue.afficherErreur(e.getMessage());
         }
@@ -82,6 +82,8 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	
 	 private void avancerTour() {
 		 if (!joueurCourant.equals(premierJoueur)) tourCourant++;
+		 joueurCourant.remplir();
+		 
 		 joueurCourant = prochainJoueur();
 		 tuilePlaceeDansCeTour = false;
 		 jouerTour();

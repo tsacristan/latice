@@ -26,7 +26,11 @@ public class Joueur {
 		this("Défaut");
 	}
 	
-	public void remplirRack() throws PiocheInvalideException {
+	public void piocher() throws PiocheInvalideException {
+		rackJoueur.piocher(pileJoueur);
+	}
+	
+	public void remplir() {
 		rackJoueur.remplir(pileJoueur);
 	}
 

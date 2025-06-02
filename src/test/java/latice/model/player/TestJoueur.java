@@ -58,14 +58,14 @@ public class TestJoueur {
 
     @Test
     public void testRemplirRackPilePleine() {
-        assertDoesNotThrow(() -> joueurALEX.remplirRack());
+        assertDoesNotThrow(() -> joueurALEX.piocher());
         assertTrue(joueurALEX.rackJoueur().rack().size() <= RackJoueur.TAILLE_MAX_RACK);
     }
 
     @Test
     public void testRemplirRackPiocheVide() {
         Joueur joueurPiocheVide = new Joueur("Vide", new RackJoueur(), new PileJoueur(), 0);
-        assertThrows(PiocheInvalideException.class, joueurPiocheVide::remplirRack);
+        assertThrows(PiocheInvalideException.class, joueurPiocheVide::piocher);
     }
 
     @Test

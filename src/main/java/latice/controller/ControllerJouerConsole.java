@@ -102,6 +102,8 @@ public class ControllerJouerConsole extends ControllerJouer {
             default:
                 laticeVue.afficherErreur(TextesErreurs.ACTION_INVALIDE.texte());
         }
+        
+        joueurQuiJoue.remplir();
 	}
 	
 	@Override

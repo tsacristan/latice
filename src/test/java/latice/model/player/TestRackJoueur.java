@@ -3,16 +3,12 @@ package latice.model.player;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Arrays;
-import java.util.List;
-
 import org.junit.jupiter.api.Test;
 
 import latice.model.PileDebut;
-import latice.model.board.Plateau;
 import latice.model.material.Couleur;
 import latice.model.material.Forme;
 import latice.model.material.Tuile;
-import latice.util.PlateauListener;
 import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
 
@@ -64,8 +60,8 @@ class TestRackJoueur {
 		RACKJ1.rack().add(TUILE_ROUGE_OISEAU);
 		RACKJ1.rack().add(TUILE_BLEU_SARCELLE_FLEUR);
 		
-		RACKJ1.remplir(PILEJ1);
-		assertEquals(4,PILEJ1.size());
+		RACKJ1.piocher(PILEJ1);
+		assertEquals(3,PILEJ1.size());
 		assertEquals(5,RACKJ1.rack().size());
 	}
 	
@@ -100,15 +96,16 @@ class TestRackJoueur {
     }
     
     @Test
-    void testPiocherTuile() {
+    void tester_remplir_pile_pleine() {
     	PILE_PRINCIPALE.remplir();
-    	PILE_PRINCIPALE.melanger();
-    	PILE_PRINCIPALE.distribuer(new PileJoueur[] {PILEJ1,PILEJ2});
-    	RACKJ1.piocherUneTuile(PILEJ1);
-    
-    	assertEquals(1,RACKJ1.rack().size());
+    	PILE_PRINCIPALE.distribuer(new PileJoueur[]{PILEJ1, PILEJ2});
     	
+    	RackJoueur rackJoueur = new RackJoueur();
+    	rackJoueur.rack().add(TUILE_ROUGE_OISEAU);
+    	rackJoueur.rack().add(TUILE_BLEU_MARINE_FLEUR);
+    	rackJoueur.rack().add(TUILE_BLEU_SARCELLE_FLEUR);
+    	rackJoueur.remplir(PILEJ1);
+    	
+    	assertEquals(RackJoueur.TAILLE_MAX_RACK, rackJoueur.rack().size());
     }
-    
-    
 }

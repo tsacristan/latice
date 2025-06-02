@@ -43,7 +43,7 @@ class TestPlateau {
         pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
         
         rackTest = new RackJoueur();
-        rackTest.remplir(pileTest);
+        rackTest.piocher(pileTest);
 	}
 
     @Test
@@ -74,7 +74,7 @@ class TestPlateau {
         PileJoueur pileTest2 = new PileJoueur();
         pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
         RackJoueur rackTest = new RackJoueur();
-        rackTest.remplir(pileTest);
+        rackTest.piocher(pileTest);
 
         PlateauIndexInvalideException e = assertThrows(PlateauIndexInvalideException.class,
             () -> plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), rackTest)
@@ -96,7 +96,7 @@ class TestPlateau {
         PileJoueur pileTest2 = new PileJoueur();
         pileDebutTest.distribuer(new PileJoueur[]{pileTest, pileTest2});
         RackJoueur rackTest = new RackJoueur();
-        rackTest.remplir(pileTest);
+        rackTest.piocher(pileTest);
 
         RackIndexInvalideException e = assertThrows(RackIndexInvalideException.class,
             () -> plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), rackTest)

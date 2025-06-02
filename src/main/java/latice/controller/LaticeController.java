@@ -42,7 +42,7 @@ public class LaticeController {
 		
 		try {
 			for (Joueur joueur : joueurs) {
-				joueur.remplirRack();
+				joueur.piocher();
 			}
 		} catch (PiocheInvalideException e) {
 			laticeVue.afficherErreur(TextesErreurs.ERREUR_PILE_VIDE.toString());

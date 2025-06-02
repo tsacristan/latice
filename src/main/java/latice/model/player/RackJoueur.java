@@ -23,7 +23,7 @@ public class RackJoueur extends Observable<RackListener> {
     	this(new ArrayList<>());
     }
 
-    public void remplir(PileJoueur pileJoueur) throws PiocheInvalideException {
+    public void piocher(PileJoueur pileJoueur) throws PiocheInvalideException {
     	if (pileJoueur.isEmpty()) {
     		throw new PiocheInvalideException(
     				String.format(TextesErreurs.PIOCHE_VIDE.toString()));
@@ -47,10 +47,10 @@ public class RackJoueur extends Observable<RackListener> {
        	declencherListeners();
     }
     
-    public void piocherUneTuile(PileJoueur pile) {
-        if (rack.size() < TAILLE_MAX_RACK && !pile.isEmpty()) {
-            rack.add(pile.retirerTuile());
-            declencherListeners();
+    public void remplir(PileJoueur pile) {
+    	pile.melanger();
+        while (rack.size() < 5 && !pile.isEmpty()) {
+        	rack().add(pile.retirerTuile());
         }
     }
     
