@@ -20,7 +20,7 @@ import latice.view.console.LaticeVueConsole;
 public class ControllerJouerConsole extends ControllerJouer {
 	
 	private LaticeVueConsole laticeVue;
-	private Joueur premierJoueur;
+	private boolean estPremierTour;
 	
 	public ControllerJouerConsole(LaticeVueConsole laticeVue) {
 		super();
@@ -33,13 +33,12 @@ public class ControllerJouerConsole extends ControllerJouer {
 		this.joueurs = (ArrayList<Joueur>) joueurs;
 		
 		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(0) : joueurs.get(1);
-		premierJoueur = joueurCourant;
+		Joueur premierJoueur = joueurCourant;
 		int nombreTour = 1;
-		boolean estPremierTour = true;
+		estPremierTour = true;
 		
 		jouerTour(joueurCourant, nombreTour, estPremierTour);
 		joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
-		estPremierTour = !estPremierTour;
 		while (nombreTour <= LaticeController.TOURS_MAX) {
 			jouerTour(joueurCourant, nombreTour, estPremierTour);
 			
@@ -73,6 +72,7 @@ public class ControllerJouerConsole extends ControllerJouer {
 			int pointsAjoutes = calculerPointsCoup(emplacementPlateau, joueur.rackJoueur().rack().get(emplacementRack));
 			plateau.placerLaTuileSurLePlateau(emplacementRack, emplacementPlateau, joueur.rackJoueur());
 			joueur.ajouterScore(pointsAjoutes);
+			estPremierTour = false;
 			return true;
 		} catch (RackInvalideException e) {
 			laticeVue.afficherErreur(TextesErreurs.RACK_VIDE.toString());
