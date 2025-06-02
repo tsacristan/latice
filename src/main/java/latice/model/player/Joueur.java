@@ -47,9 +47,7 @@ public class Joueur {
 	}
 	
 	public void ajouterScore(int points) {
-	    System.out.println("[DEBUG] " + pseudo + " - score avant : " + score + ", ajout de : " + points);
 	    this.score += points;
-	    System.out.println("[DEBUG] " + pseudo + " - score après : " + score);
 	}
 
 	@Override
