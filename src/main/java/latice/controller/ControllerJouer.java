@@ -80,9 +80,10 @@ public abstract class ControllerJouer {
     	ArrayList<Joueur> joueursGagnants = new ArrayList<>();
     	
     	for (Joueur joueur : joueurs) {
-    		if (meilleurScore > joueur.score()) {
+    		if (meilleurScore < joueur.score()) {
     			meilleurScore = Integer.max(meilleurScore, joueur.score());
     			joueursGagnants.clear();
+    			joueursGagnants.add(joueur);
     		} else if (meilleurScore == joueur.score()) {
     			joueursGagnants.add(joueur);
     		}

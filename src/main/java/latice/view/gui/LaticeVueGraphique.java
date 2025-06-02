@@ -90,10 +90,10 @@ public class LaticeVueGraphique extends LaticeVue {
 
 	@Override
 	public void afficherGagnants(ArrayList<Joueur> gagnants) {
-		StringBuilder chaineBuilder = new StringBuilder(Textes.AFFICHAGE_GAGNANTS.texte());
+		StringBuilder chaineBuilder = new StringBuilder(Textes.AFFICHAGE_GAGNANTS.texte() + "\n");
 
     	for (Joueur joueur : gagnants) {
-    		chaineBuilder.append(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()));
+    		chaineBuilder.append(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()) + "\n");
     	}
     	
     	afficherMessage(chaineBuilder.toString());
