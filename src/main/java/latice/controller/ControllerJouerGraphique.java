@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javafx.application.Platform;
 import javafx.scene.Node;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
@@ -84,8 +85,9 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	 }
 	
 	private void jouerTour() {
-		if (tourCourant >= 10) {
+		if (tourCourant > LaticeController.TOURS_MAX) {
 			annoncerGagnants();
+			Platform.exit();
 			return;
 		}
 		
