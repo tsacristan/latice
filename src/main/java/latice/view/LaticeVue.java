@@ -14,6 +14,7 @@ public abstract class LaticeVue {
 	public abstract void afficherPlateau(Plateau plateau);
 	public abstract String choisirPseudo(int numeroJoueur1);
 	public abstract void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour);
+	public abstract void afficherMessage(String message);
 	public abstract void afficherErreur(String message);
 
 	public void changerController(LaticeController controller) {

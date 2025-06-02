@@ -17,9 +17,7 @@ public enum Textes {
     DEMANDER_ACTION_TOUR("Que voulez-vous faire ? (1: jouer une tuile, 2: passer) : "),
     TUILES_ECHANGEES("Tuiles échangées !"),
     TOUR_PASSE("Tour passé !"),
-    GAGNANT("Le gagnant est : %s avec %d points !"),
-    EGALITE("Égalité ! Gagnants : "),
-    POINTS_EGALITE("avec %d points !");
+    AFFICHAGE_GAGNANTS("Le(s) gagnant(s) est (sont) : ");
 	
 	private String texte;
 

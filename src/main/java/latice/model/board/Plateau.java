@@ -105,7 +105,7 @@ public class Plateau extends Observable<PlateauListener> {
     }
     
     public Case obtenirTuile(Coordonnees coords) {
-    	return grille[coords.ligne()][coords.colonne()];
+    	return grille[coords.colonne()][coords.ligne()];
     }
     
     private void verificationPlacementValide(Tuile tuileAPlacer, Coordonnees aPlacerSur) throws AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {
@@ -145,6 +145,7 @@ public class Plateau extends Observable<PlateauListener> {
     }
     
     public boolean correspondParFormeOuCouleur(Tuile coord1, Tuile coord2) {
+    	if (coord1 == null || coord2 == null) return false;
     	boolean estMemeCouleur = coord1.couleur() == coord2.couleur();
 		boolean estMemeForme = coord1.forme() == coord2.forme();
 		

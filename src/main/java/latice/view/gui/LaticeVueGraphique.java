@@ -73,6 +73,15 @@ public class LaticeVueGraphique extends LaticeVue {
 		interfaceJeu.afficherJoueursScoreTour(joueurQuiJoue, joueurs, nombreTour);
 	}
 	
+	@Override
+	public void afficherMessage(String message) {
+		Alert dialog = new Alert(AlertType.INFORMATION);
+		dialog.setTitle("Information");
+		dialog.setHeaderText(null);
+		dialog.setContentText(message);
+		dialog.showAndWait();
+	}
+	
 	public void actualiserScores(List<Joueur> joueurs, Joueur joueurCourant) {
 	    partieJoueur.afficherJoueurs(joueurCourant, joueurs);
 	}

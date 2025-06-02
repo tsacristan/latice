@@ -10,13 +10,11 @@ import latice.model.player.PileJoueur;
 import latice.util.exception.PiocheInvalideException;
 import latice.view.LaticeVue;
 import latice.view.TextesErreurs;
-import latice.view.gui.LaticeVueGraphique;
 
 public class LaticeController {
 	
 	private LaticeVue laticeVue;
 	private ArrayList<Joueur> joueurs;
-	private Plateau plateau;
 	private ControllerJouer controllerPlacement;
 	
 	public static final int TOURS_MAX = 10;
@@ -32,7 +30,8 @@ public class LaticeController {
 		controllerPlacement.jouer(joueurs);
 	}
 	
-	private void initialiserPartie() {	
+	private void initialiserPartie() {
+		Plateau plateau;	
 		joueurs = (ArrayList<Joueur>) ControllerInitialisationJoueur.initialiserJoueurs(laticeVue);
 		
 		PileDebut pile = new PileDebut();
@@ -50,14 +49,7 @@ public class LaticeController {
 			return;
 		}
 		plateau = new Plateau();
-
-		if (laticeVue instanceof LaticeVueGraphique) {
-		    controllerPlacement = new ControllerJouerGraphique((LaticeVueGraphique) laticeVue);
-		} else if (laticeVue instanceof latice.view.console.LaticeVueConsole) {
-		    controllerPlacement = new latice.controller.ControllerJouerConsole((latice.view.console.LaticeVueConsole) laticeVue);
-		} else {
-		    throw new IllegalArgumentException("Vue inconnue : " + laticeVue.getClass().getName());
-		}
+		
 		controllerPlacement.initialiserPlateau(plateau);
 	}
 	
