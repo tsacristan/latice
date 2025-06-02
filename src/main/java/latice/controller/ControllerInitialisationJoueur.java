@@ -54,6 +54,8 @@ public class ControllerInitialisationJoueur {
 	}
 	
 	private static EtatsPseudo estPseudoValide(String pseudo) {
+		if (pseudo == null) return EtatsPseudo.PSEUDO_VIDE;
+		
 		boolean pseudoExistant = false;
 		for (Joueur joueur : joueurs) {
 			if (joueur.pseudo().equals(pseudo)) {
