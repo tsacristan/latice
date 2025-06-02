@@ -73,6 +73,7 @@ public class ControllerJouerConsole extends ControllerJouer {
 			plateau.placerLaTuileSurLePlateau(emplacementRack, emplacementPlateau, joueur.rackJoueur());
 			joueur.ajouterScore(pointsAjoutes);
 			estPremierTour = false;
+			joueur.incrementerTuilePlacees();
 			return true;
 		} catch (RackInvalideException e) {
 			laticeVue.afficherErreur(TextesErreurs.RACK_VIDE.toString());

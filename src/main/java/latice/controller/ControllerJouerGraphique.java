@@ -142,6 +142,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
                     success = true;
                     
                     tuilePlaceeDansCeTour = true;
+                    joueurCourant.incrementerTuilePlacees();
                 } catch (Exception e) {
                     laticeVue.afficherErreur(e.getMessage());
                 }

@@ -10,16 +10,18 @@ public class Joueur {
 	private RackJoueur rackJoueur;
 	private PileJoueur pileJoueur;
 	private int score;
+	private int tuilesPlacees;
 	
-	public Joueur(String pseudo, RackJoueur rackJoueur, PileJoueur pileJoueur, int score) {
+	public Joueur(String pseudo, RackJoueur rackJoueur, PileJoueur pileJoueur, int score, int tuilesPlacees) {
 		this.pseudo = pseudo;
 		this.rackJoueur = rackJoueur;
 		this.pileJoueur = pileJoueur;
 		this.score = score;
+		this.tuilesPlacees = tuilesPlacees;
 	}
 	
 	public Joueur(String pseudo) {
-		this(pseudo, new RackJoueur(), new PileJoueur(), 0);
+		this(pseudo, new RackJoueur(), new PileJoueur(), 0, 0);
 	}
 	
 	public Joueur() {
@@ -50,8 +52,16 @@ public class Joueur {
 		return score;
 	}
 	
+	public int tuilesPlacees() {
+		return tuilesPlacees;
+	}
+	
 	public void ajouterScore(int points) {
 	    this.score += points;
+	}
+	
+	public void incrementerTuilePlacees() {
+		tuilesPlacees++;
 	}
 
 	@Override

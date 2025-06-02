@@ -3,9 +3,6 @@ package latice.model.player;
 import latice.model.material.Couleur;
 import latice.model.material.Forme;
 import latice.model.material.Tuile;
-import latice.model.player.Joueur;
-import latice.model.player.PileJoueur;
-import latice.model.player.RackJoueur;
 import latice.util.exception.PiocheInvalideException;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -29,7 +26,7 @@ public class TestJoueur {
     
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         PileJoueur pile = new PileJoueur();
         List<Tuile> tuiles = Arrays.asList(
             new Tuile(Couleur.ROUGE, Forme.PLUME),
@@ -42,14 +39,14 @@ public class TestJoueur {
         pile.addAll(tuiles);
 
         RackJoueur rack = new RackJoueur();
-        joueurALEX = new Joueur("Alex", rack, pile, 0);
+        joueurALEX = new Joueur("Alex", rack, pile, 0, 0);
         joueurBOB= new Joueur("Bob");
         joueurDEFAUT = new Joueur();
         rack1 = new RackJoueur();
     }
 
     @Test
-    public void testConstructeurs() {
+    void tester_constructeurs() {
         assertEquals("Bob", joueurBOB.pseudo());
         assertNotNull(joueurBOB.rackJoueur());
         assertNotNull(joueurBOB.pileJoueur());
@@ -57,57 +54,64 @@ public class TestJoueur {
     }
 
     @Test
-    public void testRemplirRackPilePleine() {
+    void tester_piocherRack_pile_pleine() {
         assertDoesNotThrow(() -> joueurALEX.piocher());
         assertTrue(joueurALEX.rackJoueur().rack().size() <= RackJoueur.TAILLE_MAX_RACK);
     }
 
     @Test
-    public void testRemplirRackPiocheVide() {
-        Joueur joueurPiocheVide = new Joueur("Vide", new RackJoueur(), new PileJoueur(), 0);
+    void test_piocherRack_pioche_vide() {
+        Joueur joueurPiocheVide = new Joueur("Vide", new RackJoueur(), new PileJoueur(), 0, 0);
         assertThrows(PiocheInvalideException.class, joueurPiocheVide::piocher);
     }
 
     @Test
-    public void testPseudoGetter() {
+    void tester_pseudo_getter() {
         assertEquals("Alex", joueurALEX.pseudo());
     }
 
     @Test
-    public void testRackGetter() {
+    void tester_rack_getter() {
         assertNotNull(joueurALEX.rackJoueur());
     }
 
     @Test
-    public void testPileGetter() {
+    void tester_pile_getter() {
         assertNotNull(joueurALEX.pileJoueur());
+    }
+    
+    @Test
+    void tester_tuilesPlacees_getter_et_increment() {
+    	assertEquals(0, joueurALEX.tuilesPlacees());
+    	joueurALEX.incrementerTuilePlacees();
+    	assertEquals(1, joueurALEX.tuilesPlacees());
     }
 
     @Test
-    public void testEqualsEtHashCode() {
+    void test_equals_et_hashcode() {
 
         
-        Joueur j1 = new Joueur("Test", rack1, pile1, 0);
-        Joueur j2 = new Joueur("Test", rack1, pile1, 0);
+        Joueur j1 = new Joueur("Test", rack1, pile1, 0, 0);
+        Joueur j2 = new Joueur("Test", rack1, pile1, 0, 0);
 
         assertEquals(j1, j2);
         assertEquals(j1.hashCode(), j2.hashCode());
 
-        Joueur j3 = new Joueur("Différent", new RackJoueur(), new PileJoueur(), 0);
+        Joueur j3 = new Joueur("Différent", new RackJoueur(), new PileJoueur(), 0, 0);
         assertNotEquals(j1, j3);
     }
 
     @Test
-    public void testEqualsNullEtAutresTypes() {
-        assertNotEquals(joueurALEX, null);
-        assertNotEquals(joueurALEX, "pas un joueur");
+    void testEqualsNullEtAutresTypes() {
+        assertNotEquals(null, joueurALEX);
+        assertNotEquals("pas un joueur", joueurALEX);
         assertEquals(joueurALEX, joueurALEX);
     }
     
     @Test
     void test_score_du_joueur() {
-    	Joueur j1 = new Joueur("Bernard",rack1,pile1,12);
-    	assertEquals(j1.score(),score);
+    	Joueur j1 = new Joueur("Bernard",rack1,pile1,12, 0);
+    	assertEquals(score,j1.score());
     }
     
     @Test
