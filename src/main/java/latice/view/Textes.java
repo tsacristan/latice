@@ -14,7 +14,7 @@ public enum Textes {
 	COORDONNEES_HORS_RACK("Coordonnées en dehors du rack : indexRack=%d"),
 	AFFICHAGE_SOLEIL(CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET),
 	AFFICHAGE_JOUEUR("%s : %d points."),
-    DEMANDER_ACTION_TOUR("Que voulez-vous faire ? (1: jouer une tuile, 2: passer, 3: échanger des tuiles) : "),
+    DEMANDER_ACTION_TOUR("Que voulez-vous faire ? (1: jouer une tuile, 2: passer) : "),
     TUILES_ECHANGEES("Tuiles échangées !"),
     TOUR_PASSE("Tour passé !"),
     GAGNANT("Le gagnant est : %s avec %d points !"),

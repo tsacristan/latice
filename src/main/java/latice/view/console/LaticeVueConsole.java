@@ -93,8 +93,7 @@ public class LaticeVueConsole extends LaticeVue {
 	}
 
     public int demanderActionTour(Joueur joueur) {
-        Console.message(Textes.DEMANDER_ACTION_TOUR.texte());
-        return SaisieConsole.demanderEntierDansIntervalle(scanner, "", 1, 3);
+        return SaisieConsole.demanderEntierDansIntervalle(scanner, Textes.DEMANDER_ACTION_TOUR.texte(), 1, 3);
     }
 
     public void afficherMessage(String message) {
@@ -105,4 +104,5 @@ public class LaticeVueConsole extends LaticeVue {
 	public void afficherErreur(String message) {
 		Console.message(message);
 	}
+
 }
