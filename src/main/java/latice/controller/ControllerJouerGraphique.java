@@ -9,10 +9,8 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import latice.model.board.Coordonnees;
-import latice.model.board.Plateau;
-import latice.model.material.Tuile;
-import latice.model.material.TypeCase;
 import latice.model.player.Joueur;
+import latice.util.exception.PiocheInvalideException;
 import latice.view.TextesErreurs;
 import latice.view.gui.InterfaceCase;
 import latice.view.gui.InterfacePlateau;
@@ -25,7 +23,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	private Joueur joueurCourant;
 	private int tourCourant;
 	private Joueur premierJoueur;
-	private boolean tuilePlaceDansCeTour = false;
+	private boolean tuilePlaceeDansCeTour;
 	
 	public ControllerJouerGraphique(LaticeVueGraphique laticeVue) {
 		super();
@@ -42,46 +40,62 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		
 		jouerTour();
 	}
+
+	public void jouerTuile() {
+		PartieControle partieControle = laticeVue.interfaceJeu().initialiserPartieControle(joueurCourant);
+		
+		partieControle.boutonValider().setOnAction(e -> {
+			validerTour();
+		});
+		partieControle.boutonPasser().setOnAction(e -> {
+			passerTour();
+		});
+		partieControle.boutonPiocher().setOnAction(e -> {
+			piocher();
+	    });
+		
+		laticeVue.interfaceJeu().setBottom(partieControle);
+		laticeVue.interfaceJeu().interfacePlateau().actualiserRack(joueurCourant.rackJoueur());
+		appliquerDnDToutesCases();
+	}
 	
-	 public void validerTour() {
-		 if (!tuilePlaceDansCeTour) {
+	private void piocher() {
+		try {
+            joueurCourant.remplirRack();
+        } catch (PiocheInvalideException e) {
+            laticeVue.afficherErreur(e.getMessage());
+        }
+		avancerTour();
+	}
+	
+	private void validerTour() {
+		 if (!tuilePlaceeDansCeTour) {
 		        laticeVue.afficherErreur(TextesErreurs.VALIDATION_SANS_ACTION.texte());
 		        return;
 		    }
 		    avancerTour();
 	    }
 	 
-	 public void passerTour() {
+	 private void passerTour() {
 		 avancerTour();
 	 }
 	
-	 public void avancerTour() {
+	 private void avancerTour() {
 		 if (!joueurCourant.equals(premierJoueur)) tourCourant++;
-		    joueurCourant = prochainJoueur();
-		    tuilePlaceDansCeTour = false;
-		    jouerTour();
-	    }
-
-	public void jouerTuile() {
-		PartieControle nouvellePartie = laticeVue.interfaceJeu().initialiserPartieControle(joueurCourant, this::validerTour, this::passerTour);
-		
-		laticeVue.interfaceJeu().setBottom(nouvellePartie);
-		laticeVue.interfaceJeu().interfacePlateau().actualiserRack(joueurCourant.rackJoueur());
-		appliquerDnDToutesCases();
-		
-	}
+		 joueurCourant = prochainJoueur();
+		 tuilePlaceeDansCeTour = false;
+		 jouerTour();
+	 }
 	
 	private void jouerTour() {
-		
-		laticeVue.afficherPlateau(plateau);
-		laticeVue.afficherRack(joueurCourant, this::validerTour, this::passerTour);
-		laticeVue.afficherTour(joueurs, joueurCourant, tourCourant);
-		
 		if (tourCourant >= 10) {
-			laticeVue.afficherErreur("Partie finie");
-			annoncerLeGagnant();
+			annoncerGagnants();
 			return;
 		}
+		
+		laticeVue.afficherPlateau(plateau);
+		laticeVue.afficherRack(joueurCourant);
+		laticeVue.afficherTour(joueurs, joueurCourant, tourCourant);
 		
 		jouerTuile();
 	}
@@ -107,84 +121,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		}
 	}
 	
-	private int compterLignes(Coordonnees coordDepart, int dx, int dy, Tuile tuileReference, boolean parCouleur) {
-	    int compteur = 0;
-	    int colonne = coordDepart.colonne() + dx;
-	    int ligne = coordDepart.ligne() + dy;
-	    while (colonne >= 0 && colonne < Plateau.COLONNES && ligne >= 0 && ligne < Plateau.LIGNES) {
-	        Tuile tuileCourante = plateau.grille()[ligne][colonne].tuile();
-	        if (tuileCourante == null) break;
-	        boolean correspond;
-	        if (parCouleur) {
-	            correspond = tuileCourante.couleur() == tuileReference.couleur();
-	        } else {
-	            correspond = tuileCourante.forme() == tuileReference.forme();
-	        }
-	        if (correspond) {
-	            compteur++;
-	            colonne += dx;
-	            ligne += dy;
-	        } else {
-	            break;
-	        }
-	    }
-	    return compteur;
-	}
-	 
-	 private boolean finDeJeu() {
-	        return tourCourant >= 10;
-	    }
-	
-	 // TODO Corriger système de points : fonctionne pas correctement, j'ai ajouté des prints pour débug
-	 private void compterEtAttribuerPoints(Coordonnees coordonneesTuile, Joueur joueur, boolean estUnSoleil) {
-		    Tuile tuilePlacee = plateau.obtenirTuile(coordonneesTuile).tuile();
-		    if (tuilePlacee == null) return;
-
-		    int gaucheCouleur = compterLignes(coordonneesTuile, -1, 0, tuilePlacee, true);
-		    int droiteCouleur = compterLignes(coordonneesTuile, 1, 0, tuilePlacee, true);
-		    int horizCouleur = 1 + gaucheCouleur + droiteCouleur;
-
-		    int gaucheForme = compterLignes(coordonneesTuile, -1, 0, tuilePlacee, false);
-		    int droiteForme = compterLignes(coordonneesTuile, 1, 0, tuilePlacee, false);
-		    int horizForme = 1 + gaucheForme + droiteForme;
-
-		    int maxHoriz = Math.max(horizCouleur, horizForme);
-
-		    int hautCouleur = compterLignes(coordonneesTuile, 0, -1, tuilePlacee, true);
-		    int basCouleur = compterLignes(coordonneesTuile, 0, 1, tuilePlacee, true);
-		    int vertCouleur = 1 + hautCouleur + basCouleur;
-
-		    int hautForme = compterLignes(coordonneesTuile, 0, -1, tuilePlacee, false);
-		    int basForme = compterLignes(coordonneesTuile, 0, 1, tuilePlacee, false);
-		    int vertForme = 1 + hautForme + basForme;
-
-		    int maxVert = Math.max(vertCouleur, vertForme);
-
-		    int points = 0;
-		    if (maxHoriz > 1) points += maxHoriz;
-		    if (maxVert > 1) points += maxVert;
-		    if (maxHoriz > 1 && maxVert > 1) points -= 1;
-
-		    points = Math.min(points, 4);
-
-		    if (estUnSoleil) {
-		        points += 2;
-		        System.out.println("  Bonus case soleil : +2");
-		    }
-
-		    TypeCase typeCasePlacee = plateau.obtenirTuile(coordonneesTuile).typeCase();
-		    System.out.println("[DEBUG] TypeCase à " + coordonneesTuile + " : " + typeCasePlacee);
-
-		    System.out.println("Points attribués : " + points);
-		    joueur.ajouterScore(points);
-		    System.out.println("== [DEBUG] " + joueur.pseudo() + " nouveau total : " + joueur.score() + " ==");
-	    
-	    if (finDeJeu()) {
-	    	annoncerLeGagnant();
-	    }
-	}
-	
-	private void appliquerDnD(InterfaceCase interfaceCase, int colonne, int ligne) {
+	private void appliquerDnD(InterfaceCase interfaceCase, int ligne, int colonne) {
 		interfaceCase.setOnDragOver(event -> {
             if (event.getGestureSource() != interfaceCase && event.getDragboard().hasString()) {
                 event.acceptTransferModes(TransferMode.MOVE);
@@ -199,24 +136,10 @@ public class ControllerJouerGraphique extends ControllerJouer {
             if (db.hasString()) {
                 try {
                     int indexRack = Integer.parseInt(db.getString());
-                    System.out.println("[DnD] Placement à (colonne : " + colonne + ", ligne : " + ligne + ")");
-                    Coordonnees coordonneesTuile = new Coordonnees(colonne, ligne);
-                    System.out.println("[DnD] Coordonnées : " + coordonneesTuile);
-
-                    TypeCase typeCaseAvant = plateau.obtenirTuile(coordonneesTuile).typeCase();
-                    boolean estUnSoleil = typeCaseAvant == TypeCase.CASE_SOLEIL;
-                    System.out.println("[DEBUG] TypeCase avant placement : " + typeCaseAvant);
-
-                    plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(colonne, ligne), joueurCourant.rackJoueur());
-                    compterEtAttribuerPoints(coordonneesTuile, joueurCourant, estUnSoleil);
-
-                    laticeVue.actualiserScores(joueurs, joueurCourant);
-                    
-                    laticeVue.afficherRack(joueurCourant, this::validerTour, this::passerTour);
-
-                    tuilePlaceDansCeTour = true;
+                    plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), joueurCourant.rackJoueur());
                     success = true;
-
+                    
+                    tuilePlaceeDansCeTour = true;
                 } catch (Exception e) {
                     laticeVue.afficherErreur(e.getMessage());
                 }
@@ -226,27 +149,11 @@ public class ControllerJouerGraphique extends ControllerJouer {
             event.consume();
         });
 	}
-	
-	private void annoncerLeGagnant() {
-	    int maxScore = joueurs.stream().mapToInt(Joueur::score).max().orElse(0);
-	    List<Joueur> winners = new ArrayList<>();
-	    for (Joueur j : joueurs) {
-	        if (j.score() == maxScore) winners.add(j);
-	    }
-	    StringBuilder sb = new StringBuilder();
-	    if (winners.size() == 1) {
-	        sb.append("Le gagnant est : ").append(winners.get(0).pseudo()).append(" avec ").append(maxScore).append(" points !");
-	    } else {
-	        sb.append("Égalité ! Gagnants : ");
-	        for (Joueur j : winners) sb.append(j.pseudo()).append(" ");
-	        sb.append("avec ").append(maxScore).append(" points !");
-	    }
-	    javafx.application.Platform.runLater(() -> {
-	        javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.INFORMATION);
-	        alert.setTitle("Fin de la partie");
-	        alert.setHeaderText("Résultat");
-	        alert.setContentText(sb.toString());
-	        alert.showAndWait();
-	    });
+
+	@Override
+	public void annoncerGagnants() {
+		ArrayList<Joueur> joueursGagnants = (ArrayList<Joueur>) obtenirGagnants();
+		
+		laticeVue.afficherGagnants(joueursGagnants);
 	}
 }

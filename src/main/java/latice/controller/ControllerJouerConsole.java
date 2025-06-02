@@ -45,7 +45,6 @@ public class ControllerJouerConsole extends ControllerJouer {
 			joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
 			laticeVue.afficherMessage("");
 		}
-		
 		annoncerGagnants();
 	}
 	
@@ -90,7 +89,7 @@ public class ControllerJouerConsole extends ControllerJouer {
 	private void jouerTour(Joueur joueurQuiJoue, int nombreTour, boolean jouerCentre) {
 		laticeVue.afficherTour(joueurs, joueurQuiJoue, nombreTour);
 		laticeVue.afficherPlateau(plateau);
-		laticeVue.afficherRack(joueurQuiJoue, null, null);
+		laticeVue.afficherRack(joueurQuiJoue);
 		
 		int action = laticeVue.demanderActionTour();
         switch (action) {
@@ -105,28 +104,11 @@ public class ControllerJouerConsole extends ControllerJouer {
         }
 	}
 	
-	private ArrayList<Joueur> obtenirGagnants() {
-		int meilleurScore = 0;
-    	ArrayList<Joueur> joueursGagnants = new ArrayList<>();
-    	for (Joueur joueur : joueurs) {
-    		if (meilleurScore > joueur.score()) {
-    			meilleurScore = Integer.max(meilleurScore, joueur.score());
-    			joueursGagnants.clear();
-    		} else if (meilleurScore == joueur.score()) {
-    			joueursGagnants.add(joueur);
-    		}
-    	}
+	@Override
+    public void annoncerGagnants() {
+    	ArrayList<Joueur> joueursGagnants = (ArrayList<Joueur>) obtenirGagnants();
     	
-    	return joueursGagnants;
-	}
-	
-    private void annoncerGagnants() {
-    	ArrayList<Joueur> joueursGagnants = obtenirGagnants();
-    	
-    	laticeVue.afficherMessage(Textes.AFFICHAGE_GAGNANTS.texte());
-    	for (Joueur joueur : joueursGagnants) {
-    		laticeVue.afficherMessage(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()));
-    	}
+    	laticeVue.afficherGagnants(joueursGagnants);
     }
 	
 	public void initialiserValeurs(Plateau plateau, LaticeVueConsole laticeVue) {

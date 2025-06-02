@@ -1,5 +1,6 @@
 package latice.view.gui;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import latice.model.board.Plateau;
 import latice.model.player.Joueur;
 import latice.model.player.RackJoueur;
 import latice.view.LaticeVue;
+import latice.view.Textes;
 
 public class LaticeVueGraphique extends LaticeVue {
 	private RackJoueur rack;
@@ -23,11 +25,11 @@ public class LaticeVueGraphique extends LaticeVue {
 	}
 
 	@Override
-	public void afficherRack(Joueur joueur, Runnable validerTour, Runnable passerTour) {
+	public void afficherRack(Joueur joueur) {
 		if (interfaceRack == null) {
 			interfaceRack = new InterfaceRack(joueur.rackJoueur());
 			joueur.rackJoueur().ajouterListener(interfaceRack);
-			interfaceJeu.setBottom(interfaceJeu.initialiserPartieControle(joueur, validerTour, passerTour));
+			interfaceJeu.setBottom(interfaceJeu.initialiserPartieControle(joueur));
 		} else {
 			interfaceRack.afficherRack(joueur.rackJoueur());
 		}
@@ -86,4 +88,14 @@ public class LaticeVueGraphique extends LaticeVue {
 	    partieJoueur.afficherJoueurs(joueurCourant, joueurs);
 	}
 
+	@Override
+	public void afficherGagnants(ArrayList<Joueur> gagnants) {
+		StringBuilder chaineBuilder = new StringBuilder(Textes.AFFICHAGE_GAGNANTS.texte());
+
+    	for (Joueur joueur : gagnants) {
+    		chaineBuilder.append(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()));
+    	}
+    	
+    	afficherMessage(chaineBuilder.toString());
+	}
 }

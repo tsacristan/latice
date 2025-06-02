@@ -18,6 +18,7 @@ public abstract class ControllerJouer {
 	protected ArrayList<Joueur> joueurs;
 
 	public abstract void jouer(List<Joueur> joueurs);
+	public abstract void annoncerGagnants();
 	
 	public void initialiserPlateau(Plateau plateau) {
 		this.plateau = plateau;
@@ -72,5 +73,21 @@ public abstract class ControllerJouer {
 		}
 		
 		return casesAdjacentesEnCommun;
+	}
+	
+	public List<Joueur> obtenirGagnants() {
+		int meilleurScore = 0;
+    	ArrayList<Joueur> joueursGagnants = new ArrayList<>();
+    	
+    	for (Joueur joueur : joueurs) {
+    		if (meilleurScore > joueur.score()) {
+    			meilleurScore = Integer.max(meilleurScore, joueur.score());
+    			joueursGagnants.clear();
+    		} else if (meilleurScore == joueur.score()) {
+    			joueursGagnants.add(joueur);
+    		}
+    	}
+    	
+    	return joueursGagnants;
 	}
 }

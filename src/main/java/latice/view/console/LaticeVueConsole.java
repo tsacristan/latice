@@ -23,7 +23,7 @@ public class LaticeVueConsole extends LaticeVue {
 	}
 
 	@Override
-	public void afficherRack(Joueur joueur, Runnable validerTour, Runnable passerTour) {
+	public void afficherRack(Joueur joueur) {
 		afficheur.afficherRack(joueur.rackJoueur());
 	}
 
@@ -106,4 +106,11 @@ public class LaticeVueConsole extends LaticeVue {
 		Console.message(message);
 	}
 
+	@Override
+	public void afficherGagnants(ArrayList<Joueur> gagnants) {
+		afficherMessage(Textes.AFFICHAGE_GAGNANTS.texte());
+    	for (Joueur joueur : gagnants) {
+    		afficherMessage(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()));
+    	}
+	}
 }
