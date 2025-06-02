@@ -45,8 +45,9 @@ public class LaticeVueConsole extends LaticeVue {
 	@Override
 	public void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour) {
 		Console.messagef(Textes.NB_TOUR, nombreTour, joueurQuiJoue.pseudo());
+		Console.messagef(Textes.AFFICHAGE_TUILES_RESTANTES, joueurQuiJoue.pileJoueur().size());
 		for (Joueur joueur : joueurs) {
-			Console.messagef(Textes.AFFICHAGE_JOUEUR, joueur.pseudo(), joueur.points(), joueur.tuilesPlacees());
+			Console.messagef(Textes.AFFICHAGE_JOUEUR, joueur.pseudo(), joueur.points(), joueur.tuilesPlacees(), joueur.pileJoueur());
 		}
 	}
 

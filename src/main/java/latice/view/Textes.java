@@ -14,6 +14,7 @@ public enum Textes {
 	COORDONNEES_HORS_RACK("Coordonnées en dehors du rack : indexRack=%d"),
 	AFFICHAGE_SOLEIL(CouleurConsole.ANSI_TEXTE_JAUNE + EmojiForme.CASE_SOLEIL.emoji() + CouleurConsole.ANSI_RESET),
 	AFFICHAGE_JOUEUR("%s : %d points, tuiles placées : %d"),
+	AFFICHAGE_TUILES_RESTANTES("Tuiles restantes dans la pile : %d"),
 	AFFICHAGE_POINTS("Points : %d"),
 	AFFICHAGE_TUILES_PLACEES("Placées : %d"),
     DEMANDER_ACTION_TOUR("Que voulez-vous faire ? (1: jouer une tuile, 2: passer, 3: échanger le rack) : "),
