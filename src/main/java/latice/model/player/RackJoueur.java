@@ -7,7 +7,6 @@ import latice.model.material.Tuile;
 import latice.util.Observable;
 import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
-import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
 import latice.view.TextesErreurs;
 
