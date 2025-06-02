@@ -72,7 +72,7 @@ public class LaticeVueGraphique extends LaticeVue {
 
 	@Override
 	public void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour) {
-		interfaceJeu.afficherJoueursScoreTour(joueurQuiJoue, joueurs, nombreTour);
+		interfaceJeu.afficherJoueursPointsTour(joueurQuiJoue, joueurs, nombreTour);
 	}
 	
 	@Override

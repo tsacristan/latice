@@ -71,7 +71,7 @@ public class ControllerJouerConsole extends ControllerJouer {
 		try {
 			int pointsAjoutes = calculerPointsCoup(emplacementPlateau, joueur.rackJoueur().rack().get(emplacementRack));
 			plateau.placerLaTuileSurLePlateau(emplacementRack, emplacementPlateau, joueur.rackJoueur());
-			joueur.ajouterScore(pointsAjoutes);
+			joueur.ajouterPoints(pointsAjoutes);
 			estPremierTour = false;
 			joueur.incrementerTuilePlacees();
 			return true;

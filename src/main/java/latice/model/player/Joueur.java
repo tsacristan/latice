@@ -9,14 +9,14 @@ public class Joueur {
 	private String pseudo;
 	private RackJoueur rackJoueur;
 	private PileJoueur pileJoueur;
-	private int score;
+	private int points;
 	private int tuilesPlacees;
 	
-	public Joueur(String pseudo, RackJoueur rackJoueur, PileJoueur pileJoueur, int score, int tuilesPlacees) {
+	public Joueur(String pseudo, RackJoueur rackJoueur, PileJoueur pileJoueur, int points, int tuilesPlacees) {
 		this.pseudo = pseudo;
 		this.rackJoueur = rackJoueur;
 		this.pileJoueur = pileJoueur;
-		this.score = score;
+		this.points = points;
 		this.tuilesPlacees = tuilesPlacees;
 	}
 	
@@ -48,16 +48,16 @@ public class Joueur {
 		return pileJoueur;
 	}
 	
-	public int score() {
-		return score;
+	public int points() {
+		return points;
 	}
 	
 	public int tuilesPlacees() {
 		return tuilesPlacees;
 	}
 	
-	public void ajouterScore(int points) {
-	    this.score += points;
+	public void ajouterPoints(int points) {
+	    this.points += points;
 	}
 	
 	public void incrementerTuilePlacees() {
@@ -66,7 +66,7 @@ public class Joueur {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(pileJoueur, pseudo, rackJoueur, score);
+		return Objects.hash(pileJoueur, pseudo, rackJoueur, points);
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class Joueur {
 			return false;
 		Joueur other = (Joueur) obj;
 		return Objects.equals(pileJoueur, other.pileJoueur) && Objects.equals(pseudo, other.pseudo)
-				&& Objects.equals(rackJoueur, other.rackJoueur) && score == other.score;
+				&& Objects.equals(rackJoueur, other.rackJoueur) && points == other.points;
 	}
 
 }

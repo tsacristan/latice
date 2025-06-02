@@ -39,7 +39,7 @@ public class PartieJoueur extends VBox {
     	dynamicBox.getChildren().clear();
     	afficherJoueursPresent(joueurQuiJoue, joueurs);
     	dynamicBox.getChildren().add(espace);
-    	afficherJoueursScores(joueurs);
+    	afficherJoueursPoints(joueurs);
     }
     
     private void afficherJoueursPresent(Joueur joueurQuiJoue, List<Joueur> joueurs) {
@@ -54,7 +54,7 @@ public class PartieJoueur extends VBox {
     	}
     }
     
-    private void afficherJoueursScores(List<Joueur> joueurs) {
+    private void afficherJoueursPoints(List<Joueur> joueurs) {
     	dynamicBox.getChildren().add(pointsLabel);
     	Label lblJoueur;
     	for (Joueur joueur : joueurs) {

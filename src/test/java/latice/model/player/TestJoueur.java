@@ -115,8 +115,8 @@ public class TestJoueur {
     }
     
     @Test
-    void test_ajouterScore() {    	
-    	joueurBOB.ajouterScore(4);
+    void test_ajouterPoints() {    	
+    	joueurBOB.ajouterPoints(4);
     	
     	assertEquals(4,joueurBOB.points());
     	
