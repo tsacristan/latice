@@ -92,7 +92,7 @@ public class LaticeVueConsole extends LaticeVue {
 	    return indices;
 	}
 
-    public int demanderActionTour(Joueur joueur) {
+    public int demanderActionTour() {
         return SaisieConsole.demanderEntierDansIntervalle(scanner, Textes.DEMANDER_ACTION_TOUR.texte(), 1, 3);
     }
 

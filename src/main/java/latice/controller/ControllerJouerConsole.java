@@ -88,7 +88,7 @@ public class ControllerJouerConsole extends ControllerJouer {
 		laticeVue.afficherPlateau(plateau);
 		laticeVue.afficherRack(joueurQuiJoue, null, null);
 		
-		int action = laticeVue.demanderActionTour(joueurQuiJoue);
+		int action = laticeVue.demanderActionTour();
         switch (action) {
             case 1:
             	jouerTuile(joueurQuiJoue, jouerCentre);
