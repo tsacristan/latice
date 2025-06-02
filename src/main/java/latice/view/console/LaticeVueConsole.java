@@ -2,11 +2,11 @@ package latice.view.console;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
 import latice.model.player.Joueur;
-import latice.model.player.RackJoueur;
 import latice.util.exception.PlateauIndexInvalideException;
 import latice.view.LaticeVue;
 import latice.view.Textes;
@@ -23,7 +23,7 @@ public class LaticeVueConsole extends LaticeVue {
 	}
 
 	@Override
-	public void afficherRack(Joueur joueur) {
+	public void afficherRack(Joueur joueur, Runnable validerTour, Runnable passerTour) {
 		afficheur.afficherRack(joueur.rackJoueur());
 	}
 
@@ -39,7 +39,6 @@ public class LaticeVueConsole extends LaticeVue {
 	@Override
 	public String choisirPseudo(int numeroJoueur) {
 		Console.messagef(Textes.CHOIX_PSEUDO, numeroJoueur);
-		
 		return scanner.nextLine();
 	}
 
@@ -47,10 +46,10 @@ public class LaticeVueConsole extends LaticeVue {
 	public void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour) {
 		Console.messagef(Textes.NB_TOUR, nombreTour, joueurQuiJoue.pseudo());
 		for (Joueur joueur : joueurs) {
-			Console.messagef(Textes.AFFICHAGE_JOUEUR, joueur.pseudo(), 0);
+			Console.messagef(Textes.AFFICHAGE_JOUEUR, joueur.pseudo(), joueur.score());
 		}
 	}
-	
+
 	public int demanderTuileAPoser(Joueur joueur) {
 		int tailleRack = joueur.rackJoueur().rack().size();
 		String texte = String.format(Textes.DEMANDER_TUILE.toString(), tailleRack);
@@ -74,13 +73,36 @@ public class LaticeVueConsole extends LaticeVue {
 				Console.messagef(TextesErreurs.COORDS_INVALIDE);
 			}
 		}
-		
 		return coordsFinal;
 	}
-	
+
+	public void afficherScores(List<Joueur> joueurs, Joueur joueurCourant) {
+        for (Joueur joueur : joueurs) {
+            Console.messagef("%s : %d points.", joueur.pseudo(), joueur.score());
+        }
+        Console.messagef("-> Tour de %s", joueurCourant.pseudo());
+    }
+
+	public List<Integer> demanderIndicesATechanger(Joueur joueur) {
+	    int tailleRack = joueur.rackJoueur().rack().size();
+	    List<Integer> indices = new ArrayList<>();
+	    for (int i = 0; i < tailleRack; i++) {
+	        indices.add(i);
+	    }
+	    return indices;
+	}
+
+    public int demanderActionTour(Joueur joueur) {
+        Console.message(Textes.DEMANDER_ACTION_TOUR.texte());
+        return SaisieConsole.demanderEntierDansIntervalle(scanner, "", 1, 3);
+    }
+
+    public void afficherMessage(String message) {
+        Console.message(message);
+    }
+
 	@Override
 	public void afficherErreur(String message) {
 		Console.message(message);
-	} 
-	
+	}
 }

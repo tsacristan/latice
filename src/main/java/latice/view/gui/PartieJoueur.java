@@ -16,6 +16,7 @@ public class PartieJoueur extends VBox {
     private Label pointsLabel = new Label("Points :");
     
     private Region espace;
+    private VBox dynamicBox;
         
     public PartieJoueur() {
         setSpacing(10);
@@ -28,12 +29,16 @@ public class PartieJoueur extends VBox {
         espace.setMinHeight(100);
         
         VBox.setMargin(pointsLabel, new Insets(0, 0, 0, 10));
+        
+        dynamicBox = new VBox();
+        dynamicBox.setSpacing(10);
+        this.getChildren().add(dynamicBox);
     }
 
     public void afficherJoueurs(Joueur joueurQuiJoue, List<Joueur> joueurs) {
-    	getChildren().clear();
+    	dynamicBox.getChildren().clear();
     	afficherJoueursPresent(joueurQuiJoue, joueurs);
-    	getChildren().add(espace);
+    	dynamicBox.getChildren().add(espace);
     	afficherJoueursScores(joueurs);
     }
     
@@ -45,18 +50,18 @@ public class PartieJoueur extends VBox {
     		lblJoueur = new Label(prefixe + joueur.pseudo());
     		lblJoueur.setStyle(STYLE_COMMUN);
     		VBox.setMargin(lblJoueur, new Insets(0, 0, 0, 10));
-    		getChildren().add(lblJoueur);
+    		dynamicBox.getChildren().add(lblJoueur);
     	}
     }
     
     private void afficherJoueursScores(List<Joueur> joueurs) {
-    	getChildren().add(pointsLabel);
+    	dynamicBox.getChildren().add(pointsLabel);
     	Label lblJoueur;
     	for (Joueur joueur : joueurs) {
     		lblJoueur = new Label(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()));
     		lblJoueur.setStyle(STYLE_COMMUN);
     		VBox.setMargin(lblJoueur, new Insets(0, 0, 0, 20));
-    		getChildren().add(lblJoueur);
+    		dynamicBox.getChildren().add(lblJoueur);
     	}
 	}
 }

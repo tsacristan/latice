@@ -10,6 +10,7 @@ import latice.model.player.PileJoueur;
 import latice.util.exception.PiocheInvalideException;
 import latice.view.LaticeVue;
 import latice.view.TextesErreurs;
+import latice.view.gui.LaticeVueGraphique;
 
 public class LaticeController {
 	
@@ -28,7 +29,6 @@ public class LaticeController {
 	
 	public void demarrerJeu() {
 		initialiserPartie();
-		
 		controllerPlacement.jouer(joueurs);
 	}
 	
@@ -50,7 +50,14 @@ public class LaticeController {
 			return;
 		}
 		plateau = new Plateau();
-		
+
+		if (laticeVue instanceof LaticeVueGraphique) {
+		    controllerPlacement = new ControllerJouerGraphique((LaticeVueGraphique) laticeVue);
+		} else if (laticeVue instanceof latice.view.console.LaticeVueConsole) {
+		    controllerPlacement = new latice.controller.ControllerJouerConsole((latice.view.console.LaticeVueConsole) laticeVue);
+		} else {
+		    throw new IllegalArgumentException("Vue inconnue : " + laticeVue.getClass().getName());
+		}
 		controllerPlacement.initialiserPlateau(plateau);
 	}
 	

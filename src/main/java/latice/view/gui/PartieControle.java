@@ -6,14 +6,13 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import latice.model.player.Joueur;
-import latice.model.player.RackJoueur;
 
 public class PartieControle extends HBox {
 	
 	private InterfaceRack interfaceRack;
 	private static final String STYLE_COMMUN = "-fx-font-size: 25px; -fx-alignment: center;";
 
-	public PartieControle(Joueur joueur) {
+	public PartieControle(Joueur joueur, Runnable validerTour, Runnable passerTour) {
 	    Button valider = new Button("Valider");
 	    Button passer = new Button("Passer");
 	    Button piocher = new Button("Piocher");
@@ -23,6 +22,10 @@ public class PartieControle extends HBox {
 	    passer.setStyle(STYLE_COMMUN);
 	    piocher.setStyle(STYLE_COMMUN);
 	    
+	    valider.setOnAction(e -> validerTour.run());
+	    
+	    passer.setOnAction(e -> passerTour.run());
+	    
 	    piocher.setOnAction(e -> {
 	        try {
 	            joueur.remplirRack();
@@ -30,7 +33,6 @@ public class PartieControle extends HBox {
 	            System.out.println("Erreur : " + ex.getMessage());
 	        }
 	    });
-	    
 	    
 	    VBox vboxBoutonsGauche = new VBox(10); 
 	    vboxBoutonsGauche.getChildren().addAll(passer, piocher);

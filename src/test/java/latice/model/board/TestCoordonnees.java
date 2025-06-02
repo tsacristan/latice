@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import latice.model.material.Case;
@@ -15,7 +16,6 @@ import latice.model.material.TypeCase;
 import latice.util.exception.PlateauIndexInvalideException;
 
 class TestCoordonnees {
-
 			
 	    @Test
 	    void testCoordonneesStockeesCorrectementLigne() throws PlateauIndexInvalideException {
@@ -143,12 +143,13 @@ class TestCoordonnees {
 	    	assertEquals(2,colonne);
 	    }
 	    
-	    @Test
+	  
+	   @Test
 	    void testVerificationCaseAdjacenteHautePlateauInvalide() throws PlateauIndexInvalideException {
 	    	Coordonnees c = new Coordonnees(1,8);
 	    	
 	    	assertEquals(null,c.verificationCaseAdjacenteHaute());
-	    }
+	   }
 	    
 	    @Test
 	    void testVerificationCaseAdjacenteDroitePlateauInvalide() throws PlateauIndexInvalideException {

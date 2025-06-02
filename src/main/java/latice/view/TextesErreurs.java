@@ -15,7 +15,10 @@ public enum TextesErreurs {
 	PIOCHE_VIDE("Erreur : la pioche est vide."),
 	ETAT_INCONNU("Etat pseudo inconnu !"),
 	TUILE_ISOLEE("Erreur : la tuile ne peut pas être isolée !"),
-	TUILE_NI_COULEUR_NI_FORME("Erreur : aucune tuile adjacente a la bonne couleur ou la bonne forme.");
+	TUILE_NI_COULEUR_NI_FORME("Erreur : aucune tuile adjacente a la bonne couleur ou la bonne forme."),
+	VALIDATION_SANS_ACTION("Vous devez jouer avant de valider !"),
+	ACTION_INVALIDE("Action invalide !"),
+	DEJA_PIOCHER("Vous avez déjà pioché ce tour.");
 	
 	private String texte;
 

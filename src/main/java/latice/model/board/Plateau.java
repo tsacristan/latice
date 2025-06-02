@@ -105,7 +105,7 @@ public class Plateau extends Observable<PlateauListener> {
     }
     
     public Case obtenirTuile(Coordonnees coords) {
-    	return grille[coords.colonne()][coords.ligne()];
+    	return grille[coords.ligne()][coords.colonne()];
     }
     
     private void verificationPlacementValide(Tuile tuileAPlacer, Coordonnees aPlacerSur) throws AucuneTuileAdjacenteException, AucuneCouleurOuFormeCorrespondantException {

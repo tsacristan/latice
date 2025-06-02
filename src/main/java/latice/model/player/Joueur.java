@@ -45,6 +45,12 @@ public class Joueur {
 	public int score() {
 		return score;
 	}
+	
+	public void ajouterScore(int points) {
+	    System.out.println("[DEBUG] " + pseudo + " - score avant : " + score + ", ajout de : " + points);
+	    this.score += points;
+	    System.out.println("[DEBUG] " + pseudo + " - score après : " + score);
+	}
 
 	@Override
 	public int hashCode() {

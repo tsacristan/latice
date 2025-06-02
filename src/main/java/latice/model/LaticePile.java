@@ -5,8 +5,10 @@ import java.util.Collections;
 
 import latice.model.material.Tuile;
 
+@SuppressWarnings("serial")
 public abstract class LaticePile extends ArrayList<Tuile> {
-    public Tuile retirerTuile() {
+
+	public Tuile retirerTuile() {
         return remove(0);
     }
 

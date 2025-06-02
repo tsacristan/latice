@@ -9,7 +9,6 @@ import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
-import latice.view.Textes;
 import latice.view.TextesErreurs;
 
 public class RackJoueur extends Observable<RackListener> {
@@ -49,6 +48,13 @@ public class RackJoueur extends Observable<RackListener> {
        	declencherListeners();
     }
     
+    public void piocherUneTuile(PileJoueur pile) throws PiocheInvalideException {
+        if (rack.size() < TAILLE_MAX_RACK && !pile.isEmpty()) {
+            rack.add(pile.retirerTuile());
+            declencherListeners();
+        }
+    }
+    
     public Tuile choisirTuile(int index) throws RackInvalideException, RackIndexInvalideException {
     	if (rack.isEmpty()) {
             throw new RackInvalideException(
@@ -63,6 +69,28 @@ public class RackJoueur extends Observable<RackListener> {
         return aJouer;
     }
     
+    public void echangerTuiles(List<Integer> indices, PileJoueur pile) throws PiocheInvalideException {
+        if (indices == null || indices.isEmpty()) return;
+
+        if (pile.size() < indices.size()) {
+            throw new PiocheInvalideException(TextesErreurs.PIOCHE_VIDE.toString());
+        }
+
+        indices.sort((a, b) -> Integer.compare(b, a));
+        List<Tuile> tuilesARetirer = new ArrayList<>();
+        for (int idx : indices) {
+            if (idx >= 0 && idx < rack.size()) {
+                tuilesARetirer.add(rack.remove(idx));
+            }
+        }
+
+        for (int i = 0; i < tuilesARetirer.size(); i++) {
+            rack.add(pile.retirerTuile());
+        }
+
+        pile.addAll(tuilesARetirer);
+        declencherListeners();
+    }
 
     @Override
     public String toString() {
@@ -74,7 +102,7 @@ public class RackJoueur extends Observable<RackListener> {
 	}
 
 	@Override
-	protected void declencherListeners() {
+	public void declencherListeners() {
 		for (RackListener listener : listeners) {
     	    listener.rackEstMisAJour();
     	}

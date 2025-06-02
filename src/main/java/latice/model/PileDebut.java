@@ -5,6 +5,7 @@ import latice.model.material.Forme;
 import latice.model.material.Tuile;
 import latice.model.player.PileJoueur;
 
+@SuppressWarnings("serial")
 public class PileDebut extends LaticePile {
 	public static final int NOMBRE_TUILE_TOTAL = 72;
 	

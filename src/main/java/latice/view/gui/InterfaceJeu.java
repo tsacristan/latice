@@ -18,13 +18,9 @@ public class InterfaceJeu extends BorderPane {
 		partieJoueur = new PartieJoueur();
 		
         setTop(partieHaut);
-        
       	setCenter(null);
-        
         setRight(new PartieInfo());
-        
         setLeft(partieJoueur);
-        
         setBottom(null);
 	}
 	
@@ -43,8 +39,8 @@ public class InterfaceJeu extends BorderPane {
 		return interfacePlateau;
     }
     
-    public PartieControle initialiserPartieControle(Joueur joueur) {
-    	PartieControle partie = new PartieControle(joueur);
+    public PartieControle initialiserPartieControle(Joueur joueur, Runnable validerTour, Runnable passerTour) {
+    	PartieControle partie = new PartieControle(joueur, validerTour, passerTour);
     	joueur.rackJoueur().ajouterListener(partie.interfaceRack());
         
         
