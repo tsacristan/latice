@@ -106,4 +106,17 @@ public class TestJoueur {
     	
     	assertEquals(j1.score(),12);
     }
+    
+    @Test
+    void test_ajouterScore() {
+    	
+    	Joueur j1 = new Joueur("Lola");
+    	
+    	j1.ajouterScore(4);
+    	
+    	assertEquals(4,j1.score());
+    	
+    }
+    
+    
 }
