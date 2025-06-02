@@ -136,7 +136,11 @@ public class ControllerJouerGraphique extends ControllerJouer {
             if (db.hasString()) {
                 try {
                     int indexRack = Integer.parseInt(db.getString());
-                    plateau.placerLaTuileSurLePlateau(indexRack, new Coordonnees(ligne, colonne), joueurCourant.rackJoueur());
+                    
+                    Coordonnees coordDePlacement = new Coordonnees(ligne, colonne);
+                    int pointsAjoutes = calculerPointsCoup(coordDePlacement, joueurCourant.rackJoueur().rack().get(indexRack));
+                    plateau.placerLaTuileSurLePlateau(indexRack, coordDePlacement, joueurCourant.rackJoueur());
+        			joueurCourant.ajouterScore(pointsAjoutes);
                     success = true;
                     
                     tuilePlaceeDansCeTour = true;
