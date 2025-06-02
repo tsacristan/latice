@@ -1,8 +1,6 @@
 package latice.view.gui;
 
 import javafx.geometry.Pos;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
 import javafx.scene.layout.GridPane;
 import latice.model.board.Coordonnees;
 import latice.model.board.Plateau;
@@ -16,15 +14,9 @@ import latice.view.LaticeVue;
 public class InterfacePlateau extends GridPane implements PlateauListener, AfficherPlateau {
 	
 	private Plateau plateau;
-	private RackJoueur rackJoueur;
-	private LaticeVue laticeVue;
-
 	public InterfacePlateau(Plateau plateau, RackJoueur rackJoueur, LaticeVue laticeVue) {
 		super();
 		this.plateau = plateau;
-		this.rackJoueur = rackJoueur;
-		this.laticeVue = laticeVue;
-
 		setAlignment(Pos.CENTER);
 		afficherPlateau(plateau);
 	}
@@ -49,7 +41,6 @@ public class InterfacePlateau extends GridPane implements PlateauListener, Affic
 	}
 	
 	public void actualiserRack(RackJoueur rackJoueur) {
-		this.rackJoueur = rackJoueur;
 		afficherPlateau(plateau);
 	}
 

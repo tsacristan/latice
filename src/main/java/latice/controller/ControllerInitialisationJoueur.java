@@ -7,7 +7,6 @@ import latice.model.player.EtatsPseudo;
 import latice.model.player.Joueur;
 import latice.view.LaticeVue;
 import latice.view.TextesErreurs;
-import latice.view.console.Console;
 
 public class ControllerInitialisationJoueur {
 	
