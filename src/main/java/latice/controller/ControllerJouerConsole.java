@@ -20,6 +20,7 @@ import latice.view.console.LaticeVueConsole;
 public class ControllerJouerConsole extends ControllerJouer {
 	
 	private LaticeVueConsole laticeVue;
+	private Joueur premierJoueur;
 	
 	public ControllerJouerConsole(LaticeVueConsole laticeVue) {
 		super();
@@ -32,17 +33,17 @@ public class ControllerJouerConsole extends ControllerJouer {
 		this.joueurs = (ArrayList<Joueur>) joueurs;
 		
 		Joueur joueurCourant = random.nextBoolean() ? joueurs.get(0) : joueurs.get(1);
+		premierJoueur = joueurCourant;
 		int nombreTour = 1;
 		boolean estPremierTour = true;
 		
 		jouerTour(joueurCourant, nombreTour, estPremierTour);
-		nombreTour++;
 		joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
 		estPremierTour = !estPremierTour;
 		while (nombreTour <= LaticeController.TOURS_MAX) {
 			jouerTour(joueurCourant, nombreTour, estPremierTour);
 			
-			nombreTour++;
+			if (joueurCourant.equals(premierJoueur)) nombreTour++;;
 			joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
 			laticeVue.afficherMessage("");
 		}
