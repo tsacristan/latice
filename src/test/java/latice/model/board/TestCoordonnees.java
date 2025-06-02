@@ -16,194 +16,175 @@ import latice.model.material.TypeCase;
 import latice.util.exception.PlateauIndexInvalideException;
 
 class TestCoordonnees {
+		
+	private Coordonnees centre;
+	private Coordonnees hautGauche;
+	private Coordonnees basDroite;
+	private Coordonnees c1_7;
+	private Coordonnees c1_8;
+	private Coordonnees c4_5;
+	private Coordonnees c2_7;
+	private Coordonnees c8_5;
+	private Coordonnees c6_0;
+	private Coordonnees c0_5;
+	private Coordonnees c2_5;
+	private Coordonnees c2_5_bis;
+	
+	
+	
+	@BeforeEach
+	void setUp() throws PlateauIndexInvalideException {
+	    centre = new Coordonnees(4, 4);
+	    hautGauche = new Coordonnees(0, 0);
+	    basDroite = new Coordonnees(8, 8);
+	    c1_7 = new Coordonnees(1, 7);
+	    c1_8 = new Coordonnees(1, 8);
+	    c4_5 = new Coordonnees(4, 5);
+	    c2_7 = new Coordonnees(2, 7);
+	    c8_5 = new Coordonnees(8,5);
+	    c6_0 = new Coordonnees(6, 0);
+	    c0_5 = new Coordonnees(0, 5);
+	    c2_5 =  new Coordonnees(2,5);
+	    c2_5_bis =  new Coordonnees(2,5);
+	}
+
 			
 	    @Test
 	    void testCoordonneesStockeesCorrectementLigne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(4, 5);
-	        Integer ligne = c.ligne();
-	        assertEquals(5, ligne);
+	        assertEquals(5, c4_5.ligne());
 	    }
 	    @Test
 	    void testCoordonneesStockeesCorrectementColonne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(4, 5);
-	        Integer colonne = c.colonne();
-	        assertEquals(4, colonne);
+	        assertEquals(4, c4_5.colonne());
 	    }
 
 	    @Test
 	    void testCoordonneesSurCoinSuperieurGaucheLigne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(0, 0);
-	        Integer ligne = c.ligne();
-	        assertEquals(0, ligne);
+	        assertEquals(0,hautGauche.ligne());
 	    }
 	    
 	    @Test
 	    void testCoordonneesSurCoinSuperieurGaucheColonne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(0, 0);
-	        Integer colonne = c.colonne();
-	        assertEquals(0, colonne);
+	        assertEquals(0, hautGauche.colonne());
 	    }
 
 	    @Test
 	    void testCoordonneesSurCentrePlateauLigne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(4, 4);
-	        Integer ligne = c.ligne();
-	        assertEquals(4, ligne);
+	        assertEquals(4, centre.ligne());
 	    }
 	    
 	    @Test
 	    void testCoordonneesSurCentrePlateauColonne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(4, 4);
-	        Integer colonne = c.colonne();
-	        assertEquals(4, colonne);
+	        assertEquals(4, centre.colonne());
 	    }
 
 	    @Test
 	    void testCoordonneesSurCoinInferieurDroitLigne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(8, 8);
-	        Integer ligne = c.ligne();
-	        assertEquals(8, ligne);
+	        assertEquals(8, basDroite.ligne());
 	    }
 	    
 	    @Test
 	    void testCoordonneesSurCoinInferieurDroitColonne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(8, 8);
-	        Integer colonne = c.colonne();
-	        assertEquals(8, colonne);
+	        assertEquals(8, basDroite.colonne());
 	    }
 
 	    @Test
 	    void testCoordonneesInverséesLigne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(2, 7);
-	        Integer ligne = c.ligne();
-	        assertEquals(7, ligne);
+	        assertEquals(7, c2_7.ligne());
 
 	    }
 	    
 	    @Test
 	    void testCoordonneesInverséesColonne() throws PlateauIndexInvalideException {
-	        Coordonnees c = new Coordonnees(2, 7);
-	        Integer colonne = c.colonne();
-	        assertEquals(2, colonne);
+	        assertEquals(2, c2_7.colonne());
 	    }
 	    
 	    @Test
 	    void testverificationCaseAdjacenteHauteLigne() throws PlateauIndexInvalideException{ 
-	    	Coordonnees c = new Coordonnees(1,7);
-	    	Integer ligne = c.verificationCaseAdjacenteHaute().ligne();
-	    	assertEquals(8,ligne);
+	    	assertEquals(8,c1_7.verificationCaseAdjacenteHaute().ligne());
 	    }
 	    
 	    @Test
 	    void testverificationCaseAdjacenteHauteColonne() throws PlateauIndexInvalideException{ 
-	    	Coordonnees c = new Coordonnees(1,7);
-	    	Integer colonne = c.verificationCaseAdjacenteHaute().colonne();
-	    	assertEquals(1,colonne);
+	    	assertEquals(1,c1_7.verificationCaseAdjacenteHaute().colonne());
 	    }
 	    
 	    @Test
 	    void testverificationCaseAdjacenteBasLigne() throws PlateauIndexInvalideException{ 
-	    	Coordonnees c = new Coordonnees(1,7);
-	    	Integer ligne = c.verificationCaseAdjacenteBas().ligne();
-	    	assertEquals(6,ligne);
+	    	assertEquals(6,c1_7.verificationCaseAdjacenteBas().ligne());
 	    }
 	    
 	    @Test
 	    void testverificationCaseAdjacenteBasColonne() throws PlateauIndexInvalideException{ 
-	    	Coordonnees c = new Coordonnees(1,7);
-	    	Integer colonne = c.verificationCaseAdjacenteBas().colonne();
-	    	assertEquals(1,colonne);
+	    	assertEquals(1,c1_7.verificationCaseAdjacenteBas().colonne());
 	    }
 	    
 	    @Test
 	    void testverificationCaseAdjacenteGaucheLigne() throws PlateauIndexInvalideException{ 
-	    	Coordonnees c = new Coordonnees(1,7);
-	    	Integer ligne = c.verificationCaseAdjacenteGauche().ligne();
-	    	assertEquals(7,ligne);
+	    	assertEquals(7,c1_7.verificationCaseAdjacenteGauche().ligne());
 	    }
 	    
 	    @Test
 	    void testverificationCaseAdjacenteGaucheColonne() throws PlateauIndexInvalideException{ 
-	    	Coordonnees c = new Coordonnees(1,7);
-	    	Integer colonne = c.verificationCaseAdjacenteGauche().colonne();
-	    	assertEquals(0,colonne);
+	    	assertEquals(0,c1_7.verificationCaseAdjacenteGauche().colonne());
 	    }
 	    
 	    @Test
 	    void testverificationCaseAdjacenteDroiteLigne() throws PlateauIndexInvalideException{ 
-	    	Coordonnees c = new Coordonnees(1,7);
-	    	Integer ligne = c.verificationCaseAdjacenteDroite().ligne();
-	    	assertEquals(7,ligne);
+	    	assertEquals(7,c1_7.verificationCaseAdjacenteDroite().ligne());
 	    }
 	    
 	    @Test
 	    void testverificationCaseAdjacenteDroiteColonne() throws PlateauIndexInvalideException{ 
-	    	Coordonnees c = new Coordonnees(1,7);
-	    	Integer colonne = c.verificationCaseAdjacenteDroite().colonne();
-	    	assertEquals(2,colonne);
+	    	assertEquals(2,c1_7.verificationCaseAdjacenteDroite().colonne());
 	    }
-	    
-	  
+	
 	   @Test
-	    void testVerificationCaseAdjacenteHautePlateauInvalide() throws PlateauIndexInvalideException {
-	    	Coordonnees c = new Coordonnees(1,8);
-	    	
-	    	assertEquals(null,c.verificationCaseAdjacenteHaute());
+	    void testVerificationCaseAdjacenteHautePlateauInvalide() throws PlateauIndexInvalideException {    	
+	    	assertEquals(null,c1_8.verificationCaseAdjacenteHaute());
 	   }
 	    
 	    @Test
-	    void testVerificationCaseAdjacenteDroitePlateauInvalide() throws PlateauIndexInvalideException {
-	    	Coordonnees c = new Coordonnees(8,5);
-	    	
-	    	assertEquals(null,c.verificationCaseAdjacenteDroite());
+	    void testVerificationCaseAdjacenteDroitePlateauInvalide() throws PlateauIndexInvalideException {	    	
+	    	assertEquals(null,c8_5.verificationCaseAdjacenteDroite());
 	    }
 	    
 	    @Test
-	    void testVerificationCaseAdjacenteBasPlateauInvalide() throws PlateauIndexInvalideException {
-	    	Coordonnees c = new Coordonnees(6,0);
-	    	
-	    	assertEquals(null,c.verificationCaseAdjacenteBas());
+	    void testVerificationCaseAdjacenteBasPlateauInvalide() throws PlateauIndexInvalideException {	    	
+	    	assertEquals(null,c6_0.verificationCaseAdjacenteBas());
 	    }
 	    
 	    @Test
 	    void testVerificationCaseAdjacenteGauchePlateauInvalide() throws PlateauIndexInvalideException {
-	    	Coordonnees c = new Coordonnees(0,5);
-	    	
-	    	assertEquals(null,c.verificationCaseAdjacenteGauche());
+	    	assertEquals(null,c0_5.verificationCaseAdjacenteGauche());
 	    }
 	    
 	    @Test 
-	    void testPasEgale() throws PlateauIndexInvalideException {
-	    	Coordonnees c = new Coordonnees(2,5);
-	    	
-	    	assertNotEquals(c.verificationCaseAdjacenteGauche(),null);
-	    	
+	    void testPasEgale() throws PlateauIndexInvalideException {	    	
+	    	assertNotEquals(null,c2_5.verificationCaseAdjacenteGauche());
 	    }
 	    
-	    public class Coordonnees2 {
-	        private int ligne;
-	        private int colonne;
-
-	        public Coordonnees2(int ligne, int colonne) {
-	            this.ligne = ligne;
-	            this.colonne = colonne;
-	        }
-	    }
+	    
 	    
 	    @Test
 	    void testEqualsGetClass() throws PlateauIndexInvalideException {
-	    	Coordonnees c1 = new Coordonnees(2,5);
+	    	class Coordonnees2 {
+		        private int ligne;
+		        private int colonne;
+
+		        public Coordonnees2(int ligne, int colonne) {
+		            this.ligne = ligne;
+		            this.colonne = colonne;
+		        }
+		    }
 	    	Coordonnees2 c2 = new Coordonnees2(2,5);
-	    	assertNotEquals(c1,c2);
+	    	assertNotEquals(c2_5,c2);
 	    }
 	    
 	    @Test 
-	    void testHashode() throws PlateauIndexInvalideException {
-	    	Coordonnees c1 = new Coordonnees(2,5);
-	    	Coordonnees c2 = new Coordonnees(2,5);
-	    	
-	    	int hashCode1 = c1.hashCode();
-	    	int hashCode2 = c2.hashCode();
+	    void testHashode() throws PlateauIndexInvalideException {	    	
+	    	int hashCode1 = c2_5.hashCode();
+	    	int hashCode2 = c2_5_bis.hashCode();
 	    	
 	    	assertEquals(hashCode1,hashCode2);
 	    }

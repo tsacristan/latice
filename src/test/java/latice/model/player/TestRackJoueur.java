@@ -17,15 +17,27 @@ import latice.util.RackListener;
 import latice.util.exception.PiocheInvalideException;
 
 class TestRackJoueur {
+	
+	private static final Tuile TUILE_ROUGE_OISEAU = new Tuile(Couleur.ROUGE,Forme.OISEAU); 
+	private static final Tuile TUILE_BLEU_MARINE_FLEUR = new Tuile(Couleur.BLEU_MARINE,Forme.FLEUR); 
+	private static final Tuile TUILE_BLEU_SARCELLE_FLEUR = new Tuile(Couleur.BLEU_SARCELLE,Forme.FLEUR); 
+	
+	private static final PileJoueur PILEJ1 = new PileJoueur();
+	private static final PileJoueur PILEJ2 = new PileJoueur();
+	private static final PileDebut PILE_PRINCIPALE = new PileDebut();
+	
+	private static final RackJoueur RACKJ1 = new RackJoueur();
+	
+	private static final TestListener LISTENER1 = new TestListener();
+	private static final TestListener LISTENER2 = new TestListener();
+	
 
 	@Test
-	void test_toString() throws PiocheInvalideException {
+	void test_toString() {
 		
-        Tuile tuile1 = new Tuile(Couleur.ROUGE,Forme.OISEAU); 
-        Tuile tuile2 = new Tuile(Couleur.BLEU_MARINE,Forme.FLEUR); 
-        RackJoueur rack = new RackJoueur(Arrays.asList(tuile1, tuile2));
+        RackJoueur rack = new RackJoueur(Arrays.asList(TUILE_ROUGE_OISEAU, TUILE_BLEU_MARINE_FLEUR));
         
-        String attendu = "[" + tuile1.toString() + ", " + tuile2.toString() + "]";
+        String attendu = "[" + TUILE_ROUGE_OISEAU.toString() + ", " + TUILE_BLEU_MARINE_FLEUR.toString() + "]";
 
 		assertEquals(attendu, rack.toString());
 		
@@ -33,33 +45,28 @@ class TestRackJoueur {
 	
 	@Test
     void testToStringAvecRackVide() {
-        RackJoueur rack = new RackJoueur();
-        assertEquals("[]", rack.toString());
+        assertEquals("[]", RACKJ1.toString());
     }
 
 	
 	@Test
 	void testSiLaPileContientMoinsDeCinqTuile() throws PiocheInvalideException {
-		PileJoueur pileJ1 = new PileJoueur();
-		Tuile tuile1 = new Tuile(Couleur.ROUGE,Forme.OISEAU); 
-        Tuile tuile2 = new Tuile(Couleur.BLEU_MARINE,Forme.FLEUR); 
-        Tuile tuile3 = new Tuile(Couleur.BLEU_SARCELLE,Forme.FLEUR); 
-		pileJ1.ajouterTuile(tuile1);
-		pileJ1.ajouterTuile(tuile2);
-		pileJ1.ajouterTuile(tuile3);
+
+		PILEJ1.clear();
+
+		PILEJ1.ajouterTuile(TUILE_ROUGE_OISEAU);
+		PILEJ1.ajouterTuile(TUILE_BLEU_MARINE_FLEUR);
+		PILEJ1.ajouterTuile(TUILE_BLEU_SARCELLE_FLEUR);
+
+		RACKJ1.rack().add(TUILE_ROUGE_OISEAU);
+		RACKJ1.rack().add(TUILE_BLEU_MARINE_FLEUR);
+		RACKJ1.rack().add(TUILE_BLEU_SARCELLE_FLEUR);
+		RACKJ1.rack().add(TUILE_ROUGE_OISEAU);
+		RACKJ1.rack().add(TUILE_BLEU_SARCELLE_FLEUR);
 		
-				
-		RackJoueur rackJ1 = new RackJoueur();
-		rackJ1.rack().add(tuile1);
-		rackJ1.rack().add(tuile2);
-		rackJ1.rack().add(tuile3);
-		rackJ1.rack().add(tuile1);
-		rackJ1.rack().add(tuile3);
-		
-		rackJ1.remplir(pileJ1);
-		
-		assertEquals(3,pileJ1.size());
-		assertEquals(5,rackJ1.rack().size());
+		RACKJ1.remplir(PILEJ1);
+		assertEquals(4,PILEJ1.size());
+		assertEquals(5,RACKJ1.rack().size());
 	}
 	
 	static class TestListener implements RackListener {
@@ -73,14 +80,11 @@ class TestRackJoueur {
 
     @Test
     void testDeclencherListenersManuellement() {
-        TestListener listener1 = new TestListener();
-        TestListener listener2 = new TestListener();
-
         RackJoueur rackJoueur = new RackJoueur() {
             {
                 // Ajoute manuellement les listeners
-                ajouterListener(listener1);
-                ajouterListener(listener2);
+                ajouterListener(LISTENER1);
+                ajouterListener(LISTENER2);
             }
 
             @Override
@@ -91,27 +95,18 @@ class TestRackJoueur {
 
         rackJoueur.declencherListeners();
 
-        assertTrue(listener1.called, "Listener1 aurait dû être notifié");
-        assertTrue(listener2.called, "Listener2 aurait dû être notifié");
+        assertTrue(LISTENER1.called, "Listener1 aurait dû être notifié");
+        assertTrue(LISTENER1.called, "Listener2 aurait dû être notifié");
     }
     
     @Test
     void testPiocherTuile() {
-    	PileDebut pile = new PileDebut();
-    	pile.remplir();
-    	pile.melanger();
-    	PileJoueur pileJ1 = new PileJoueur();
-    	PileJoueur pileJ2 = new PileJoueur();
-    	pile.distribuer(new PileJoueur[] {pileJ1,pileJ2});
-    	RackJoueur rack = new RackJoueur();
-    	rack.piocherUneTuile(pileJ1);
-    	
-    	
-    	assertEquals(1,rack.rack().size());
-    	
-    	
-    	
-    	
+    	PILE_PRINCIPALE.remplir();
+    	PILE_PRINCIPALE.melanger();
+    	PILE_PRINCIPALE.distribuer(new PileJoueur[] {PILEJ1,PILEJ2});
+    	RACKJ1.piocherUneTuile(PILEJ1);
+    
+    	assertEquals(1,RACKJ1.rack().size());
     	
     }
     

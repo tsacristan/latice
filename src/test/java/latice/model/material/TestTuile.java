@@ -13,6 +13,7 @@ import latice.model.material.Tuile;
 class TestTuile {
 	
 	private static final Tuile TUILE_BLEU_MARINE_DAUPHIN = new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN);
+	private static final Tuile TUILE_BLEU_SARCELLE_FLEUR = new Tuile(Couleur.BLEU_SARCELLE,Forme.FLEUR);
 	
 	@Test
 	void test_couleur_et_forme_tuile() {
@@ -29,23 +30,23 @@ class TestTuile {
 
 	@Test
 	void testEquals() {
-		Tuile tuile1 = new Tuile(Couleur.BLEU_SARCELLE,Forme.FLEUR);
-		assertFalse(tuile1.equals(TUILE_BLEU_MARINE_DAUPHIN));
+		
+		assertFalse(TUILE_BLEU_SARCELLE_FLEUR.equals(TUILE_BLEU_MARINE_DAUPHIN));
 	}
 	@Test
 	void testEqualsNull() {
-		Tuile tuile1 = new Tuile(Couleur.BLEU_SARCELLE,Forme.FLEUR);
-		assertFalse(tuile1.equals(null));
+		assertFalse(TUILE_BLEU_SARCELLE_FLEUR.equals(null));
 	}
 	
 	
-	public class FakeTuile extends Tuile {
-	    public FakeTuile(Couleur couleur, Forme forme) {
-	        super(couleur, forme);
-	    }
-	}
+	
 	@Test
 	void testEqualsFailsDueToDifferentClass() {
+		class FakeTuile extends Tuile {
+		    public FakeTuile(Couleur couleur, Forme forme) {
+		        super(couleur, forme);
+		    }
+		}
 		Tuile autre = new FakeTuile(Couleur.ROUGE, Forme.OISEAU); 
 
 		boolean result = TUILE_BLEU_MARINE_DAUPHIN.equals(autre);

@@ -18,7 +18,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestJoueur {
 
-    private Joueur joueur;
+    private static Joueur joueurALEX;
+    private static Joueur joueurBOB;
+    private static Joueur joueurDEFAUT;
+    
+    private static RackJoueur rack1 = new RackJoueur();
+    private static final PileJoueur pile1 = new PileJoueur();
+    
+    private static final Integer score = 12;
+    
 
     @BeforeEach
     public void setUp() {
@@ -34,24 +42,24 @@ public class TestJoueur {
         pile.addAll(tuiles);
 
         RackJoueur rack = new RackJoueur();
-        joueur = new Joueur("Alex", rack, pile, 0);
+        joueurALEX = new Joueur("Alex", rack, pile, 0);
+        joueurBOB= new Joueur("Bob");
+        joueurDEFAUT = new Joueur();
+        rack1 = new RackJoueur();
     }
 
     @Test
     public void testConstructeurs() {
-        Joueur j1 = new Joueur("Bob");
-        assertEquals("Bob", j1.pseudo());
-        assertNotNull(j1.rackJoueur());
-        assertNotNull(j1.pileJoueur());
-
-        Joueur j2 = new Joueur();
-        assertEquals("Défaut", j2.pseudo());
+        assertEquals("Bob", joueurBOB.pseudo());
+        assertNotNull(joueurBOB.rackJoueur());
+        assertNotNull(joueurBOB.pileJoueur());
+        assertEquals("Défaut", joueurDEFAUT.pseudo());
     }
 
     @Test
     public void testRemplirRackPilePleine() {
-        assertDoesNotThrow(() -> joueur.remplirRack());
-        assertTrue(joueur.rackJoueur().rack().size() <= RackJoueur.TAILLE_MAX_RACK);
+        assertDoesNotThrow(() -> joueurALEX.remplirRack());
+        assertTrue(joueurALEX.rackJoueur().rack().size() <= RackJoueur.TAILLE_MAX_RACK);
     }
 
     @Test
@@ -62,23 +70,23 @@ public class TestJoueur {
 
     @Test
     public void testPseudoGetter() {
-        assertEquals("Alex", joueur.pseudo());
+        assertEquals("Alex", joueurALEX.pseudo());
     }
 
     @Test
     public void testRackGetter() {
-        assertNotNull(joueur.rackJoueur());
+        assertNotNull(joueurALEX.rackJoueur());
     }
 
     @Test
     public void testPileGetter() {
-        assertNotNull(joueur.pileJoueur());
+        assertNotNull(joueurALEX.pileJoueur());
     }
 
     @Test
     public void testEqualsEtHashCode() {
-        RackJoueur rack1 = new RackJoueur();
-        PileJoueur pile1 = new PileJoueur();
+
+        
         Joueur j1 = new Joueur("Test", rack1, pile1, 0);
         Joueur j2 = new Joueur("Test", rack1, pile1, 0);
 
@@ -91,30 +99,22 @@ public class TestJoueur {
 
     @Test
     public void testEqualsNullEtAutresTypes() {
-        assertNotEquals(joueur, null);
-        assertNotEquals(joueur, "pas un joueur");
-        assertEquals(joueur, joueur);
+        assertNotEquals(joueurALEX, null);
+        assertNotEquals(joueurALEX, "pas un joueur");
+        assertEquals(joueurALEX, joueurALEX);
     }
     
     @Test
     void test_score_du_joueur() {
-    	RackJoueur rack1 = new RackJoueur();
-        PileJoueur pile1 = new PileJoueur();
     	Joueur j1 = new Joueur("Bernard",rack1,pile1,12);
-    	
-    	Integer score = 12;
-    	
-    	assertEquals(j1.score(),12);
+    	assertEquals(j1.score(),score);
     }
     
     @Test
-    void test_ajouterScore() {
+    void test_ajouterScore() {    	
+    	joueurBOB.ajouterScore(4);
     	
-    	Joueur j1 = new Joueur("Lola");
-    	
-    	j1.ajouterScore(4);
-    	
-    	assertEquals(4,j1.score());
+    	assertEquals(4,joueurBOB.score());
     	
     }
     
