@@ -12,18 +12,19 @@ public class InterfaceJeu extends BorderPane {
 	
 	private PartieHaut partieHaut;
 	private PartieJoueur partieJoueur;
+	private PartieInfo partieInfo;
 
 	public InterfaceJeu() {   
 		partieHaut = new PartieHaut();
 		partieJoueur = new PartieJoueur();
+		partieInfo = new PartieInfo();
 		
         setTop(partieHaut);
       	setCenter(null);
-        setRight(new PartieInfo());
+        setRight(partieInfo);
         setLeft(partieJoueur);
         setBottom(null);
 	}
-	
 	
 	public void afficherJoueursPointsTour(Joueur joueurQuiJoue, List<Joueur> joueurs, int nombreTour) {
 		partieJoueur.afficherJoueurs(joueurQuiJoue, joueurs);
@@ -49,5 +50,9 @@ public class InterfaceJeu extends BorderPane {
     public InterfacePlateau interfacePlateau() {
     	if (getCenter() instanceof InterfacePlateau) return (InterfacePlateau) getCenter();
     	return null;
+    }
+    
+    public PartieInfo partieInfo() {
+    	return partieInfo;
     }
 }

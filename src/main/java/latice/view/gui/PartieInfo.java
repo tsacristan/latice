@@ -11,12 +11,13 @@ public class PartieInfo extends StackPane {
 
 	
 	private static final String STYLE_COMMUN = "-fx-font-size: 25px";
+	private Label nombreTuilesLabel;
 	
     public PartieInfo() {
         setPrefWidth(200);
     	
         Label tuilesRestantesLabel = new Label("Tuiles restantes :");
-        Label nombreTuilesLabel = new Label("25");
+        nombreTuilesLabel = new Label("25");
 
         VBox labelsBox = new VBox(tuilesRestantesLabel, nombreTuilesLabel);
         labelsBox.setAlignment(Pos.TOP_CENTER);
@@ -36,5 +37,9 @@ public class PartieInfo extends StackPane {
         shopButton.setStyle(STYLE_COMMUN);
 
         this.getChildren().addAll(labelsBox, tuileBox, boutonBox);
+    }
+    
+    public void afficherTuilesRestantes(int tuilesRestantes) {
+    	nombreTuilesLabel.setText(Integer.toString(tuilesRestantes));
     }
 }
