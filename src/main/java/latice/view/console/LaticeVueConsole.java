@@ -46,7 +46,7 @@ public class LaticeVueConsole extends LaticeVue {
 	public void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour) {
 		Console.messagef(Textes.NB_TOUR, nombreTour, joueurQuiJoue.pseudo());
 		for (Joueur joueur : joueurs) {
-			Console.messagef(Textes.AFFICHAGE_JOUEUR, joueur.pseudo(), joueur.score());
+			Console.messagef(Textes.AFFICHAGE_JOUEUR, joueur.pseudo(), joueur.points(), joueur.tuilesPlacees());
 		}
 	}
 
@@ -78,7 +78,7 @@ public class LaticeVueConsole extends LaticeVue {
 
 	public void afficherScores(List<Joueur> joueurs, Joueur joueurCourant) {
         for (Joueur joueur : joueurs) {
-            Console.messagef("%s : %d points.", joueur.pseudo(), joueur.score());
+            Console.messagef("%s : %d points.", joueur.pseudo(), joueur.points());
         }
         Console.messagef("-> Tour de %s", joueurCourant.pseudo());
     }
@@ -110,7 +110,7 @@ public class LaticeVueConsole extends LaticeVue {
 	public void afficherGagnants(ArrayList<Joueur> gagnants) {
 		afficherMessage(Textes.AFFICHAGE_GAGNANTS.texte());
     	for (Joueur joueur : gagnants) {
-    		afficherMessage(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()));
+    		afficherMessage(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.points(), joueur.tuilesPlacees()));
     	}
 	}
 }

@@ -58,10 +58,17 @@ public class PartieJoueur extends VBox {
     	dynamicBox.getChildren().add(pointsLabel);
     	Label lblJoueur;
     	for (Joueur joueur : joueurs) {
-    		lblJoueur = new Label(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()));
+    		lblJoueur = new Label(joueur.pseudo());
     		lblJoueur.setStyle(STYLE_COMMUN);
     		VBox.setMargin(lblJoueur, new Insets(0, 0, 0, 20));
-    		dynamicBox.getChildren().add(lblJoueur);
+    		
+    		Label lblJoueurPoints = new Label(String.format(Textes.AFFICHAGE_POINTS.texte(), joueur.points()));
+    		lblJoueurPoints.setStyle(STYLE_COMMUN);
+    		VBox.setMargin(lblJoueurPoints, new Insets(0, 0, 0, 30));
+    		Label lblJoueurTuilesPlacees = new Label(String.format(Textes.AFFICHAGE_TUILES_PLACEES.texte(), joueur.tuilesPlacees()));
+    		lblJoueurTuilesPlacees.setStyle(STYLE_COMMUN);
+    		VBox.setMargin(lblJoueurTuilesPlacees, new Insets(0, 0, 0, 30));
+    		dynamicBox.getChildren().addAll(lblJoueur, lblJoueurPoints, lblJoueurTuilesPlacees);
     	}
 	}
 }

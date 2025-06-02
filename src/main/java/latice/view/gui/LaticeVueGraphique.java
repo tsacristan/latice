@@ -93,7 +93,7 @@ public class LaticeVueGraphique extends LaticeVue {
 		StringBuilder chaineBuilder = new StringBuilder(Textes.AFFICHAGE_GAGNANTS.texte() + "\n");
 
     	for (Joueur joueur : gagnants) {
-    		chaineBuilder.append(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.score()) + "\n");
+    		chaineBuilder.append(String.format(Textes.AFFICHAGE_JOUEUR.texte(), joueur.pseudo(), joueur.points(), joueur.tuilesPlacees()) + "\n");
     	}
     	
     	afficherMessage(chaineBuilder.toString());

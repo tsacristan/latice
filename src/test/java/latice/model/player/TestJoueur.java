@@ -111,14 +111,14 @@ public class TestJoueur {
     @Test
     void test_score_du_joueur() {
     	Joueur j1 = new Joueur("Bernard",rack1,pile1,12, 0);
-    	assertEquals(score,j1.score());
+    	assertEquals(score,j1.points());
     }
     
     @Test
     void test_ajouterScore() {    	
     	joueurBOB.ajouterScore(4);
     	
-    	assertEquals(4,joueurBOB.score());
+    	assertEquals(4,joueurBOB.points());
     	
     }
     
