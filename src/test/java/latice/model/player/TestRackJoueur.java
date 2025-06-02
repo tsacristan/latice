@@ -94,4 +94,26 @@ class TestRackJoueur {
         assertTrue(listener1.called, "Listener1 aurait dû être notifié");
         assertTrue(listener2.called, "Listener2 aurait dû être notifié");
     }
+    
+    @Test
+    void testPiocherTuile() {
+    	PileDebut pile = new PileDebut();
+    	pile.remplir();
+    	pile.melanger();
+    	PileJoueur pileJ1 = new PileJoueur();
+    	PileJoueur pileJ2 = new PileJoueur();
+    	pile.distribuer(new PileJoueur[] {pileJ1,pileJ2});
+    	RackJoueur rack = new RackJoueur();
+    	rack.piocherUneTuile(pileJ1);
+    	
+    	
+    	assertEquals(1,rack.rack().size());
+    	
+    	
+    	
+    	
+    	
+    }
+    
+    
 }

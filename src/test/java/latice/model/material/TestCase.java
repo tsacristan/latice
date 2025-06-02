@@ -2,6 +2,7 @@ package latice.model.material;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -148,5 +149,22 @@ class TestCase {
 		
 		assertEquals(EmojiForme.CASE_VIDE.emoji(),resultat);
 		}
+	
+	@Test 
+	void testHashCode() {
+		Case case1 = new Case(new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN),TypeCase.CASE_OCCUPEE);
+		Case case2 = new Case(new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN),TypeCase.CASE_OCCUPEE);
 		
+		int hashCode1 = case1.hashCode();
+		int hashCode2 = case2.hashCode();
+		
+		assertEquals(hashCode1,hashCode2);
+	
+	}
+	
+	@Test
+	void testEquals() {
+		Case case1 = new Case(new Tuile(Couleur.BLEU_MARINE,Forme.DAUPHIN),TypeCase.CASE_OCCUPEE);
+		assertTrue(case1.equals(case1));
+	}
 }
