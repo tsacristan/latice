@@ -42,7 +42,7 @@ public class ControllerInitialisationJoueur {
 					laticeVue.afficherErreur(String.format(TextesErreurs.PSEUDO_VIDE.texte(), numeroJoueur));
 					break;
 				default:
-					Console.message(TextesErreurs.ETAT_INCONNU.texte());
+					laticeVue.afficherErreur(TextesErreurs.ETAT_INCONNU.texte());
 					break;
 			}
 			
