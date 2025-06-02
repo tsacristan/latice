@@ -48,14 +48,14 @@ public class RackJoueur extends Observable<RackListener> {
        	declencherListeners();
     }
     
-    public void piocherUneTuile(PileJoueur pile) throws PiocheInvalideException {
+    public void piocherUneTuile(PileJoueur pile) {
         if (rack.size() < TAILLE_MAX_RACK && !pile.isEmpty()) {
             rack.add(pile.retirerTuile());
             declencherListeners();
         }
     }
     
-    public Tuile choisirTuile(int index) throws RackInvalideException, RackIndexInvalideException {
+    public Tuile choisirTuile(int index) throws RackInvalideException {
     	if (rack.isEmpty()) {
             throw new RackInvalideException(
             		String.format(TextesErreurs.RACK_VIDE.toString()));
