@@ -44,15 +44,9 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	public void jouerTuile() {
 		PartieControle partieControle = laticeVue.interfaceJeu().initialiserPartieControle(joueurCourant);
 		
-		partieControle.boutonValider().setOnAction(e -> {
-			validerTour();
-		});
-		partieControle.boutonPasser().setOnAction(e -> {
-			passerTour();
-		});
-		partieControle.boutonPiocher().setOnAction(e -> {
-			piocher();
-	    });
+		partieControle.boutonValider().setOnAction(e -> validerTour());
+		partieControle.boutonPasser().setOnAction(e -> passerTour());
+		partieControle.boutonPiocher().setOnAction(e -> piocher());
 		
 		laticeVue.interfaceJeu().setBottom(partieControle);
 		laticeVue.interfaceJeu().interfacePlateau().actualiserRack(joueurCourant.rackJoueur());
