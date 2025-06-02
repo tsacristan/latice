@@ -9,6 +9,7 @@ import latice.model.board.Plateau;
 import latice.model.player.Joueur;
 import latice.util.exception.AucuneCouleurOuFormeCorrespondantException;
 import latice.util.exception.AucuneTuileAdjacenteException;
+import latice.util.exception.PiocheInvalideException;
 import latice.util.exception.PlacementDejaExistantInvalide;
 import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
@@ -99,6 +100,13 @@ public class ControllerJouerConsole extends ControllerJouer {
             case 2:
                 laticeVue.afficherMessage(Textes.TOUR_PASSE.texte());
                 break;
+            case 3:
+            	try {
+					joueurQuiJoue.piocher();
+				} catch (PiocheInvalideException e) {
+					laticeVue.afficherErreur(e.getMessage());
+				}
+				break;
             default:
                 laticeVue.afficherErreur(TextesErreurs.ACTION_INVALIDE.texte());
         }
