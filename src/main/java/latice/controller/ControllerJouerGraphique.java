@@ -45,9 +45,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	public void jouerTuile() {
 		PartieControle partieControle = laticeVue.interfaceJeu().initialiserPartieControle(joueurCourant);
 		
-		partieControle.boutonValider().setOnAction(e -> {
-			validerTour();
-		});
+		partieControle.boutonValider().setOnAction(e -> validerTour());
 		partieControle.boutonPasser().setOnAction(e -> {
 			if (tuilePlaceeDansCeTour) {
 				laticeVue.afficherErreur(TextesErreurs.ACTION_DEJA_EFFECTUEE.texte());
