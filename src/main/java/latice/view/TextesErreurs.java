@@ -18,7 +18,8 @@ public enum TextesErreurs {
 	TUILE_NI_COULEUR_NI_FORME("Erreur : aucune tuile adjacente a la bonne couleur ou la bonne forme."),
 	VALIDATION_SANS_ACTION("Vous devez jouer avant de valider !"),
 	ACTION_INVALIDE("Action invalide !"),
-	DEJA_PIOCHER("Vous avez déjà pioché ce tour.");
+	DEJA_PIOCHER("Vous avez déjà pioché ce tour."),
+	ACTION_DEJA_EFFECTUEE("Une action a déjà été effectuée !");
 	
 	private String texte;
 
