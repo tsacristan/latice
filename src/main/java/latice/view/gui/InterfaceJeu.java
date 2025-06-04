@@ -18,7 +18,6 @@ public class InterfaceJeu extends BorderPane {
 		partieHaut = new PartieHaut();
 		partieJoueur = new PartieJoueur();
 		partieInfo = new PartieInfo();
-		
         setTop(partieHaut);
       	setCenter(null);
         setRight(partieInfo);
@@ -29,6 +28,7 @@ public class InterfaceJeu extends BorderPane {
 	public void afficherJoueursPointsTour(Joueur joueurQuiJoue, List<Joueur> joueurs, int nombreTour) {
 		partieJoueur.afficherJoueurs(joueurQuiJoue, joueurs);
 		partieHaut.changerTour(nombreTour);
+		partieInfo.setJoueur(joueurQuiJoue);
 	}
 	
 	public InterfacePlateau initialiserInterfacePlateau(Plateau plateau, RackJoueur rackJoueur, LaticeVue laticeVue) {
