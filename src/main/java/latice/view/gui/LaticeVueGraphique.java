@@ -17,11 +17,9 @@ public class LaticeVueGraphique extends LaticeVue {
 	private RackJoueur rack;
 	private InterfaceJeu interfaceJeu;
 	private InterfaceRack interfaceRack;
-	private PartieJoueur partieJoueur;
 	
 	public LaticeVueGraphique() {
 		interfaceJeu = new InterfaceJeu();
-		partieJoueur = new PartieJoueur();
 	}
 
 	@Override
@@ -86,7 +84,7 @@ public class LaticeVueGraphique extends LaticeVue {
 	}
 	
 	public void actualiserPoints(List<Joueur> joueurs, Joueur joueurCourant) {
-	    partieJoueur.afficherJoueurs(joueurCourant, joueurs);
+	    interfaceJeu.partieJoueur().afficherJoueurs(joueurCourant, joueurs);
 	    interfaceJeu.partieInfo().afficherTuilesRestantes(joueurCourant.pileJoueur().size());
 	}
 

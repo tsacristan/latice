@@ -54,4 +54,8 @@ public class InterfaceJeu extends BorderPane {
     public PartieInfo partieInfo() {
     	return partieInfo;
     }
+    
+    public PartieJoueur partieJoueur() {
+    	return partieJoueur;
+    }
 }

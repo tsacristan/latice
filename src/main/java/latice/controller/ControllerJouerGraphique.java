@@ -166,10 +166,13 @@ public class ControllerJouerGraphique extends ControllerJouer {
                     Coordonnees coordDePlacement = new Coordonnees(ligne, colonne);
                     int pointsAjoutes = verificateurPlacementPoints.calculerPointsCoup(coordDePlacement, joueurCourant.rackJoueur().rack().get(indexRack));
                     plateau.placerLaTuileSurLePlateau(indexRack, coordDePlacement, joueurCourant.rackJoueur());
+                    
         			joueurCourant.ajouterPoints(pointsAjoutes);
+        			joueurCourant.incrementerTuilePlacees();
+        			laticeVue.actualiserPoints(joueurs, joueurCourant);
+        			
                     success = true;
                     tuilePlaceeDansCeTour = true;
-                    joueurCourant.incrementerTuilePlacees();
                 } catch (Exception e) {
                     laticeVue.afficherErreur(e.getMessage());
                 }

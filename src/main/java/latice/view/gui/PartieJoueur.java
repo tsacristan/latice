@@ -58,6 +58,9 @@ public class PartieJoueur extends VBox {
     	dynamicBox.getChildren().add(pointsLabel);
     	Label lblJoueur;
     	for (Joueur joueur : joueurs) {
+    		if (joueur.tuilesPlacees() == 1) {
+    			System.out.println(String.format(Textes.AFFICHAGE_TUILES_PLACEES.texte(), joueur.tuilesPlacees()));
+    		}
     		lblJoueur = new Label(joueur.pseudo());
     		lblJoueur.setStyle(STYLE_COMMUN);
     		VBox.setMargin(lblJoueur, new Insets(0, 0, 0, 20));
