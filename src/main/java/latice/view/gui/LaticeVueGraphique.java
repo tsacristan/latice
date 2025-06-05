@@ -87,7 +87,7 @@ public class LaticeVueGraphique extends LaticeVue {
 	
 	public void actualiserScores(List<Joueur> joueurs, Joueur joueurCourant) {
 	    partieJoueur.afficherJoueurs(joueurCourant, joueurs);
-	    interfaceJeu.partieInfo().afficherTuilesRestantes(joueurCourant.points());
+	    interfaceJeu.partieInfo().afficherTuilesRestantes(joueurCourant.pileJoueur().size());
 	}
 
 	@Override
