@@ -28,7 +28,6 @@ public class InterfaceJeu extends BorderPane {
 	public void afficherJoueursPointsTour(Joueur joueurQuiJoue, List<Joueur> joueurs, int nombreTour) {
 		partieJoueur.afficherJoueurs(joueurQuiJoue, joueurs);
 		partieHaut.changerTour(nombreTour);
-		partieInfo.changerJoueur(joueurQuiJoue);
 	}
 	
 	public InterfacePlateau initialiserInterfacePlateau(Plateau plateau, RackJoueur rackJoueur, LaticeVue laticeVue) {

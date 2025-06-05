@@ -32,7 +32,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		this.laticeVue = laticeVue;
 		random = new Random();
 		tourCourant = 1;
-		laticeVue.interfaceJeu().partieInfo().avoirBoutonMagasin().setOnAction(event -> ouvrirBoutique());
+		laticeVue.interfaceJeu().partieInfo().boutonMagasin().setOnAction(event -> ouvrirBoutique());
 	}
 	
 	@Override
@@ -62,6 +62,9 @@ public class ControllerJouerGraphique extends ControllerJouer {
 			}
 			piocher();
 		});
+		
+		Boutique boutique = new Boutique();
+		laticeVue.interfaceJeu().partieInfo().boutonMagasin().setOnAction(event -> boutique.ouvrir(joueurCourant));
 		
 		laticeVue.interfaceJeu().setBottom(partieControle);
 		laticeVue.interfaceJeu().interfacePlateau().actualiserRack(joueurCourant.rackJoueur());

@@ -15,14 +15,10 @@ public class PartieInfo extends StackPane {
 	
 	private static final String STYLE_COMMUN = "-fx-font-size: 25px";
 	private Label nombreTuilesLabel;
-	private Joueur joueur;
-	private Boutique boutique;
 	private Button boutonMagasin;
 	
 	public PartieInfo() {
         setPrefWidth(200);
-        
-        boutique = new Boutique();
     	
         Label tuilesRestantesLabel = new Label(Textes.TUILES_RESTANTES.toString());
         nombreTuilesLabel = new Label("25");
@@ -34,7 +30,7 @@ public class PartieInfo extends StackPane {
         VBox.setMargin(tuileBox, new Insets(20));
         
         boutonMagasin = new Button("SHOP");
-        boutonMagasin.setOnAction(event -> boutique.ouvrir(joueur));
+        
         VBox boutonBox = new VBox(boutonMagasin);
         boutonBox.setAlignment(Pos.BOTTOM_RIGHT);
         VBox.setMargin(boutonMagasin, new Insets(10));
@@ -52,12 +48,7 @@ public class PartieInfo extends StackPane {
     	nombreTuilesLabel.setText(Integer.toString(tuilesRestantes));
     }
     
-    public void changerJoueur(Joueur joueur) {
-        this.joueur = joueur;
-        afficherTuilesRestantes(joueur.pileJoueur().size());
-    }
-    
-    public Button avoirBoutonMagasin() {
+    public Button boutonMagasin() {
         return boutonMagasin;
     }
 }
