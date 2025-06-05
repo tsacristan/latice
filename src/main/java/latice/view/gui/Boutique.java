@@ -5,6 +5,7 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import latice.model.player.Joueur;
+import latice.model.points.Couts;
 import latice.view.Textes;
 import latice.view.TextesErreurs;
 
@@ -24,8 +25,8 @@ public class Boutique extends Alert {
 
         Optional<ButtonType> response = showAndWait();
         if (response.isPresent() && response.get() == ButtonType.OK) {
-            if (joueur.points() >= 2) {
-                joueur.ajouterPoints(-2);
+            if (joueur.points() >= Couts.COUT_ACHAT_ACTION_SUPPLEMENTAIRE.valeur()) {
+                joueur.ajouterPoints(-Couts.COUT_ACHAT_ACTION_SUPPLEMENTAIRE.valeur());
                 joueur.changerNombreCoups(joueur.nombreCoups() + 1);
 
                 setAlertType(AlertType.INFORMATION);
