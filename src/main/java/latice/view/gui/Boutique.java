@@ -27,7 +27,6 @@ public class Boutique extends Alert {
             if (joueur.points() >= 2) {
                 joueur.ajouterPoints(-2);
                 joueur.changerNombreCoups(joueur.nombreCoups() + 1);
-                System.out.println(joueur.nombreCoups());
 
                 setAlertType(AlertType.INFORMATION);
                 setTitle("Succès");

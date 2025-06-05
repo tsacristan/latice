@@ -91,7 +91,6 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		        laticeVue.afficherErreur(TextesErreurs.VALIDATION_SANS_ACTION.texte());
 		        return;
 		    }
-		 System.out.println(joueurCourant.nombreCoups());
 		    avancerTour();
 	    }
 	 
