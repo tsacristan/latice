@@ -94,7 +94,7 @@ public class LaticeVueConsole extends LaticeVue {
 	}
 
     public int demanderActionTour() {
-        return SaisieConsole.demanderEntierDansIntervalle(scanner, Textes.DEMANDER_ACTION_TOUR.texte(), 1, 3);
+        return SaisieConsole.demanderEntierDansIntervalle(scanner, Textes.DEMANDER_ACTION_TOUR.texte(), 1, 4);
     }
 
     @Override

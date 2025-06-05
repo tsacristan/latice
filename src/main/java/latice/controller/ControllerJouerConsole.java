@@ -15,6 +15,7 @@ import latice.util.exception.RackIndexInvalideException;
 import latice.util.exception.RackInvalideException;
 import latice.view.Textes;
 import latice.view.TextesErreurs;
+import latice.view.console.BoutiqueConsole;
 import latice.view.console.LaticeVueConsole;
 
 public class ControllerJouerConsole extends ControllerJouer {
@@ -122,6 +123,13 @@ public class ControllerJouerConsole extends ControllerJouer {
 	                }
 	                laticeVue.afficherRack(joueurQuiJoue);
 	                break;
+	                
+	            case 4:
+	                BoutiqueConsole boutique = new BoutiqueConsole();
+	                boutique.ouvrir(joueurQuiJoue);
+	                laticeVue.afficherPlateau(plateau);
+                    laticeVue.afficherRack(joueurQuiJoue);
+	                break;
 
 	            default:
 	                laticeVue.afficherErreur(TextesErreurs.ACTION_INVALIDE.texte());
@@ -131,7 +139,6 @@ public class ControllerJouerConsole extends ControllerJouer {
 	    joueurQuiJoue.remplir();
 	}
 
-	
 	@Override
     public void annoncerGagnants() {
     	ArrayList<Joueur> joueursGagnants = (ArrayList<Joueur>) obtenirGagnants();

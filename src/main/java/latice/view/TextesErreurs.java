@@ -20,7 +20,8 @@ public enum TextesErreurs {
 	ACTION_INVALIDE("Action invalide !"),
 	DEJA_PIOCHER("Vous avez déjà pioché ce tour."),
 	ACTION_DEJA_EFFECTUEE("Une action a déjà été effectuée !"),
-	ACHAT_ACTION_SUPPLEMENTAIRE_ECHEC("Vous n'avez pas assez de points pour acheter un coup supplémentaire !");
+	ACHAT_ACTION_SUPPLEMENTAIRE_ECHEC("Vous n'avez pas assez de points pour acheter un coup supplémentaire !"),
+	ACHAT_ECHOUE("Achat échoué ! Vous n'avez pas assez de points pour acheter un coup supplémentaire.");
 	
 	private String texte;
 

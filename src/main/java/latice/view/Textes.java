@@ -17,14 +17,25 @@ public enum Textes {
 	AFFICHAGE_TUILES_RESTANTES("Tuiles restantes dans la pile : %d"),
 	AFFICHAGE_POINTS("Points : %d"),
 	AFFICHAGE_TUILES_PLACEES("Placées : %d"),
-    DEMANDER_ACTION_TOUR("Que voulez-vous faire ? (1: jouer une tuile, 2: passer, 3: échanger le rack) : "),
+    DEMANDER_ACTION_TOUR("Que voulez-vous faire ? (1: jouer une tuile, 2: passer, 3: échanger le rack, 4: ouvrir la boutique) : "),
     TUILES_ECHANGEES("Tuiles échangées !"),
     TOUR_PASSE("Tour passé !"),
     AFFICHAGE_GAGNANTS("Le(s) gagnant(s) est : "),
     TUILES_RESTANTES("Tuiles restantes :"),
 	ACHETER_COUP_SUPPLEMENTAIRE("Achetez un Coup supplémentaire (2 points)"),
 	POINTS_JOUEURS("Vos points : %d\nCliquez sur OK pour acheter."),
-	ACHAT_ACTION_SUPPLEMENTAIRE_SUCCES("Vous avez acheté un coup supplémentaire avec succès !");
+	ACHAT_ACTION_SUPPLEMENTAIRE_SUCCES("Vous avez acheté un coup supplémentaire avec succès !"),
+	BIENVENUE_BOUTIQUE("Bienvenue à la Boutique"),
+    POINTS_ACTUELS("Points actuels : %d points"),
+    COUT_ACTION_SUPPLEMENTAIRE("🔹 Coût pour une action supplémentaire : %d points"),
+    DEMANDER_ACHAT("Souhaitez-vous acheter une action supplémentaire ?"),
+    CHOIX_OUI_NON("1 - Oui\n2 - Non"),
+    VOTRE_CHOIX("Votre choix : "),
+    ACHAT_REUSSI("Achat réussi ! Vous avez maintenant une action supplémentaire."),
+    POINTS_RESTANTS("Points restants : %d"),
+    MERCI_VISITE("Merci d'avoir visité la boutique !"),
+    RETOUR_JEU("Retour au jeu..."),
+    SEPARATEUR("====================================");
 	
 	private String texte;
 
