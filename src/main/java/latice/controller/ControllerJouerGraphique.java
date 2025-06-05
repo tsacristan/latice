@@ -71,7 +71,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	private void ouvrirBoutique() {
 		Boutique boutique = new Boutique();
 		boutique.ouvrir(joueurCourant);
-		laticeVue.actualiserScores(joueurs, joueurCourant);
+		laticeVue.actualiserPoints(joueurs, joueurCourant);
 	}
 	
 	private void piocher() {
