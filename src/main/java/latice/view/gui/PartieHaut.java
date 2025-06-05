@@ -4,6 +4,7 @@ import javafx.animation.KeyFrame;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -14,6 +15,7 @@ import javafx.util.Duration;
 public class PartieHaut extends HBox {
     
     private static final String STYLE_COMMUN = "-fx-font-size: 30px; -fx-alignment: center; ";
+    private static final String STYLE_PLUS_PETIT = "-fx-font-size: 15px; -fx-alignment: bottom-center; ";
     private static final String TEXT_TOUR = "Tour : ";
     
     private Label lblTour;
@@ -26,10 +28,12 @@ public class PartieHaut extends HBox {
     	    lblHeure = new Label("00:00");
     	    lblTour = new Label(TEXT_TOUR);
     	    Button btnAide = new Button("Règles");
+    	    Button btnQuitter = new Button("Quitter");
 
     	    lblHeure.setStyle(STYLE_COMMUN);
     	    lblTour.setStyle(STYLE_COMMUN);
     	    btnAide.setStyle(STYLE_COMMUN);
+    	    btnQuitter.setStyle(STYLE_PLUS_PETIT);
 
     	    lblTour.setMaxWidth(150);
 
@@ -52,15 +56,18 @@ public class PartieHaut extends HBox {
     	            "- Le jeu progresse en tours (jusqu'à 10 tours maximum).\n" +
     	            "- Le but est de poser toutes ses tuiles en optimisant les points gagnés par placement."
     	        );
-
     	        alert.showAndWait();
     	    });
+    	    
+    	    btnQuitter.setOnAction(e1 -> {
+   	    	 Platform.exit();
+   	     	});
 
     	    setPadding(new Insets(10, 20, 10, 20));
     	    setSpacing(10);
 
     	    // Ajoute les éléments dans l'ordre avec les régions autour du label centré
-    	    getChildren().addAll(lblHeure, espaceGauche, lblTour, espaceDroit, btnAide);
+    	    getChildren().addAll(lblHeure, espaceGauche, lblTour, espaceDroit, btnQuitter ,btnAide);
 
     	    initialiserChrono();
     	}

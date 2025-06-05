@@ -16,6 +16,10 @@
     -fx-background-color: #FF9900;
 }
 
+.button:hover {
+    -fx-background-color: #FFB84D; /* Orange clair au survol */
+}
+
 
 
 /* Bouton en thème clair */
