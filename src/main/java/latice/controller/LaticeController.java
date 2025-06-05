@@ -3,6 +3,9 @@ package latice.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaView;
 import latice.model.PileDebut;
 import latice.model.board.Plateau;
 import latice.model.player.Joueur;
@@ -23,6 +26,16 @@ public class LaticeController {
 		this.laticeVue = laticeVue;
 		this.controllerPlacement = controllerPlacement;
 		laticeVue.changerController(this);
+	}
+	
+	public void videoBackground() {
+		String videoPath = getClass().getResource("/mediaplayer.mp4").toExternalForm();
+        Media media = new Media(videoPath);
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        MediaView mediaView = new MediaView(mediaPlayer);
+        
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.setAutoPlay(true);
 	}
 	
 	public void demarrerJeu() {
