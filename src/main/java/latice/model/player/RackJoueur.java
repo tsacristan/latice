@@ -68,28 +68,6 @@ public class RackJoueur extends Observable<RackListener> {
         return aJouer;
     }
     
-    public void echangerTuiles(List<Integer> indices, PileJoueur pile) throws PiocheInvalideException {
-        if (indices == null || indices.isEmpty()) return;
-
-        if (pile.size() < indices.size()) {
-            throw new PiocheInvalideException(TextesErreurs.PIOCHE_VIDE.toString());
-        }
-
-        indices.sort((a, b) -> Integer.compare(b, a));
-        List<Tuile> tuilesARetirer = new ArrayList<>();
-        for (int idx : indices) {
-            if (idx >= 0 && idx < rack.size()) {
-                tuilesARetirer.add(rack.remove(idx));
-            }
-        }
-
-        for (int i = 0; i < tuilesARetirer.size(); i++) {
-            rack.add(pile.retirerTuile());
-        }
-
-        pile.addAll(tuilesARetirer);
-        declencherListeners();
-    }
 
     @Override
     public String toString() {
