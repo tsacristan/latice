@@ -11,6 +11,7 @@ public class Joueur {
 	private PileJoueur pileJoueur;
 	private int points;
 	private int tuilesPlacees;
+	private int nombreCoups;
 	
 	public Joueur(String pseudo, RackJoueur rackJoueur, PileJoueur pileJoueur, int points, int tuilesPlacees) {
 		this.pseudo = pseudo;
@@ -18,6 +19,7 @@ public class Joueur {
 		this.pileJoueur = pileJoueur;
 		this.points = points;
 		this.tuilesPlacees = tuilesPlacees;
+		this.nombreCoups = 1;
 	}
 	
 	public Joueur(String pseudo) {
@@ -80,6 +82,14 @@ public class Joueur {
 		Joueur other = (Joueur) obj;
 		return Objects.equals(pileJoueur, other.pileJoueur) && Objects.equals(pseudo, other.pseudo)
 				&& Objects.equals(rackJoueur, other.rackJoueur) && points == other.points;
+	}
+
+	public int nombreCoups() {
+		return nombreCoups;
+	}
+
+	public int changerNombreCoups(int nombreCoups) {
+		return this.nombreCoups = nombreCoups;
 	}
 
 }
