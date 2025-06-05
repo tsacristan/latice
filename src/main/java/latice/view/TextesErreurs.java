@@ -19,7 +19,8 @@ public enum TextesErreurs {
 	VALIDATION_SANS_ACTION("Vous devez jouer avant de valider !"),
 	ACTION_INVALIDE("Action invalide !"),
 	DEJA_PIOCHER("Vous avez déjà pioché ce tour."),
-	ACTION_DEJA_EFFECTUEE("Une action a déjà été effectuée !");
+	ACTION_DEJA_EFFECTUEE("Une action a déjà été effectuée !"),
+	ACHAT_ACTION_SUPPLEMENTAIRE_ECHEC("Vous n'avez pas assez de points pour acheter un coup supplémentaire !");
 	
 	private String texte;
 

@@ -20,7 +20,11 @@ public enum Textes {
     DEMANDER_ACTION_TOUR("Que voulez-vous faire ? (1: jouer une tuile, 2: passer, 3: échanger le rack) : "),
     TUILES_ECHANGEES("Tuiles échangées !"),
     TOUR_PASSE("Tour passé !"),
-    AFFICHAGE_GAGNANTS("Le(s) gagnant(s) est : ");
+    AFFICHAGE_GAGNANTS("Le(s) gagnant(s) est : "),
+    TUILES_RESTANTES("Tuiles restantes :"),
+	ACHETER_COUP_SUPPLEMENTAIRE("Achetez un Coup supplémentaire (2 points)"),
+	POINTS_JOUEURS("Vos points : %d\nCliquez sur OK pour acheter."),
+	ACHAT_ACTION_SUPPLEMENTAIRE_SUCCES("Vous avez acheté un coup supplémentaire avec succès !");
 	
 	private String texte;
 

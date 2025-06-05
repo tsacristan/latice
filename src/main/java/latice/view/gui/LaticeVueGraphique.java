@@ -74,7 +74,7 @@ public class LaticeVueGraphique extends LaticeVue {
 	public void afficherTour(List<Joueur> joueurs, Joueur joueurQuiJoue, int nombreTour) {
 		interfaceJeu.afficherJoueursPointsTour(joueurQuiJoue, joueurs, nombreTour);
 		interfaceJeu.partieInfo().afficherTuilesRestantes(joueurQuiJoue.pileJoueur().size());
-		interfaceJeu.partieInfo().setJoueur(joueurQuiJoue);
+		interfaceJeu.partieInfo().changerJoueur(joueurQuiJoue);
 	}
 	
 	@Override

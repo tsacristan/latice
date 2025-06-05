@@ -13,6 +13,7 @@ import latice.model.board.Coordonnees;
 import latice.model.player.Joueur;
 import latice.util.exception.PiocheInvalideException;
 import latice.view.TextesErreurs;
+import latice.view.gui.Boutique;
 import latice.view.gui.InterfaceCase;
 import latice.view.gui.InterfacePlateau;
 import latice.view.gui.LaticeVueGraphique;
@@ -31,6 +32,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		this.laticeVue = laticeVue;
 		random = new Random();
 		tourCourant = 1;
+		laticeVue.interfaceJeu().partieInfo().avoirBoutonMagasin().setOnAction(event -> ouvrirBoutique());
 	}
 	
 	@Override
@@ -64,6 +66,12 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		laticeVue.interfaceJeu().setBottom(partieControle);
 		laticeVue.interfaceJeu().interfacePlateau().actualiserRack(joueurCourant.rackJoueur());
 		appliquerDnDToutesCases();
+	}
+	
+	private void ouvrirBoutique() {
+		Boutique boutique = new Boutique();
+		boutique.ouvrir(joueurCourant);
+		laticeVue.actualiserScores(joueurs, joueurCourant);
 	}
 	
 	private void piocher() {
