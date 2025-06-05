@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import latice.model.player.Joueur;
 import latice.view.Textes;
 
 public class PartieInfo extends StackPane {
