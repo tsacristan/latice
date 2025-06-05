@@ -1,0 +1,31 @@
+/* Ajouté pour thème clair : fond blanc et texte noir */
+.label {
+	-fx-background-color: #FFD580; /* orange doux */
+    -fx-padding: 5px 10px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 12px;
+    -fx-font-size: 14px;
+}
+
+
+/* Styles communs aux deux thèmes */
+.button {
+    -fx-background-radius: 12px; /* Valeur plus grande = plus arrondi */
+    -fx-padding: 8px 16px;
+    -fx-border-radius: 12px;
+    -fx-background-color: #FF9900;
+}
+
+
+
+/* Bouton en thème clair */
+.root.light .button {
+    -fx-background-color: #e0e0e0;
+    -fx-text-fill: #000000;
+
+}
+/* Bouton en thème sombre */
+.root.dark .button {
+    -fx-background-color: #333333;
+    -fx-text-fill: #ffffff;
+}
