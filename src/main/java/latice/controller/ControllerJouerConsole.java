@@ -105,6 +105,7 @@ public class ControllerJouerConsole extends ControllerJouer {
             case 3:
             	try {
 					joueurQuiJoue.piocher();
+					joueurQuiJoue.changerNombreCoups(joueurQuiJoue.nombreCoups() - 1);
 				} catch (PiocheInvalideException e) {
 					laticeVue.afficherErreur(e.getMessage());
 				}
