@@ -54,7 +54,7 @@ public class PartieInfo extends StackPane {
     
     public void changerJoueur(Joueur joueur) {
         this.joueur = joueur;
-        afficherTuilesRestantes(joueur.points());
+        afficherTuilesRestantes(joueur.pileJoueur().size());
     }
     
     public Button avoirBoutonMagasin() {
