@@ -69,7 +69,7 @@ public class ControllerJouerConsole extends ControllerJouer {
 	
 	private boolean placerTuileEtGererErreurs(int emplacementRack, Coordonnees emplacementPlateau, Joueur joueur) {
 		try {
-			int pointsAjoutes = calculerPointsCoup(emplacementPlateau, joueur.rackJoueur().rack().get(emplacementRack));
+			int pointsAjoutes = verificateurPlacementPoints.calculerPointsCoup(emplacementPlateau, joueur.rackJoueur().rack().get(emplacementRack));
 			plateau.placerLaTuileSurLePlateau(emplacementRack, emplacementPlateau, joueur.rackJoueur());
 			joueur.ajouterPoints(pointsAjoutes);
 			estPremierTour = false;

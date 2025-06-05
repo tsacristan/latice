@@ -10,6 +10,14 @@ public class Tuile {
 		this.couleur = couleur;
 		this.forme = forme;
 	}
+	
+	public boolean correspondParFormeOuCouleur(Tuile tuileATester) {
+    	if (tuileATester == null) return false;
+    	boolean estMemeCouleur = couleur() == tuileATester.couleur();
+		boolean estMemeForme = forme() == tuileATester.forme();
+		
+		return estMemeCouleur || estMemeForme;
+    }
 
 	public Couleur couleur() {
 		return couleur;

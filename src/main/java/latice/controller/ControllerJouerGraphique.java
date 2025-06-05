@@ -161,7 +161,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
                     int indexRack = Integer.parseInt(db.getString());
                     
                     Coordonnees coordDePlacement = new Coordonnees(ligne, colonne);
-                    int pointsAjoutes = calculerPointsCoup(coordDePlacement, joueurCourant.rackJoueur().rack().get(indexRack));
+                    int pointsAjoutes = verificateurPlacementPoints.calculerPointsCoup(coordDePlacement, joueurCourant.rackJoueur().rack().get(indexRack));
                     plateau.placerLaTuileSurLePlateau(indexRack, coordDePlacement, joueurCourant.rackJoueur());
         			joueurCourant.ajouterPoints(pointsAjoutes);
         			joueurCourant.changerNombreCoups(joueurCourant.nombreCoups() - 1);
@@ -186,7 +186,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	@Override
 	public void annoncerGagnants() {
 		ArrayList<Joueur> joueursGagnants = (ArrayList<Joueur>) obtenirGagnants();
-		
+
 		laticeVue.afficherGagnants(joueursGagnants);
 	}
 }

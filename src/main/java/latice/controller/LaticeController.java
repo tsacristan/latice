@@ -63,7 +63,7 @@ public class LaticeController {
 		}
 		plateau = new Plateau();
 		
-		controllerPlacement.initialiserPlateau(plateau);
+		controllerPlacement.initialiserPlateauJoueurs(plateau, joueurs);
 	}
 	
 	public List<Joueur> joueurs() {

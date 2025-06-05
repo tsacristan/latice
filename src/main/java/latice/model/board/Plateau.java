@@ -98,7 +98,11 @@ public class Plateau extends Observable<PlateauListener> {
     	}
 
         Tuile tuile = rack.choisirTuile(indexRack);        
-        obtenirTuile(coordsTuile).changerTuile(tuile);
+        placerTuile(coordsTuile, tuile);
+    }
+    
+    public void placerTuile(Coordonnees coordsTuile, Tuile tuile) {
+    	obtenirTuile(coordsTuile).changerTuile(tuile);
         obtenirTuile(coordsTuile).changerTypeCase(TypeCase.CASE_OCCUPEE);
         
         declencherListeners();
@@ -137,19 +141,11 @@ public class Plateau extends Observable<PlateauListener> {
     		Case caseAdjacente = casesAdjacentes.get(i);
     		Tuile tuileAdjacente = caseAdjacente.tuile();
 
-    		existeUneCaseQuiCorrespond = correspondParFormeOuCouleur(tuileAPlacer, tuileAdjacente);
+    		existeUneCaseQuiCorrespond = tuileAPlacer.correspondParFormeOuCouleur(tuileAdjacente);
     		i++;
     	}
     	
     	return existeUneCaseQuiCorrespond;
-    }
-    
-    public boolean correspondParFormeOuCouleur(Tuile coord1, Tuile coord2) {
-    	if (coord1 == null || coord2 == null) return false;
-    	boolean estMemeCouleur = coord1.couleur() == coord2.couleur();
-		boolean estMemeForme = coord1.forme() == coord2.forme();
-		
-		return estMemeCouleur || estMemeForme;
     }
     
 	@Override
