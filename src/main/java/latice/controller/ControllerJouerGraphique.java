@@ -87,10 +87,11 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	}
 	
 	private void validerTour() {
-		 if (!tuilePlaceeDansCeTour) {
+		 if (joueurCourant.nombreCoups() > 0) {
 		        laticeVue.afficherErreur(TextesErreurs.VALIDATION_SANS_ACTION.texte());
 		        return;
 		    }
+		 System.out.println(joueurCourant.nombreCoups());
 		    avancerTour();
 	    }
 	 
@@ -163,8 +164,13 @@ public class ControllerJouerGraphique extends ControllerJouer {
                     int pointsAjoutes = calculerPointsCoup(coordDePlacement, joueurCourant.rackJoueur().rack().get(indexRack));
                     plateau.placerLaTuileSurLePlateau(indexRack, coordDePlacement, joueurCourant.rackJoueur());
         			joueurCourant.ajouterPoints(pointsAjoutes);
+        			joueurCourant.changerNombreCoups(joueurCourant.nombreCoups() - 1);
                     success = true;
-                    
+                    if (joueurCourant.nombreCoups() > 0) {
+                    	laticeVue.afficherPlateau(plateau); 
+                    	appliquerDnDToutesCases();          
+                    	laticeVue.afficherRack(joueurCourant);
+                    }
                     tuilePlaceeDansCeTour = true;
                     joueurCourant.incrementerTuilePlacees();
                 } catch (Exception e) {

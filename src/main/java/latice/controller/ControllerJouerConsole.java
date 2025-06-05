@@ -42,7 +42,7 @@ public class ControllerJouerConsole extends ControllerJouer {
 		while (nombreTour <= LaticeController.TOURS_MAX) {
 			jouerTour(joueurCourant, nombreTour, estPremierTour);
 			
-			if (joueurCourant.equals(premierJoueur)) nombreTour++;;
+			if (joueurCourant.equals(premierJoueur)) nombreTour++;
 			joueurCourant = joueurCourant.equals(joueurs.get(1)) ? joueurs.get(0) : joueurs.get(1);
 			laticeVue.afficherMessage("");
 		}
@@ -90,32 +90,47 @@ public class ControllerJouerConsole extends ControllerJouer {
 	}
 	
 	private void jouerTour(Joueur joueurQuiJoue, int nombreTour, boolean jouerCentre) {
-		laticeVue.afficherTour(joueurs, joueurQuiJoue, nombreTour);
-		laticeVue.afficherPlateau(plateau);
-		laticeVue.afficherRack(joueurQuiJoue);
-		
-		int action = laticeVue.demanderActionTour();
-        switch (action) {
-            case 1:
-            	jouerTuile(joueurQuiJoue, jouerCentre);
-                break;
-            case 2:
-                laticeVue.afficherMessage(Textes.TOUR_PASSE.texte());
-                break;
-            case 3:
-            	try {
-					joueurQuiJoue.piocher();
-					joueurQuiJoue.changerNombreCoups(joueurQuiJoue.nombreCoups() - 1);
-				} catch (PiocheInvalideException e) {
-					laticeVue.afficherErreur(e.getMessage());
-				}
-				break;
-            default:
-                laticeVue.afficherErreur(TextesErreurs.ACTION_INVALIDE.texte());
-        }
-        
-        joueurQuiJoue.remplir();
+	    laticeVue.afficherTour(joueurs, joueurQuiJoue, nombreTour);
+	    laticeVue.afficherPlateau(plateau);
+	    laticeVue.afficherRack(joueurQuiJoue);
+
+	    boolean continuerTour = true;
+	    boolean premierPlacement = jouerCentre; 
+
+	    while (continuerTour) {
+	        int action = laticeVue.demanderActionTour();
+
+	        switch (action) {
+	            case 1: 
+	                jouerTuile(joueurQuiJoue, premierPlacement);
+	                premierPlacement = false;
+	                laticeVue.afficherPlateau(plateau);
+	                laticeVue.afficherRack(joueurQuiJoue);
+	                break;
+
+	            case 2: 
+	                laticeVue.afficherMessage(Textes.TOUR_PASSE.texte());
+	                continuerTour = false;
+	                break;
+
+	            case 3:
+	                try {
+	                    joueurQuiJoue.piocher();
+	                    joueurQuiJoue.changerNombreCoups(joueurQuiJoue.nombreCoups() - 1);
+	                } catch (PiocheInvalideException e) {
+	                    laticeVue.afficherErreur(e.getMessage());
+	                }
+	                laticeVue.afficherRack(joueurQuiJoue);
+	                break;
+
+	            default:
+	                laticeVue.afficherErreur(TextesErreurs.ACTION_INVALIDE.texte());
+	        }
+	    }
+
+	    joueurQuiJoue.remplir();
 	}
+
 	
 	@Override
     public void annoncerGagnants() {
