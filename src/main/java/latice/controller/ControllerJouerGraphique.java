@@ -78,7 +78,6 @@ public class ControllerJouerGraphique extends ControllerJouer {
 		if (joueurCourant.nombreCoups() > 0) {
 		try {
             joueurCourant.piocher();
-            joueurCourant.changerNombreCoups(joueurCourant.nombreCoups() - 1);
         } catch (PiocheInvalideException e) {
             laticeVue.afficherErreur(e.getMessage());
         }
@@ -87,7 +86,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	}
 	
 	private void validerTour() {
-		 if (joueurCourant.nombreCoups() > 0) {
+		 if (!tuilePlaceeDansCeTour) {
 		        laticeVue.afficherErreur(TextesErreurs.VALIDATION_SANS_ACTION.texte());
 		        return;
 		    }
@@ -99,13 +98,18 @@ public class ControllerJouerGraphique extends ControllerJouer {
 	 }
 	
 	 private void avancerTour() {
-		 if (!joueurCourant.equals(premierJoueur)) tourCourant++;
-		 joueurCourant.remplir();
+		 joueurCourant.changerNombreCoups(joueurCourant.nombreCoups() - 1);
 		 
-		 joueurCourant = prochainJoueur();
+		 if (joueurCourant.nombreCoups() <= 0) {
+			 if (!joueurCourant.equals(premierJoueur)) tourCourant++;
+			 joueurCourant.remplir();
+			 
+			 joueurCourant = prochainJoueur();
+			 joueurCourant.changerNombreCoups(1);
+		 }
+		 
 		 tuilePlaceeDansCeTour = false;
 		 jouerTour();
-		 joueurCourant.changerNombreCoups(1);
 	 }
 	
 	private void jouerTour() {
@@ -163,13 +167,7 @@ public class ControllerJouerGraphique extends ControllerJouer {
                     int pointsAjoutes = verificateurPlacementPoints.calculerPointsCoup(coordDePlacement, joueurCourant.rackJoueur().rack().get(indexRack));
                     plateau.placerLaTuileSurLePlateau(indexRack, coordDePlacement, joueurCourant.rackJoueur());
         			joueurCourant.ajouterPoints(pointsAjoutes);
-        			joueurCourant.changerNombreCoups(joueurCourant.nombreCoups() - 1);
                     success = true;
-                    if (joueurCourant.nombreCoups() > 0) {
-                    	laticeVue.afficherPlateau(plateau); 
-                    	appliquerDnDToutesCases();          
-                    	laticeVue.afficherRack(joueurCourant);
-                    }
                     tuilePlaceeDansCeTour = true;
                     joueurCourant.incrementerTuilePlacees();
                 } catch (Exception e) {
