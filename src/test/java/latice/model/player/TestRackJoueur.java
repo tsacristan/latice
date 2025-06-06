@@ -78,7 +78,6 @@ class TestRackJoueur {
     void testDeclencherListenersManuellement() {
         RackJoueur rackJoueur = new RackJoueur() {
             {
-                // Ajoute manuellement les listeners
                 ajouterListener(LISTENER1);
                 ajouterListener(LISTENER2);
             }

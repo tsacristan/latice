@@ -21,12 +21,14 @@ public class PartieInfo extends StackPane {
     	
         Label tuilesRestantesLabel = new Label(Textes.TUILES_RESTANTES.toString());
         nombreTuilesLabel = new Label("25");
+        tuilesRestantesLabel.setMinWidth(210);
 
         VBox labelsBox = new VBox(tuilesRestantesLabel, nombreTuilesLabel);
         labelsBox.setAlignment(Pos.TOP_CENTER);
         VBox tuileBox = new VBox();
         tuileBox.setAlignment(Pos.TOP_RIGHT);
         VBox.setMargin(tuileBox, new Insets(20));
+        
         
         boutonMagasin = new Button("SHOP");
         

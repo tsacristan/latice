@@ -107,11 +107,12 @@ public class ControllerJouerConsole extends ControllerJouer {
 	                premierPlacement = false;
 	                laticeVue.afficherPlateau(plateau);
 	                laticeVue.afficherRack(joueurQuiJoue);
+	                joueurQuiJoue.changerNombreCoups(joueurQuiJoue.nombreCoups() - 1);
 	                break;
 
 	            case 2: 
 	                laticeVue.afficherMessage(Textes.TOUR_PASSE.texte());
-	                continuerTour = false;
+	                joueurQuiJoue.changerNombreCoups(joueurQuiJoue.nombreCoups() - 1);
 	                break;
 
 	            case 3:
@@ -134,6 +135,8 @@ public class ControllerJouerConsole extends ControllerJouer {
 	            default:
 	                laticeVue.afficherErreur(TextesErreurs.ACTION_INVALIDE.texte());
 	        }
+	        
+	        continuerTour = joueurQuiJoue.nombreCoups() > 0;
 	    }
 
 	    joueurQuiJoue.remplir();

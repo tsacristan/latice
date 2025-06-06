@@ -4,7 +4,7 @@ import latice.view.console.CouleurConsole;
 import latice.view.console.EmojiForme;
 
 public enum Textes {
-	AIDE_PLATEAU("Plume : %s, Oiseau : %s, Tortue : %s, Fleur : %s, Geko : %s, Dauphin : %s, Case lune : %s, Case soleil : %s, Case vide : %s"),
+	AIDE_PLATEAU("Plume : %s, Oiseau : %s, Tortue : %s, Fleur : %s, Gecko : %s, Dauphin : %s, Case lune : %s, Case soleil : %s, Case vide : %s"),
 	CHOIX_PSEUDO("Veuillez choisir le pseudonyme pour le joueur n°%d : "),
 	NB_TOUR("Tour n°%d : %s"),
 	DEMANDER_TUILE("Quelle tuile jouer ? (index de 1 à %d) : "),
