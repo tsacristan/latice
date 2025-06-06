@@ -31,16 +31,12 @@ public class RackJoueur extends Observable<RackListener> {
           	pileJoueur.addAll(rack);
           	rack.clear();
        		pileJoueur.melanger();
-       		for (int i = 0; i < TAILLE_MAX_RACK; i++) {
-       		    rack.add(pileJoueur.retirerTuile());
-       		}
+       		remplir(pileJoueur);
        	} else {
        		ArrayList<Tuile> rackTemporaire = new ArrayList<>();
        		rackTemporaire.addAll(rack) ;
        		rack.clear();
-       		for (int i = 0; i < TAILLE_MAX_RACK; i++) {
-                rack.add(pileJoueur.retirerTuile());
-            }
+       		remplir(pileJoueur);
        		pileJoueur.addAll(rackTemporaire);
         }
        	
